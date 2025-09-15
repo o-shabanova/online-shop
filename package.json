@@ -1,0 +1,16 @@
+{
+  "name": "project-template",
+  "version": "1.0.0",
+  "description": "Capstone Project Template ",
+  "repository": {
+    "type": "git",
+    "url": "https://autocode.git.epam.com/campus_javascript/capstone-project/project-template.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
