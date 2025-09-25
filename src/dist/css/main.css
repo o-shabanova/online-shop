@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* src/scss/main.scss */
+/* Абстракції */
+/* Базові стилі */
+/* Компоненти */
+.btn-test {
+  background: hotpink;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* Layouts */
+/* Сторінкові стилі */
+
+/*# sourceMappingURL=main.css.map */

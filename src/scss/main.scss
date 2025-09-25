@@ -1,0 +1,25 @@
+/* src/scss/main.scss */
+
+/* Абстракції */
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+/* Базові стилі */
+@use 'base/reset';
+@use 'base/fonts';
+
+/* Компоненти */
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/product-card';
+
+/* Layouts */
+@use 'layouts/header';
+@use 'layouts/footer';
+
+/* Сторінкові стилі */
+@use 'pages/about';
+@use 'pages/cart';
+@use 'pages/catalog';
+@use 'pages/product-details';
+
