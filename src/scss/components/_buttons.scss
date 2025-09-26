@@ -1,7 +1,56 @@
-.btn-test {
-    background: hotpink;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 24px;
+  font-family: $font-tertiary;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-small;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 40px;
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
+
+  &--secondary {
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  // Larger button variants
+  &--large {
+    padding: 18px 48px;
+    min-height: 60px;
+    font-size: $font-size-large;
+  }
+
+  &--medium {
+    padding: 12px 32px;
+    min-height: 48px;
+  }
+}
   
