@@ -1,0 +1,62 @@
+// Colors from Figma design
+$color-primary: #B92770; // Pink color
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-gray: #504E4A;
+$color-gray-light: #E7E8E9;
+$color-gray-dark: rgba(0, 0, 0, 0.35);
+
+// Typography
+$font-primary: 'Montserrat', sans-serif;
+$font-secondary: 'Inter', sans-serif;
+$font-tertiary: 'SF Pro', sans-serif;
+$font-helvetica: 'Helvetica Neue', sans-serif;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Font sizes
+$font-size-small: 12px;
+$font-size-base: 15px;
+$font-size-medium: 17px;
+$font-size-large: 18px;
+$font-size-xl: 19px;
+$font-size-xxl: 20px;
+$font-size-title: 40px;
+$font-size-hero: 50px;
+$font-size-banner: 223px;
+
+// Line heights
+$line-height-small: 1.2;
+$line-height-base: 1.47;
+$line-height-medium: 1.22;
+
+// Container
+$container-max-width: 1300px;
+$container-padding: 200px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+$spacing-xxxl: 64px;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Box shadows
+$shadow-card: 0px 20px 80px 0px rgba(193, 199, 212, 0.7);
+
+// Z-index
+$z-index-header: 100;
+$z-index-modal: 1000;
+$z-index-tooltip: 1100;

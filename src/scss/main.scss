@@ -23,3 +23,608 @@
 @use 'pages/catalog';
 @use 'pages/product-details';
 
+
+
+// Hero Section
+.hero {
+  position: relative;
+  height: 1328px; // Total height from Figma
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 861px; // Gray background height from Figma
+    background-color: $color-gray-light;
+    background-image: url('../assets/hero-bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 200px 0; // Reduced top padding to position content higher
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    max-width: 1700px;
+    margin: 0 auto;
+  }
+
+  &__left {
+    flex: 1;
+    max-width: 486px;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-hero;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-black;
+    margin-bottom: 28px;
+    text-align: left;
+
+    &-line {
+      display: block;
+    }
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+    margin-bottom: 49px;
+    text-align: left;
+    max-width: 639px;
+  }
+
+  &__btn {
+    padding: 18px 36px;
+    min-height: 60px;
+  }
+
+  &__right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__suitcase {
+    max-width: 766px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+// Feature Section (Overlapping white section)
+.feature-section {
+  position: relative;
+  margin-top: -566px; // Overlap based on Figma height
+  z-index: 3;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 566px; // Exact height from Figma
+    background-color: $color-white;
+    box-shadow: $shadow-card;
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    max-width: 1300px; // Exact width from Figma
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    height: 566px;
+    align-items: flex-start;
+  }
+
+  &__left {
+    width: 494px; // Exact width from Figma
+    padding: 91px 70px 0 70px; // Based on Figma positioning
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 31px;
+  }
+
+  &__profile-image {
+    width: 85px;
+    height: 93px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+    background-color: #f0f0f0; // Fallback background to see if element exists
+    border: 2px solid #ddd; // Temporary border to see the element
+  }
+
+  &__profile-info {
+    padding-top: 8px;
+  }
+
+  &__profile-name {
+    font-family: $font-primary;
+    font-size: $font-size-xxl; // 20px from Figma
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+    color: $color-black;
+    margin-bottom: 8px;
+  }
+
+  &__profile-title {
+    font-family: $font-primary;
+    font-size: $font-size-medium; // 17px from Figma
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-black;
+  }
+
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__text {
+    font-family: $font-primary;
+    font-size: $font-size-medium; // 17px from Figma
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+    margin-bottom: 28px;
+
+    &--large {
+      font-size: $font-size-title; // 40px from Figma
+      font-weight: $font-weight-black;
+      color: $color-black;
+      margin-bottom: 28px; // Space to first paragraph
+      line-height: $line-height-medium;
+    }
+  }
+
+  &__right {
+    width: 646px; // Exact width from Figma
+    height: 566px; // Exact height from Figma
+    position: relative;
+  }
+
+  &__card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  &__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); // 40% opacity from Figma
+    z-index: 2;
+  }
+
+  &__card-content {
+    position: absolute;
+    bottom: 159px; // 566 - 347 - 60 = 159px from bottom
+    left: 70px; // Exact position from Figma
+    z-index: 3;
+    color: $color-white;
+    max-width: 393px; // Text width from Figma
+  }
+
+  &__card-title {
+    font-family: $font-primary;
+    font-size: $font-size-title; // 40px from Figma
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-white;
+    margin-bottom: 28px; // Space between title and text
+  }
+
+  &__card-text {
+    font-family: $font-primary;
+    font-size: $font-size-medium; // 17px from Figma
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-white;
+    margin-bottom: 28px; // Space between text and button
+  }
+
+  &__card-btn {
+    padding: 18px 36px; // Button size from Figma
+    min-height: 60px;
+    font-size: $font-size-large; // 18px from Figma
+    font-weight: $font-weight-bold;
+  }
+}
+
+// Travel Section
+.travel-section {
+  padding: 140px 0;
+
+  .section__title {
+    font-family: $font-primary;
+    font-size: $font-size-title;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-black;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section__subtitle {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+    text-align: center;
+    margin-bottom: 59px;
+  }
+}
+
+.travel__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 39px;
+}
+
+.travel__card {
+  position: relative;
+  width: 296px;
+  height: 600px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.travel__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.travel__card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.travel__card-content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 3;
+  color: $color-white;
+}
+
+.travel__card-title {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  color: $color-white;
+  margin-bottom: 28px;
+
+  span {
+    display: block;
+  }
+}
+
+.travel__card-text {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-white;
+  max-width: 181px;
+}
+
+// Products Section
+.products-section {
+  padding: 80px 0;
+
+  &:nth-of-type(2) {
+    padding-top: 0;
+  }
+
+  .section__title {
+    font-family: $font-primary;
+    font-size: $font-size-title;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-black;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section__subtitle {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+    text-align: center;
+    margin-bottom: 59px;
+  }
+}
+
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 39px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 296px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  width: 296px;
+  height: 400px;
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 6px 12px;
+  font-family: $font-primary;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  z-index: 2;
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-card__title {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  color: $color-black;
+  margin-bottom: 15px;
+
+  span {
+    display: block;
+  }
+}
+
+.product-card__price {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  color: $color-gray;
+  margin-bottom: 18px;
+}
+
+.product-card__btn {
+  margin-top: auto;
+}
+
+// Banner Section
+.banner-section {
+  padding: 119px 0;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 407px;
+  overflow: hidden;
+}
+
+.banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.banner__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+  color: $color-white;
+}
+
+.banner__discount {
+  font-family: $font-primary;
+  font-size: $font-size-banner;
+  font-weight: $font-weight-black;
+  line-height: $line-height-medium;
+  color: $color-white;
+  display: block;
+  margin-bottom: -50px;
+}
+
+.banner__title {
+  font-family: $font-primary;
+  font-size: $font-size-title;
+  font-weight: $font-weight-black;
+  line-height: $line-height-medium;
+  color: $color-white;
+  margin-bottom: 28px;
+}
+
+.banner__subtitle {
+  font-family: $font-primary;
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-medium;
+  color: $color-white;
+  margin-bottom: 28px;
+}
+
+.banner__text {
+  font-family: $font-primary;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-medium;
+  color: $color-white;
+  margin-bottom: 40px;
+  max-width: 393px;
+}
+
+.banner__btn {
+  padding: 18px 48px;
+  min-height: 60px;
+}
+
+// Testimonials Section
+.testimonials-section {
+  padding: 119px 0;
+
+  .section__title {
+    font-family: $font-primary;
+    font-size: $font-size-title;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-black;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section__subtitle {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonial-card {
+  width: 420px;
+  height: 336px;
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+  padding: 44px 39px;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.testimonial-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.testimonial-card__image {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 44px;
+}
+
+.testimonial-card__text {
+  margin-bottom: 25px;
+  flex: 1;
+
+  p {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-black;
+  }
+}
+
+.testimonial-card__name {
+  font-family: $font-primary;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  color: $color-primary;
+}
