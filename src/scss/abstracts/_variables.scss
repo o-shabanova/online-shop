@@ -1,5 +1,5 @@
-// Colors from Figma design
-$color-primary: #B92770; // Pink color
+// Colors 
+$color-primary: #B92770; 
 $color-white: #FFFFFF;
 $color-black: #000000;
 $color-gray: #504E4A;
@@ -7,10 +7,11 @@ $color-gray-light: #E7E8E9;
 $color-gray-dark: rgba(0, 0, 0, 0.35);
 
 // Typography
-$font-primary: 'Montserrat', sans-serif;
-$font-secondary: 'Inter', sans-serif;
-$font-tertiary: 'SF Pro', sans-serif;
-$font-helvetica: 'Helvetica Neue', sans-serif;
+$font-primary: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-secondary: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-tertiary: -apple-system, system-ui, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-helvetica: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
+
 
 // Font weights
 $font-weight-light: 300;
