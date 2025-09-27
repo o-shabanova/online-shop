@@ -38,6 +38,7 @@
   display: grid;
   place-items: center;
   padding-block: 64px;
+  background-color: $color-gray-light;
 }
 // Hero Section
 /* =========================
@@ -45,30 +46,31 @@
    ========================= */
    .hero {
     position: relative;
-    padding-block: $spacing-xxxl; // 64px → 4rem
+    padding-block: $spacing-xxxl;
+     // 64px → 4rem
   
     &__content {
-      @extend .container;                // або лишаємо в HTML: class="container hero__content"
+      @extend .container;                
       display: grid;
-      grid-template-columns: 1fr 1fr;    // текст + зображення
+      grid-template-columns: 1fr 1fr;    
       align-items: center;
-      gap: $spacing-xl;                  // 32px → 2rem
+      gap: $spacing-xl;                  
     }
   
     &__title {
-      font-family: $font-primary;        // Montserrat
-      font-size: $font-size-hero;        // 50px → 3.125rem
-      line-height: $line-height-medium;  // 1.22
-      margin: 0 0 $spacing-md;           // 16px → 1rem
+      font-family: $font-primary;        
+      font-size: $font-size-hero;        
+      line-height: $line-height-medium;  
+      margin: 0 0 $spacing-md;           
       letter-spacing: 0;
     }
   
     &__description {
       max-width: 60ch;                   // оптимальна довжина рядка
-      margin: 0 0 $spacing-lg;           // 24px → 1.5rem
+      margin: 0 0 $spacing-lg;           
       color: $color-gray;
-      font-size: $font-size-base;        // 15px → 0.9375rem
-      line-height: $line-height-base;    // 1.47
+      font-size: $font-size-base;        
+      line-height: $line-height-base;    
     }
   
     &__suitcase {

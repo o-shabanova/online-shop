@@ -421,6 +421,7 @@ h1, h2, h3 {
   display: grid;
   place-items: center;
   padding-block: 64px;
+  background-color: #E7E8E9;
 }
 
 /* =========================
