@@ -390,30 +390,46 @@ h1, h2, h3 {
 }
 
 /* Сторінкові стилі */
-.container, .hero__content {
+.container, .testimonials-section, .banner-section, .products-section, .travel-section, .feature-section, .hero__content {
   max-width: 1300px;
   width: 100%;
   margin-inline: auto;
 }
 
 .hero,
-.feature-section {
+.feature-section,
+.travel-section,
+.products-section,
+.banner-section,
+.testimonials-section {
   min-block-size: calc(100vh - 0px);
 }
 @supports (height: 100svh) {
   .hero,
-  .feature-section {
+  .feature-section,
+  .travel-section,
+  .products-section,
+  .banner-section,
+  .testimonials-section {
     min-block-size: calc(100svh - 0px);
   }
 }
 @supports (height: 100dvh) {
   .hero,
-  .feature-section {
+  .feature-section,
+  .travel-section,
+  .products-section,
+  .banner-section,
+  .testimonials-section {
     min-block-size: calc(100dvh - 0px);
   }
 }
 .hero,
-.feature-section {
+.feature-section,
+.travel-section,
+.products-section,
+.banner-section,
+.testimonials-section {
   display: grid;
   place-items: center;
 }

@@ -33,7 +33,11 @@
 
 //General section styles
 .hero,
-.feature-section {
+.feature-section,
+.travel-section,
+.products-section,
+.banner-section,
+.testimonials-section {
   @include fill-viewport();
   display: grid;
   place-items: center;
@@ -82,6 +86,7 @@
 // Feature Section 
 
    .feature-section {
+    @extend .container;
     position: relative;
     z-index: $z-index-feature;
    
@@ -216,6 +221,7 @@
 // Travel Section
 .travel-section {
   padding: 140px 0;
+  @extend .container;
 
   .section__title {
     font-family: $font-primary;
@@ -305,6 +311,7 @@
 // Products Section
 .products-section {
   padding: 80px 0;
+  @extend .container;
 
   &:nth-of-type(2) {
     padding-top: 0;
@@ -414,6 +421,7 @@
 // Banner Section
 .banner-section {
   padding: 119px 0;
+  @extend .container;
 }
 
 .banner {
@@ -495,6 +503,7 @@
 // Testimonials Section
 .testimonials-section {
   padding: 119px 0;
+  @extend .container;
 
   .section__title {
     font-family: $font-primary;
