@@ -417,16 +417,12 @@ h1, h2, h3 {
   }
 }
 .hero {
-  /* займає екран, але може рости при великому контенті */
   display: grid;
   place-items: center;
   padding-block: 64px;
   background-color: #E7E8E9;
 }
 
-/* =========================
-   HOMEPAGE — desktop only
-   ========================= */
 .hero {
   position: relative;
   padding-block: 4rem;
@@ -457,9 +453,6 @@ h1, h2, h3 {
   object-fit: cover;
   display: block;
   border-radius: 0.5rem;
-}
-.hero {
-  /* опційно, якщо є елементи */
 }
 
 .feature-section {
