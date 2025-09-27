@@ -34,20 +34,17 @@
 
 //General section styles
 .hero {
-  @include fill-viewport();   /* займає екран, але може рости при великому контенті */
+  @include fill-viewport();
   display: grid;
   place-items: center;
   padding-block: 64px;
   background-color: $color-gray-light;
 }
 // Hero Section
-/* =========================
-   HOMEPAGE — desktop only
-   ========================= */
+
    .hero {
     position: relative;
     padding-block: $spacing-xxxl;
-     // 64px → 4rem
   
     &__content {
       @extend .container;                
@@ -66,7 +63,7 @@
     }
   
     &__description {
-      max-width: 60ch;                   // оптимальна довжина рядка
+      max-width: 60ch;                   
       margin: 0 0 $spacing-lg;           
       color: $color-gray;
       font-size: $font-size-base;        
@@ -80,91 +77,7 @@
       display: block;
       border-radius: $border-radius-md;
     }
-  
-    /* опційно, якщо є елементи */
-//     &__left  { /* layout-only, за потреби */ }
-//     &__right { /* layout-only, за потреби */ }
-//     &__btn   { /* кнопка стилізується через .btn / .btn--primary */ }
   }
-  
-// .hero {
-//   position: relative;
-//   height: 1328px; // Total height from Figma
-//   overflow: hidden;
-
-//   &__bg {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 861px; // Gray background height from Figma
-//     background-color: $color-gray-light;
-//     background-image: url('../assets/hero-bg.svg');
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     z-index: 1;
-//   }
-
-//   &__content {
-//     position: relative;
-//     z-index: 2;
-//     padding: 120px 200px 0; // Reduced top padding to position content higher
-//     display: flex;
-//     align-items: center;
-//     gap: 100px;
-//     max-width: 1700px;
-//     margin: 0 auto;
-//   }
-
-//   &__left {
-//     flex: 1;
-//     max-width: 486px;
-//   }
-
-//   &__title {
-//     font-family: $font-primary;
-//     font-size: $font-size-hero;
-//     font-weight: $font-weight-black;
-//     line-height: $line-height-medium;
-//     color: $color-black;
-//     margin-bottom: 28px;
-//     text-align: left;
-
-//     &-line {
-//       display: block;
-//     }
-//   }
-
-//   &__description {
-//     font-family: $font-primary;
-//     font-size: $font-size-medium;
-//     font-weight: $font-weight-regular;
-//     line-height: $line-height-medium;
-//     color: $color-gray;
-//     margin-bottom: 49px;
-//     text-align: left;
-//     max-width: 639px;
-//   }
-
-//   &__btn {
-//     padding: 18px 36px;
-//     min-height: 60px;
-//   }
-
-//   &__right {
-//     flex: 1;
-//     display: flex;
-//     justify-content: flex-end;
-//     align-items: center;
-//   }
-
-//   &__suitcase {
-//     max-width: 766px;
-//     height: auto;
-//     object-fit: contain;
-//   }
-// }
 
 // Feature Section (Overlapping white section)
 .feature-section {
