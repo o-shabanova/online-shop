@@ -831,42 +831,44 @@ h1, h2, h3 {
 }
 
 .banner-section {
-  padding: 119px 0;
+  padding-block: 7.4375rem;
+  padding-inline: 1.5rem;
 }
 
 .banner {
   position: relative;
-  width: 100%;
-  height: 407px;
+  inline-size: 100%;
+  min-block-size: 25.4375rem;
   overflow: hidden;
 }
-
 .banner__image {
-  width: 100%;
-  height: 100%;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
   object-fit: cover;
+  object-position: center;
 }
-
+.banner {
+  /* keep overlay element as in your HTML */
+}
 .banner__overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 2;
+  z-index: 1;
+  pointer-events: none;
 }
-
 .banner__content {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 2;
   text-align: center;
   color: #FFFFFF;
+  /* optional safety if copy widens: */
+  /* padding-inline: $section-pad-inline; */
 }
-
 .banner__discount {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 13.9375rem;
@@ -874,40 +876,37 @@ h1, h2, h3 {
   line-height: 1.22;
   color: #FFFFFF;
   display: block;
-  margin-bottom: -50px;
+  margin: 0 0 -3.125rem;
 }
-
 .banner__title {
+  margin: 0 0 1.75rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #FFFFFF;
-  margin-bottom: 28px;
 }
-
 .banner__subtitle {
+  margin: 0 0 1.75rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
-  margin-bottom: 28px;
 }
-
 .banner__text {
+  margin: 0 0 2.5rem;
+  max-inline-size: 24.5625rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
-  margin-bottom: 40px;
-  max-width: 393px;
+  margin-inline: auto;
 }
-
 .banner__btn {
-  padding: 18px 48px;
-  min-height: 60px;
+  padding: 1.125rem 3rem;
+  min-block-size: 3.75rem;
 }
 
 .testimonials-section {
