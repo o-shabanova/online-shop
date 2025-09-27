@@ -1,7 +1,17 @@
 @charset "UTF-8";
 /* src/scss/main.scss */
 /* Абстракції */
+/* fills viewport height safely */
+/* px → rem (за бази 16px) */
+/* px → em відносно контекстного розміру */
+/* Font sizes (rem) — base size 16px */
+/* Line heights — unitless is better for scaling */
+/* Container */
+/* Spacing scale (rem) */
+/* Border radius (rem) */
 /* Базові стилі */
+/* src/scss/main.scss */
+/* Абстракції */
 *,
 *::before,
 *::after {
@@ -17,7 +27,7 @@ html {
 
 body {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.22;
   color: #000000;
@@ -48,16 +58,18 @@ ul {
   list-style: none;
 }
 
-.container {
-  max-width: 1700px;
+.container, .hero__content {
+  max-width: 84.25rem;
   margin: 0 auto;
-  padding: 0 200px;
+  padding: 0 1.5rem;
 }
 
 .main {
   overflow-x: hidden;
 }
 
+/* src/scss/main.scss */
+/* Абстракції */
 body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
@@ -67,13 +79,15 @@ h1, h2, h3 {
 }
 
 /* Компоненти */
+/* src/scss/main.scss */
+/* Абстракції */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 9px 24px;
   font-family: -apple-system, system-ui, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.2;
   border: none;
@@ -106,7 +120,7 @@ h1, h2, h3 {
 .btn--large {
   padding: 18px 48px;
   min-height: 60px;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 .btn--medium {
   padding: 12px 32px;
@@ -114,6 +128,8 @@ h1, h2, h3 {
 }
 
 /* Layouts */
+/* src/scss/main.scss */
+/* Абстракції */
 .header {
   padding: 48px 0 20px;
 }
@@ -190,7 +206,7 @@ h1, h2, h3 {
 }
 .header__menu-link {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.22;
   color: #000000;
@@ -215,6 +231,8 @@ h1, h2, h3 {
   background-color: rgba(114, 113, 116, 0.2);
 }
 
+/* src/scss/main.scss */
+/* Абстракції */
 .footer {
   position: relative;
   background-color: #504E4A;
@@ -248,7 +266,7 @@ h1, h2, h3 {
 }
 .footer__title {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.2;
   color: #FFFFFF;
@@ -273,7 +291,7 @@ h1, h2, h3 {
 }
 .footer__column-title {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.22;
   color: #000000;
@@ -286,7 +304,7 @@ h1, h2, h3 {
 }
 .footer__link {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
@@ -303,14 +321,14 @@ h1, h2, h3 {
 }
 .footer__description p {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
 }
 .footer__shipping p {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
@@ -345,7 +363,7 @@ h1, h2, h3 {
 }
 .benefit-card__title {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.22;
   color: #FFFFFF;
@@ -368,7 +386,7 @@ h1, h2, h3 {
 .contact-item span,
 .contact-item div {
   font-family: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
@@ -378,79 +396,73 @@ h1, h2, h3 {
 }
 
 /* Сторінкові стилі */
+.container, .hero__content {
+  max-width: 1300px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.hero {
+  min-block-size: calc(100vh - 0px);
+}
+@supports (height: 100svh) {
+  .hero {
+    min-block-size: calc(100svh - 0px);
+  }
+}
+@supports (height: 100dvh) {
+  .hero {
+    min-block-size: calc(100dvh - 0px);
+  }
+}
+.hero {
+  /* займає екран, але може рости при великому контенті */
+  display: grid;
+  place-items: center;
+  padding-block: 64px;
+}
+
+/* =========================
+   HOMEPAGE — desktop only
+   ========================= */
 .hero {
   position: relative;
-  height: 1328px;
-  overflow: hidden;
-}
-.hero__bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 861px;
-  background-color: #E7E8E9;
-  background-image: url("../assets/hero-bg.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1;
+  padding-block: 4rem;
 }
 .hero__content {
-  position: relative;
-  z-index: 2;
-  padding: 120px 200px 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 100px;
-  max-width: 1700px;
-  margin: 0 auto;
-}
-.hero__left {
-  flex: 1;
-  max-width: 486px;
+  gap: 2rem;
 }
 .hero__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 50px;
-  font-weight: 900;
+  font-size: 3.125rem;
   line-height: 1.22;
-  color: #000000;
-  margin-bottom: 28px;
-  text-align: left;
-}
-.hero__title-line {
-  display: block;
+  margin: 0 0 1rem;
+  letter-spacing: 0;
 }
 .hero__description {
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.22;
+  max-width: 60ch;
+  margin: 0 0 1.5rem;
   color: #504E4A;
-  margin-bottom: 49px;
-  text-align: left;
-  max-width: 639px;
-}
-.hero__btn {
-  padding: 18px 36px;
-  min-height: 60px;
-}
-.hero__right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  font-size: 0.9375rem;
+  line-height: 1.47;
 }
 .hero__suitcase {
-  max-width: 766px;
+  width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.5rem;
+}
+.hero {
+  /* опційно, якщо є елементи */
 }
 
 .feature-section {
   position: relative;
-  margin-top: -566px;
   z-index: 3;
 }
 .feature-section__bg {
@@ -502,7 +514,7 @@ h1, h2, h3 {
 }
 .feature-section__profile-name {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.22;
   color: #000000;
@@ -510,7 +522,7 @@ h1, h2, h3 {
 }
 .feature-section__profile-title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #000000;
@@ -522,14 +534,14 @@ h1, h2, h3 {
 }
 .feature-section__text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #504E4A;
   margin-bottom: 28px;
 }
 .feature-section__text--large {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   color: #000000;
   margin-bottom: 28px;
@@ -571,7 +583,7 @@ h1, h2, h3 {
 }
 .feature-section__card-title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #FFFFFF;
@@ -579,7 +591,7 @@ h1, h2, h3 {
 }
 .feature-section__card-text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
@@ -588,7 +600,7 @@ h1, h2, h3 {
 .feature-section__card-btn {
   padding: 18px 36px;
   min-height: 60px;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
@@ -597,7 +609,7 @@ h1, h2, h3 {
 }
 .travel-section .section__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #000000;
@@ -606,7 +618,7 @@ h1, h2, h3 {
 }
 .travel-section .section__subtitle {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #504E4A;
@@ -657,7 +669,7 @@ h1, h2, h3 {
 
 .travel__card-title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.22;
   color: #FFFFFF;
@@ -669,7 +681,7 @@ h1, h2, h3 {
 
 .travel__card-text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 400;
   line-height: 1.47;
   color: #FFFFFF;
@@ -684,7 +696,7 @@ h1, h2, h3 {
 }
 .products-section .section__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #000000;
@@ -693,7 +705,7 @@ h1, h2, h3 {
 }
 .products-section .section__subtitle {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #504E4A;
@@ -741,7 +753,7 @@ h1, h2, h3 {
   color: #FFFFFF;
   padding: 6px 12px;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.22;
   z-index: 2;
@@ -756,7 +768,7 @@ h1, h2, h3 {
 
 .product-card__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.22;
   color: #000000;
@@ -768,7 +780,7 @@ h1, h2, h3 {
 
 .product-card__price {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.22;
   color: #504E4A;
@@ -818,7 +830,7 @@ h1, h2, h3 {
 
 .banner__discount {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 223px;
+  font-size: 13.9375rem;
   font-weight: 900;
   line-height: 1.22;
   color: #FFFFFF;
@@ -828,7 +840,7 @@ h1, h2, h3 {
 
 .banner__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #FFFFFF;
@@ -837,7 +849,7 @@ h1, h2, h3 {
 
 .banner__subtitle {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
@@ -846,7 +858,7 @@ h1, h2, h3 {
 
 .banner__text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
@@ -864,7 +876,7 @@ h1, h2, h3 {
 }
 .testimonials-section .section__title {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.22;
   color: #000000;
@@ -873,7 +885,7 @@ h1, h2, h3 {
 }
 .testimonials-section .section__subtitle {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #504E4A;
@@ -921,7 +933,7 @@ h1, h2, h3 {
 }
 .testimonial-card__text p {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.22;
   color: #000000;
@@ -929,7 +941,7 @@ h1, h2, h3 {
 
 .testimonial-card__name {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.22;
   color: #B92770;
