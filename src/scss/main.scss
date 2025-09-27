@@ -219,30 +219,124 @@
   
 
 // Travel Section
-.travel-section {
-  padding: 140px 0;
-  @extend .container;
+// .travel-section {
+//   padding: 140px 0;
+//   @extend .container;
 
-  .section__title {
-    font-family: $font-primary;
-    font-size: $font-size-title;
-    font-weight: $font-weight-black;
-    line-height: $line-height-medium;
-    color: $color-black;
-    text-align: center;
-    margin-bottom: 12px;
-  }
+//   .section__title {
+//     font-family: $font-primary;
+//     font-size: $font-size-title;
+//     font-weight: $font-weight-black;
+//     line-height: $line-height-medium;
+//     color: $color-black;
+//     text-align: center;
+//     margin-bottom: 12px;
+//   }
 
-  .section__subtitle {
-    font-family: $font-primary;
-    font-size: $font-size-medium;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-gray;
-    text-align: center;
-    margin-bottom: 59px;
+//   .section__subtitle {
+//     font-family: $font-primary;
+//     font-size: $font-size-medium;
+//     font-weight: $font-weight-regular;
+//     line-height: $line-height-medium;
+//     color: $color-gray;
+//     text-align: center;
+//     margin-bottom: 59px;
+//   }
+// }
+
+   .travel-section {
+    @extend .container;                  
+    padding-block: rem(140);             
+    padding-inline: $section-pad-inline; 
+  
+    /* scope title/subtitle to this section */
+    .section__title {
+      font-family: $font-primary;
+      font-size: $font-size-title;       
+      font-weight: $font-weight-black;
+      line-height: $line-height-medium;  
+      color: $color-black;
+      text-align: center;
+      margin: 0 0 rem(12);
+    }
+  
+    .section__subtitle {
+      font-family: $font-primary;
+      font-size: $font-size-medium;      
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;  
+      color: $color-gray;
+      text-align: center;
+      margin: 0 0 rem(59);
+    }
   }
-}
+  
+  /* Block: travel (cards grid) */
+  .travel {
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr)); 
+      gap: rem(39);                                     
+    }
+  
+    &__card {
+      position: relative;
+      inline-size: 100%;             
+      min-block-size: rem(600);      
+      overflow: hidden;
+      transition: transform 0.3s ease;
+  
+      &:hover { transform: translateY(rem(-5)); } 
+    }
+  
+    &__card-image {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center;
+      // If you want strict proportions instead of min-block-size:
+      // aspect-ratio: 296 / 600;
+    }
+  
+    // &__card-overlay {
+    //   position: absolute;
+    //   inset: 0;
+    //   background-color: rgba(0, 0, 0, 0.4);
+    //   z-index: 1;
+    //   pointer-events: none;
+    // }
+  
+    &__card-content {
+      position: absolute;
+      inset-block-end: rem(40);   
+      inset-inline-start: rem(40);
+      z-index: 2;
+      color: $color-white;
+    }
+  
+    &__card-title {
+      margin: 0 0 rem(28);
+      font-family: $font-primary;
+      font-size: $font-size-xl;        
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      color: $color-white;
+  
+      span { display: block; }
+    }
+  
+    &__card-text {
+      margin: 0;
+      max-inline-size: rem(181);       
+      font-family: $font-primary;
+      font-size: $font-size-xl;        
+      font-weight: $font-weight-regular;
+      line-height: $line-height-base;  
+      color: $color-white;
+    }
+  }
+  
 
 .travel__grid {
   display: grid;
