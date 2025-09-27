@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "./mixins" as *;
+
 // Colors 
 $color-primary: #B92770; 
 $color-white: #FFFFFF;
@@ -20,39 +23,40 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 900;
 
-// Font sizes
-$font-size-small: 12px;
-$font-size-base: 15px;
-$font-size-medium: 17px;
-$font-size-large: 18px;
-$font-size-xl: 19px;
-$font-size-xxl: 20px;
-$font-size-title: 40px;
-$font-size-hero: 50px;
-$font-size-banner: 223px;
+/* Font sizes (rem) — base size 16px */
+$font-size-small:  rem(12);
+$font-size-base:   rem(15); 
+$font-size-medium: rem(17);
+$font-size-large:  rem(18);
+$font-size-xl:     rem(19);
+$font-size-xxl:    rem(20);
+$font-size-title:  rem(40);
+$font-size-hero:   rem(50);
+$font-size-banner: rem(223);
 
-// Line heights
-$line-height-small: 1.2;
-$line-height-base: 1.47;
+/* Line heights — unitless is better for scaling */
+$line-height-small:  1.2;
+$line-height-base:   1.47;
 $line-height-medium: 1.22;
 
-// Container
-$container-max-width: 1300px;
-$container-padding: 200px;
+/* Container */
+$container-max-width: rem(1300);
+$container-padding-inline: rem(24);
+$container-padding: $container-padding-inline;
 
-// Spacing
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
-$spacing-xxl: 48px;
-$spacing-xxxl: 64px;
+/* Spacing scale (rem) */
+$spacing-xs:   rem(4);
+$spacing-sm:   rem(8);
+$spacing-md:   rem(16);
+$spacing-lg:   rem(24);
+$spacing-xl:   rem(32);
+$spacing-xxl:  rem(48);
+$spacing-xxxl: rem(64);
 
-// Border radius
-$border-radius-sm: 4px;
-$border-radius-md: 8px;
-$border-radius-lg: 12px;
+/* Border radius (rem) */
+$border-radius-sm: rem(4);
+$border-radius-md: rem(8);
+$border-radius-lg: rem(12);
 
 // Box shadows
 $shadow-card: 0px 20px 80px 0px rgba(193, 199, 212, 0.7);
