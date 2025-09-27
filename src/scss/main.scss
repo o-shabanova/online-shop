@@ -29,22 +29,22 @@
     max-width: 1300px;
     width: 100%;
     margin-inline: auto;
-    padding-inline: 24px;
   }
 
 //General section styles
-.hero {
+.hero,
+.feature-section {
   @include fill-viewport();
   display: grid;
   place-items: center;
-  padding-block: 64px;
-  background-color: $color-gray-light;
 }
 // Hero Section
 
    .hero {
     position: relative;
+    z-index: $z-index-hero;
     padding-block: $spacing-xxxl;
+    background-color: $color-gray-light;
   
     &__content {
       @extend .container;                
@@ -79,169 +79,139 @@
     }
   }
 
-// Feature Section (Overlapping white section)
-.feature-section {
-  position: relative;
-//   margin-top: -566px; // Overlap based on Figma height
-  z-index: 3;
+// Feature Section 
 
-  &__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 566px; // Exact height from Figma
-    background-color: $color-white;
-    box-shadow: $shadow-card;
-    z-index: 1;
-  }
-
-  &__content {
+   .feature-section {
     position: relative;
-    z-index: 2;
-    padding: 0;
-    max-width: 1300px; // Exact width from Figma
-    margin: 0 auto;
-    display: flex;
-    gap: 0;
-    height: 566px;
-    align-items: flex-start;
-  }
-
-  &__left {
-    width: 494px; // Exact width from Figma
-    padding: 91px 70px 0 70px; // Based on Figma positioning
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  &__profile {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 31px;
-  }
-
-  &__profile-image {
-    width: 85px;
-    height: 93px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    display: block;
-    background-color: #f0f0f0; // Fallback background to see if element exists
-    border: 2px solid #ddd; // Temporary border to see the element
-  }
-
-  &__profile-info {
-    padding-top: 8px;
-  }
-
-  &__profile-name {
-    font-family: $font-primary;
-    font-size: $font-size-xxl; // 20px from Figma
-    font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
-    color: $color-black;
-    margin-bottom: 8px;
-  }
-
-  &__profile-title {
-    font-family: $font-primary;
-    font-size: $font-size-medium; // 17px from Figma
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-black;
-  }
-
-  &__text-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  &__text {
-    font-family: $font-primary;
-    font-size: $font-size-medium; // 17px from Figma
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-gray;
-    margin-bottom: 28px;
-
-    &--large {
-      font-size: $font-size-title; // 40px from Figma
-      font-weight: $font-weight-black;
+    z-index: $z-index-feature;
+   
+    grid-template-columns: 1fr 1fr;          // рівні колонки
+    align-items: stretch;
+    margin-block-start: -$section-overlap;
+    //але що зробити щоб секція не перекривалася іншими секціями
+    box-shadow: $shadow-card;
+  
+    /* ліва картка */
+    &__left {
+      block-size: 100%;
+      background: $color-white;
+      padding: rem(91) rem(70) 0 rem(70);
+      display: grid;
+      gap: rem(31);
+    }
+  
+    &__profile {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-lg;
+      margin: 0;
+    }
+  
+    &__profile-image {
+      inline-size: rem(56);
+      block-size: rem(56);
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      flex: 0 0 auto;
+    }
+  
+    &__profile-info { padding-block-start: $spacing-xs; }
+  
+    &__profile-name {
+      margin: 0 0 $spacing-xs;
+      font-family: $font-primary;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-xxl;            
+      line-height: $line-height-medium;     
       color: $color-black;
-      margin-bottom: 28px; // Space to first paragraph
+    }
+  
+    &__profile-title {
+      margin: 0;
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-medium;         
       line-height: $line-height-medium;
+      color: $color-gray;
+    }
+  
+    &__text-block { display: grid; gap: $spacing-md; max-inline-size: 60ch; }
+  
+    &__text {
+      margin: 0 0 $spacing-md;
+      color: $color-gray;
+      font-family: $font-primary;
+      font-size: $font-size-medium;
+      line-height: $line-height-medium;
+  
+      &--large {
+        margin-block-end: $spacing-md;
+        color: $color-black;
+        font-weight: $font-weight-black;
+        font-size: $font-size-title;        
+        line-height: $line-height-medium;
+      }
+    }
+  
+    /* права картка */
+    &__right { block-size: 100%; min-inline-size: 0; }
+  
+    &__card {
+      position: relative;
+      block-size: 100%;
+      overflow: hidden;
+    }
+  
+    &__card-image {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center;
+      /* за потреби: aspect-ratio: 4 / 5; */
+    }
+  
+    &__card-content {
+      position: absolute;
+      inset-inline-start: rem(70);
+      inset-block-end: rem(159);
+      z-index: 1;
+      display: grid;
+      gap: $spacing-sm;
+      max-inline-size: rem(393);
+      color: $color-white;
+    }
+  
+    &__card-title {
+      margin: 0 0 $spacing-md;
+      font-family: $font-primary;
+      font-weight: $font-weight-black;
+      font-size: $font-size-title;          
+      line-height: $line-height-medium;
+      color: $color-white;
+    }
+  
+    &__card-text {
+      margin: 0 0 $spacing-md;
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-medium;         
+      line-height: $line-height-medium;
+      color: rgba(#fff, .92);
+    }
+  
+    &__card-btn {
+      inline-size: max-content;
+      padding: rem(18) rem(36);
+      min-block-size: rem(60);
+      font-size: $font-size-large;          
+      font-weight: $font-weight-bold;
+      border-radius: $border-radius-md;
     }
   }
-
-  &__right {
-    width: 646px; // Exact width from Figma
-    height: 566px; // Exact height from Figma
-    position: relative;
-  }
-
-  &__card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    overflow: hidden;
-  }
-
-  &__card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); // 40% opacity from Figma
-    z-index: 2;
-  }
-
-  &__card-content {
-    position: absolute;
-    bottom: 159px; // 566 - 347 - 60 = 159px from bottom
-    left: 70px; // Exact position from Figma
-    z-index: 3;
-    color: $color-white;
-    max-width: 393px; // Text width from Figma
-  }
-
-  &__card-title {
-    font-family: $font-primary;
-    font-size: $font-size-title; // 40px from Figma
-    font-weight: $font-weight-black;
-    line-height: $line-height-medium;
-    color: $color-white;
-    margin-bottom: 28px; // Space between title and text
-  }
-
-  &__card-text {
-    font-family: $font-primary;
-    font-size: $font-size-medium; // 17px from Figma
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-white;
-    margin-bottom: 28px; // Space between text and button
-  }
-
-  &__card-btn {
-    padding: 18px 36px; // Button size from Figma
-    min-height: 60px;
-    font-size: $font-size-large; // 18px from Figma
-    font-weight: $font-weight-bold;
-  }
-}
+  
+  
 
 // Travel Section
 .travel-section {

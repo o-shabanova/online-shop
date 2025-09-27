@@ -41,8 +41,10 @@ $line-height-medium: 1.22;
 
 /* Container */
 $container-max-width: rem(1300);
-$container-padding-inline: rem(24);
-$container-padding: $container-padding-inline;
+// $container-padding-inline: rem(24);
+$section-pad-inline: rem(24);
+// $container-padding: $container-padding-inline;
+$section-overlap: rem(90);
 
 /* Spacing scale (rem) */
 $spacing-xs:   rem(4);
@@ -62,6 +64,9 @@ $border-radius-lg: rem(12);
 $shadow-card: 0px 20px 80px 0px rgba(193, 199, 212, 0.7);
 
 // Z-index
-$z-index-header: 100;
-$z-index-modal: 1000;
+$z-index-hero: 0;          
+$z-index-feature: 10;      
+$z-index-header: 100;      
+$z-index-modal: 1000;      
 $z-index-tooltip: 1100;
+
