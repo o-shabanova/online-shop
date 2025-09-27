@@ -1,14 +1,19 @@
 @use '../abstracts/variables' as *;
 
 .header {
-  padding: 48px 0;
+  padding: 48px 0 20px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 29px;
+  }
 
   &__social {
     display: flex;
     align-items: center;
     gap: 25px;
-    margin-bottom: 12px;
-    padding-left: 5px;
   }
 
   &__social-link {
@@ -25,18 +30,13 @@
     }
   }
 
-  &__nav {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 20px;
-  }
-
   &__logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    position: relative;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &__logo-bg {
@@ -54,15 +54,38 @@
     font-size: 30px;
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
+    color: $color-primary;
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__icon {
     color: $color-black;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    svg {
+      width: 30px;
+      height: 33px;
+    }
+  }
+
+  &__nav {
+    margin-bottom: 20px;
   }
 
   &__menu {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 40px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   &__menu-link {
@@ -90,30 +113,9 @@
     }
   }
 
-  &__icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  &__icon {
-    color: $color-black;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $color-primary;
-    }
-
-    svg {
-      width: 30px;
-      height: 33px;
-    }
-  }
-
   &__divider {
     width: 100%;
     height: 1px;
     background-color: rgba(114, 113, 116, 0.2);
-    opacity: 0.2;
   }
 }
