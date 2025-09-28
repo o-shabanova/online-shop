@@ -764,142 +764,135 @@
   padding: rem(80) 0;
   background-color: $color-white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: rem(100);
-  flex-direction: column;
 //   justify-content: space-between;
+  justify-content: flex-start;
+  gap: clamp(rem(24), 6vw, rem(100));
+//   gap: rem(100);
+//check if we need this
+//    height: auto;
 }
 
 .contact-form {
-  --form-height: min(50vh, #{rem(701)});
-  --form-max-height: #{rem(701)};
+    /* keeping original height behavior on wide screens */
+    --form-height: min(50vh, #{rem(701)});
+    --form-max-height: #{rem(701)};
   
-  position: relative;
-  background-color: $color-white;
-  overflow: hidden;
-  display: flex;
-  max-width: 1300px;
-  width: 100%;
-  min-height: var(--form-height);
-  max-height: var(--form-max-height);
-
-  &__content {
-    flex: 1;
-    padding: rem(30) rem(50);
-    background-color: $color-white;
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__image {
-    flex: 1;
     position: relative;
-    max-width: 50%;
+    background-color: $color-white;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  &__bg {
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "image content";
+    align-items: stretch;
+  
+    max-width: 1300px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  &__title {
-    font-family: $font-primary;
-    font-size: rem(25);
-    font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
-    color: $color-black;
-    margin: 0 0 rem(20);
-  }
-
-  &__subtitle {
-    font-family: $font-primary;
-    font-size: $font-size-medium;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-black;
-    margin: 0 0 rem(40);
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: rem(15);
-  }
-
-  &__field {
-    display: flex;
-    flex-direction: column;
-    gap: rem(6);
-
-    &--textarea {
-      .contact-form__textarea {
-        min-height: rem(119);
-        resize: vertical;
+    min-height: var(--form-height);
+    max-height: var(--form-max-height);
+  
+    &__image {
+      grid-area: image;
+      position: relative;
+      overflow: hidden;
+      /* prevent overflow in grid children */
+      min-width: 0;
+      /* optional safety if content is short */
+      min-height: rem(360);
+      display: block;
+    }
+  
+    /* The image fully covers its grid cell */
+    &__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    //   max-width: none;
+    //   max-height: none;
+    }
+  
+    &__content {
+      grid-area: content;
+      background-color: $color-white;
+      padding: 0 rem(50);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* prevent text overflow in grid */
+    //   min-width: 0;
+    }
+  
+    &__title {
+      font-family: $font-primary;
+      font-size: rem(25);
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      color: $color-black;
+      margin: 0 0 rem(20);
+    }
+  
+    &__subtitle {
+      font-family: $font-primary;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;
+      color: $color-black;
+      margin: 0 0 rem(40);
+    }
+  
+    &__form { display: flex; flex-direction: column; gap: rem(15); }
+  
+    &__field {
+      display: flex; flex-direction: column; gap: rem(6);
+  
+      &--textarea {
+        .contact-form__textarea { min-height: rem(119); resize: vertical; }
       }
     }
-  }
-
-  &__label {
-    font-family: $font-primary;
-    font-size: $font-size-large;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
-    color: $color-black;
-  }
-
-  &__label-required {
-    color: $color-primary;
-  }
-
-  &__input,
-  &__textarea {
-    padding: rem(12) rem(15);
-    border: 2px solid rgba($color-primary, 0.5);
-    font-family: $font-primary;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-    color: $color-black;
-    background-color: $color-white;
-    transition: border-color 0.3s ease;
-    height: rem(44);
-
-    &:focus {
-      outline: none;
-      border-color: $color-primary;
+  
+    &__label {
+      font-family: $font-primary;
+      font-size: $font-size-large;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      color: $color-black;
     }
-
-    &::placeholder {
-      color: rgba($color-black, 0.5);
+  
+    &__label-required { color: $color-primary; }
+  
+    &__input,
+    &__textarea {
+      padding: rem(12) rem(15);
+      border: 2px solid rgba($color-primary, 0.5);
+      font-family: $font-primary;
+      font-size: $font-size-base;
+      line-height: $line-height-base;
+      color: $color-black;
+      background-color: $color-white;
+      transition: border-color 0.3s ease;
+      height: rem(44);
+  
+      &:focus { outline: none; border-color: $color-primary; }
+      &::placeholder { color: rgba($color-black, 0.5); }
+    }
+  
+    &__textarea { font-family: inherit; resize: vertical; height: rem(119); }
+  
+    &__submit {
+      align-self: flex-start;
+      padding: rem(13) rem(30);
+      font-size: $font-size-small;
+      font-weight: $font-weight-bold;
+      min-height: rem(40);
     }
   }
-
-  &__textarea {
-    font-family: inherit;
-    resize: vertical;
-    height: rem(119);
-  }
-
-  &__submit {
-    align-self: flex-start;
-    padding: rem(13) rem(30);
-    font-size: $font-size-small;
-    font-weight: $font-weight-bold;
-    min-height: rem(40);
-  }
-}
 
 .contact-info {
   display: grid;
@@ -969,10 +962,22 @@
 
 // Contact Page Responsive Design
 @media (max-width: 1200px) {
-  .contact-form {
-    &__content {
-      padding: rem(40) rem(30);
-    }
+.contact-form {
+    /* stack vertically: content first, image second (matches your old order) */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "image";
+    row-gap: rem(24);
+
+    /* allow the block to shrink naturally on small screens */
+    min-height: auto;
+    max-height: none;
+
+    &__content { padding: rem(24) rem(20); }
+
+    /* image shrinks but stays visually substantial and fully covered */
+    &__image { min-height: clamp(200px, 35vh, 360px); }
   }
 
   .contact-info {
@@ -1000,27 +1005,10 @@
     padding: rem(60) 0;
   }
 
+.contact-content { padding: rem(60) 0; }
+
   .contact-form {
-    flex-direction: column;
-    margin-bottom: rem(60);
-    min-height: auto;
-
-    &__image {
-      max-width: 100%;
-      height: rem(300);
-      order: 2;
-      overflow: hidden;
-    }
-
-    &__content {
-      max-width: 100%;
-      padding: rem(30) rem(20);
-      order: 1;
-    }
-
-    &__title {
-      font-size: rem(22);
-    }
+    &__title { font-size: rem(22); }
   }
 
   .contact-info {
@@ -1060,21 +1048,10 @@
   }
 
   .contact-form {
-    &__content {
-      padding: rem(20) rem(15);
-    }
-
-    &__title {
-      font-size: rem(20);
-    }
-
-    &__subtitle {
-      font-size: $font-size-base;
-    }
-
-    &__label {
-      font-size: $font-size-base;
-    }
+    &__content { padding: rem(20) rem(15); }
+    &__title { font-size: rem(20); }
+    &__subtitle { font-size: $font-size-base; }
+    &__label { font-size: $font-size-base; }
 
     &__input,
     &__textarea {
