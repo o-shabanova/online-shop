@@ -33,15 +33,21 @@
 
 //General section styles
 .hero,
+.travel-section,
+.products-section,
+.testimonials-section {
+  @include fill-viewport();
+}
+
+.hero,
 .feature-section,
 .travel-section,
 .products-section,
-.banner-section,
 .testimonials-section {
-  @include fill-viewport();
   display: grid;
   place-items: center;
 }
+
 // Hero Section
 
    .hero {
@@ -88,12 +94,12 @@
    .feature-section {
     @extend .container;
     position: relative;
+    //але що зробити щоб секція не перекривалася іншими секціями
     z-index: $z-index-feature;
    
-    grid-template-columns: 1fr 1fr;          // рівні колонки
+    grid-template-columns: 1fr 1fr;          
     align-items: stretch;
     margin-block-start: -$section-overlap;
-    //але що зробити щоб секція не перекривалася іншими секціями
     box-shadow: $shadow-card;
   
     /* ліва картка */
@@ -493,92 +499,100 @@
   }
 
 // Banner Section
-   .banner-section {
-    @extend .container;                   
-    padding-block: rem(119);              
-    padding-inline: $section-pad-inline;  
-  }
-  
-  .banner {
+.banner-section {
+    @extend .container;
     position: relative;
-    inline-size: 100%;
-    // 407px visual height (allows growth if content taller)
-    min-block-size: rem(407);             
-    overflow: hidden;
+    padding-block: rem(119);
+    padding-inline: $section-pad-inline;
   
-    &__image {
-      display: block;
-      inline-size: 100%;
-      block-size: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-  
-    /* keep overlay element as in your HTML */
-    &__overlay {
+    &::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
+      inset: 0;                 
+      background:
+        linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+        url("/assets/banner-photo.png") center/cover no-repeat;
       pointer-events: none;
+      z-index: 0;
     }
   
-    &__content {
-      position: absolute;
-      inset-block-start: 50%;
-      inset-inline-start: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      text-align: center;
+  
+    /* CONTENT */
+    .banner__content {
+    // above overlays
+      position: relative;                   
+      z-index: 1;
+      display: flex;
+      align-items: center;                  
+      justify-content: center;              
+      gap: $spacing-xl;                     
       color: $color-white;
-      /* optional safety if copy widens: */
-      /* padding-inline: $section-pad-inline; */
     }
   
-    &__discount {
-      font-family: $font-primary;
-      font-size: $font-size-banner;       
-      font-weight: $font-weight-black;
-      line-height: $line-height-medium;   
-      color: $color-white;
+    /* two columns */
+    .banner__left,
+    .banner__right {
+      flex: 1 1 0;                          
+      min-width: 0;
+      text-align: left;
+    }
+  
+    /* TYPO */
+    .banner__discount {
       display: block;
-      margin: 0 0 rem(-50);               
+      margin: 0 0 rem(-50);                 
+      font-family: $font-primary;
+      font-size: $font-size-banner;         
+      font-weight: $font-weight-black;
+      line-height: $line-height-medium;     
+      color: $color-white;
     }
   
-    &__title {
+    .banner__kicker {
+      margin: 0;
+      font-family: $font-primary;
+      font-size: $font-size-medium;         
+      font-weight: $font-weight-regular;
+      line-height: $line-height-base;       
+      opacity: .95;
+    }
+  
+    .banner__title {
       margin: 0 0 rem(28);
       font-family: $font-primary;
-      font-size: $font-size-title;        
+      font-size: $font-size-title;          
       font-weight: $font-weight-black;
       line-height: $line-height-medium;
       color: $color-white;
     }
   
-    &__subtitle {
+    .banner__subtitle {
       margin: 0 0 rem(28);
       font-family: $font-primary;
-      font-size: $font-size-xxl;          
+      font-size: $font-size-xxl;            
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: $color-white;
+      opacity: .92;
     }
   
-    &__text {
+    .banner__text {
       margin: 0 0 rem(40);
-      max-inline-size: rem(393);          
+      max-inline-size: rem(393);
       font-family: $font-primary;
-      font-size: $font-size-medium;       
+      font-size: $font-size-medium;         
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: $color-white;
-      margin-inline: auto;                 
+      opacity: .92;
     }
   
-    &__btn {
-      padding: rem(18) rem(48);           
+    .banner__btn {
+      padding: rem(18) rem(48);
       min-block-size: rem(60);
     }
   }
+  
   
 // Testimonials Section
 .testimonials-section {
