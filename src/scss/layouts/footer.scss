@@ -1,10 +1,12 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .footer {
   position: relative;
   background-color: $color-gray;
   padding: 312px 0 17px;
   overflow: hidden;
+  margin-top: rem(123);
 
   &__bg {
     position: absolute;
