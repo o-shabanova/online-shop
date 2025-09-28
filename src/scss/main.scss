@@ -44,7 +44,8 @@
 .hero,
 .travel-section,
 .products-section,
-.testimonials-section {
+.testimonials-section,
+.contact-content {
   @include fill-viewport();
 }
 
@@ -762,28 +763,45 @@
 .contact-content {
   padding: rem(80) 0;
   background-color: $color-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: rem(100);
+  flex-direction: column;
+//   justify-content: space-between;
 }
 
 .contact-form {
+  --form-height: min(50vh, #{rem(701)});
+  --form-max-height: #{rem(701)};
+  
   position: relative;
   background-color: $color-white;
   overflow: hidden;
   display: flex;
-//   margin-bottom: rem(80);
   max-width: 1300px;
   width: 100%;
+  min-height: var(--form-height);
+  max-height: var(--form-max-height);
 
   &__content {
     flex: 1;
-    padding: rem(60) rem(50);
+    padding: rem(30) rem(50);
     background-color: $color-white;
     max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__image {
     flex: 1;
     position: relative;
     max-width: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &::before {
       content: "";
@@ -803,6 +821,8 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   &__title {
@@ -826,17 +846,17 @@
   &__form {
     display: flex;
     flex-direction: column;
-    gap: rem(20);
+    gap: rem(15);
   }
 
   &__field {
     display: flex;
     flex-direction: column;
-    gap: rem(8);
+    gap: rem(6);
 
     &--textarea {
       .contact-form__textarea {
-        min-height: rem(120);
+        min-height: rem(119);
         resize: vertical;
       }
     }
@@ -856,7 +876,7 @@
 
   &__input,
   &__textarea {
-    padding: rem(15) rem(20);
+    padding: rem(12) rem(15);
     border: 2px solid rgba($color-primary, 0.5);
     font-family: $font-primary;
     font-size: $font-size-base;
@@ -864,6 +884,7 @@
     color: $color-black;
     background-color: $color-white;
     transition: border-color 0.3s ease;
+    height: rem(44);
 
     &:focus {
       outline: none;
@@ -878,6 +899,7 @@
   &__textarea {
     font-family: inherit;
     resize: vertical;
+    height: rem(119);
   }
 
   &__submit {
@@ -991,15 +1013,19 @@
   .contact-form {
     flex-direction: column;
     margin-bottom: rem(60);
+    min-height: auto;
 
     &__image {
       max-width: 100%;
       height: rem(300);
+      order: 2;
+      overflow: hidden;
     }
 
     &__content {
       max-width: 100%;
       padding: rem(30) rem(20);
+      order: 1;
     }
 
     &__title {
