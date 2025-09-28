@@ -106,8 +106,62 @@
         </section>
 
         <!-- Contact Content Section -->
-        <section class="contact-content">
-            <div class="container">
+        <section class="contact-content container">
+                <!-- Contact Info Cards -->
+                <div class="contact-info">
+                     <!-- Our Location -->
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-location-icon.svg" alt="Location icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Our Location</h3>
+                        <div class="contact-info__details">
+                            <p>1234 NW Bobcat Lane, St.</p>
+                            <p>Robert, MO 65584-5678</p>
+                        </div>
+                    </div>
+                     <!-- Operating Time -->
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-time-icon.svg" alt="Time icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Operating Time</h3>
+                        <div class="contact-info__details">
+                            <p>Monday - Friday: 9am - 6 pm</p>
+                            <p>Weekends: 10:30 am - 6pm</p>
+                        </div>
+                    </div>
+                     <!-- Our Email -->
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-email-icon.svg" alt="Email icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Our Email</h3>
+                        <div class="contact-info__details">
+                            <p>best@shop.com</p>
+                            <p>info@bestshop.com</p>
+                        </div>
+                    </div>
+                     <!-- Call Us -->
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-phone-icon.svg" alt="Phone icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Call Us</h3>
+                        <div class="contact-info__details">
+                            <p>(268)142-8413</p>
+                            <p>(760)265-2917</p>
+                        </div>
+                    </div>
+                </div>
                 <!-- Contact Form -->
                 <div class="contact-form">
                     <div class="contact-form__image">
@@ -119,22 +173,22 @@
                         
                         <form class="contact-form__form">
                             <div class="contact-form__field">
-                                <label for="name" class="contact-form__label">Your Name *</label>
+                                <label for="name" class="contact-form__label">Your Name <span class="contact-form__label-required">*</span></label>
                                 <input type="text" id="name" name="name" class="contact-form__input" required>
                             </div>
                             
                             <div class="contact-form__field">
-                                <label for="email" class="contact-form__label">Your Email Address *</label>
+                                <label for="email" class="contact-form__label">Your Email Address <span class="contact-form__label-required">*</span></label>
                                 <input type="email" id="email" name="email" class="contact-form__input" required>
                             </div>
                             
                             <div class="contact-form__field">
-                                <label for="topic" class="contact-form__label">Topic *</label>
+                                <label for="topic" class="contact-form__label">Topic <span class="contact-form__label-required">*</span></label>
                                 <input type="text" id="topic" name="topic" class="contact-form__input" required>
                             </div>
                             
                             <div class="contact-form__field contact-form__field--textarea">
-                                <label for="message" class="contact-form__label">Your Message *</label>
+                                <label for="message" class="contact-form__label">Your Message <span class="contact-form__label-required">*</span></label>
                                 <textarea id="message" name="message" class="contact-form__textarea" rows="5" required></textarea>
                             </div>
                             
@@ -142,73 +196,6 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- Contact Info Cards -->
-                <div class="contact-info">
-                    <div class="contact-info__card">
-                        <div class="contact-info__icon">
-                            <div class="contact-info__icon-bg">
-                                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                                    <path d="M19 1C9.06 1 1 9.06 1 19C1 28.94 9.06 37 19 37C28.94 37 37 28.94 37 19C37 9.06 28.94 1 19 1ZM19 33C11.27 33 5 26.73 5 19C5 11.27 11.27 5 19 5C26.73 5 33 11.27 33 19C33 26.73 26.73 33 19 33Z" fill="currentColor"/>
-                                    <path d="M19 7V19L23 23" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3 class="contact-info__title">Operating Time</h3>
-                        <div class="contact-info__details">
-                            <p>Monday - Friday: 9am - 6 pm</p>
-                            <p>Weekends: 10:30 am - 6pm</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info__card">
-                        <div class="contact-info__icon">
-                            <div class="contact-info__icon-bg">
-                                <svg width="28" height="34" viewBox="0 0 28 34" fill="none">
-                                    <path d="M14 1C6.82 1 1 6.82 1 14C1 22 14 33 14 33S27 22 27 14C27 6.82 21.18 1 14 1ZM14 18.5C11.52 18.5 9.5 16.48 9.5 14C9.5 11.52 11.52 9.5 14 9.5C16.48 9.5 18.5 11.52 18.5 14C18.5 16.48 16.48 18.5 14 18.5Z" fill="currentColor"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3 class="contact-info__title">Our Location</h3>
-                        <div class="contact-info__details">
-                            <p>1234 NW Bobcat Lane, St.</p>
-                            <p>Robert, MO 65584-5678</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info__card">
-                        <div class="contact-info__icon">
-                            <div class="contact-info__icon-bg">
-                                <svg width="34" height="28" viewBox="0 0 34 28" fill="none">
-                                    <path d="M2 2L17 14L32 2" stroke="currentColor" stroke-width="2"/>
-                                    <rect x="1" y="1" width="32" height="26" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3 class="contact-info__title">Our Email</h3>
-                        <div class="contact-info__details">
-                            <p>best@shop.com</p>
-                            <p>info@bestshop.com</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info__card">
-                        <div class="contact-info__icon">
-                            <div class="contact-info__icon-bg">
-                                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-                                    <path d="M19 1C9.06 1 1 9.06 1 19C1 28.94 9.06 37 19 37C28.94 37 37 28.94 37 19C37 9.06 28.94 1 19 1ZM19 33C11.27 33 5 26.73 5 19C5 11.27 11.27 5 19 5C26.73 5 33 11.27 33 19C33 26.73 26.73 33 19 33Z" fill="currentColor"/>
-                                    <path d="M19 7V19L23 23" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3 class="contact-info__title">Call Us</h3>
-                        <div class="contact-info__details">
-                            <p>(268)142-8413</p>
-                            <p>(760)265-2917</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 

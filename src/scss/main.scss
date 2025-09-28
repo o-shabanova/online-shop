@@ -767,11 +767,9 @@
 .contact-form {
   position: relative;
   background-color: $color-white;
-  box-shadow: $shadow-card;
-  border-radius: $border-radius-lg;
   overflow: hidden;
   display: flex;
-  margin-bottom: rem(80);
+//   margin-bottom: rem(80);
   max-width: 1300px;
   width: 100%;
 
@@ -852,11 +850,14 @@
     color: $color-black;
   }
 
+  &__label-required {
+    color: $color-primary;
+  }
+
   &__input,
   &__textarea {
     padding: rem(15) rem(20);
     border: 2px solid rgba($color-primary, 0.5);
-    border-radius: $border-radius-sm;
     font-family: $font-primary;
     font-size: $font-size-base;
     line-height: $line-height-base;
@@ -902,10 +903,6 @@
     align-items: center;
     text-align: center;
     padding: rem(30) rem(20);
-    background-color: $color-white;
-    border-radius: $border-radius-lg;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(rem(-5));
@@ -921,16 +918,16 @@
     width: rem(62);
     height: rem(62);
     background-color: $color-primary;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $color-white;
+  }
 
-    svg {
-      width: 50%;
-      height: 50%;
-    }
+  &__icon-img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
   }
 
   &__title {
