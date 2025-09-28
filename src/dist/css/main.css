@@ -397,38 +397,32 @@ h1, h2, h3 {
 }
 
 .hero,
-.feature-section,
 .travel-section,
 .products-section,
-.banner-section,
 .testimonials-section {
   min-block-size: calc(100vh - 0px);
 }
 @supports (height: 100svh) {
   .hero,
-  .feature-section,
   .travel-section,
   .products-section,
-  .banner-section,
   .testimonials-section {
     min-block-size: calc(100svh - 0px);
   }
 }
 @supports (height: 100dvh) {
   .hero,
-  .feature-section,
   .travel-section,
   .products-section,
-  .banner-section,
   .testimonials-section {
     min-block-size: calc(100dvh - 0px);
   }
 }
+
 .hero,
 .feature-section,
 .travel-section,
 .products-section,
-.banner-section,
 .testimonials-section {
   display: grid;
   place-items: center;
@@ -831,54 +825,60 @@ h1, h2, h3 {
 }
 
 .banner-section {
+  position: relative;
   padding-block: 7.4375rem;
   padding-inline: 1.5rem;
 }
-
-.banner {
-  position: relative;
-  inline-size: 100%;
-  min-block-size: 25.4375rem;
-  overflow: hidden;
-}
-.banner__image {
-  display: block;
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.banner {
-  /* keep overlay element as in your HTML */
-}
-.banner__overlay {
+.banner-section::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/assets/banner-photo.png") center/cover no-repeat;
   pointer-events: none;
+  z-index: 0;
 }
-.banner__content {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  text-align: center;
+.banner-section {
+  /* CONTENT */
+}
+.banner-section .banner__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   color: #FFFFFF;
-  /* optional safety if copy widens: */
-  /* padding-inline: $section-pad-inline; */
 }
-.banner__discount {
+.banner-section {
+  /* two columns */
+}
+.banner-section .banner__left,
+.banner-section .banner__right {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: left;
+}
+.banner-section {
+  /* TYPO */
+}
+.banner-section .banner__discount {
+  display: block;
+  margin: 0 0 -3.125rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 13.9375rem;
   font-weight: 900;
   line-height: 1.22;
   color: #FFFFFF;
-  display: block;
-  margin: 0 0 -3.125rem;
 }
-.banner__title {
+.banner-section .banner__kicker {
+  margin: 0;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.47;
+  opacity: 0.95;
+}
+.banner-section .banner__title {
   margin: 0 0 1.75rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 2.5rem;
@@ -886,15 +886,16 @@ h1, h2, h3 {
   line-height: 1.22;
   color: #FFFFFF;
 }
-.banner__subtitle {
+.banner-section .banner__subtitle {
   margin: 0 0 1.75rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
+  opacity: 0.92;
 }
-.banner__text {
+.banner-section .banner__text {
   margin: 0 0 2.5rem;
   max-inline-size: 24.5625rem;
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -902,9 +903,9 @@ h1, h2, h3 {
   font-weight: 400;
   line-height: 1.22;
   color: #FFFFFF;
-  margin-inline: auto;
+  opacity: 0.92;
 }
-.banner__btn {
+.banner-section .banner__btn {
   padding: 1.125rem 3rem;
   min-block-size: 3.75rem;
 }
