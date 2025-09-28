@@ -204,7 +204,7 @@
     line-height: $line-height-medium;
     color: $color-black;
     text-align: center;
-    margin: 0 0 rem(80);
+    margin: 0 0 rem(12);
   }
 
   &__grid {
@@ -224,7 +224,6 @@
     max-width: rem(410);
     height: rem(340);
     object-fit: cover;
-    border-radius: $border-radius-md;
     margin-bottom: rem(30);
   }
 
