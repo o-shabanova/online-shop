@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="../dist/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="header-container container">
+            <div class="header-cap">
+                <nav>
+                    <ul class="header-social">
+                        <li>
+                            <a href="#">
+                                
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <a href="/src/index.html" class="header-logo">
+                    <span class="header-logo-item">
+                        
+                    </span>
+                    <span class="header-title">BEST SHOP</span>
+                </a>
+                <nav class="user-nav">
+                    <ul class="user-nav-icons">
+                        <li>
+                            <a href="#">
+                               
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <nav class="main-nav">
+                <ul class="main-nav_list">
+                    <li><a href="/src/index.html" class="main-nav_item">Home</a></li>
+                    <li><a href="/src/pages/catalog.html" class="main-nav_item main-nav_catalog-item">Catalog</a></li>
+                    <li><a href="/src/pages/about-us.html" class="main-nav_item">About Us</a></li>
+                    <li><a href="/src/pages/contact-us.html" class="main-nav_item">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+      <section class="filters">
+        <form id="filters-form">
+          <div class="row">
+            <div class="filter-group">
+              <label for="size">Size</label>
+              <div class="custom-select" data-target="size">
+                <div class="select-display">Choose option</div>
+                <ul class="select-options">
+                  <li data-value="S">S</li>
+                  <li data-value="M">M</li>
+                  <li data-value="L">L</li>
+                  <li data-value="XL">XL</li>
+                  <li data-value="S-L">S-L</li>
+                  <li data-value="S, M, XL">S, M, XL</li>
+                </ul>
+              </div>
+              <select id="size" name="size" class="filter-select" hidden>
+                <option value="">Choose option</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="S-L">S-L</option>
+                <option value="S, M, XL">S, M, XL</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="color">Color</label>
+              <div class="custom-select" data-target="color">
+                <div class="select-display">Choose option</div>
+                <ul class="select-options">
+                  <li data-value="red">red</li>
+                  <li data-value="blue">blue</li>
+                  <li data-value="green">green</li>
+                  <li data-value="black">black</li>
+                  <li data-value="grey">grey</li>
+                  <li data-value="yellow">yellow</li>
+                  <li data-value="pink">pink</li>
+                </ul>
+              </div>
+              <select id="color" name="color" class="filter-select" hidden>
+                <option value="">Choose option</option>
+                <option value="red">red</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+                <option value="black">black</option>
+                <option value="grey">grey</option>
+                <option value="yellow">yellow</option>
+                <option value="pink">pink</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="category">Category</label>
+              <div class="custom-select" data-target="category">
+                <div class="select-display">Choose option</div>
+                <ul class="select-options">
+                  <li data-value="carry-ons">carry-ons</li>
+                  <li data-value="suitcases">suitcases</li>
+                  <li data-value="luggage sets">luggage sets</li>
+                  <li data-value="kids' luggage">kids' luggage</li>
+                </ul>
+              </div>
+              <select id="category" name="category" class="filter-select" hidden>
+                <option value="">Choose option</option>
+                <option value="carry-ons">carry-ons</option>
+                <option value="suitcases">suitcases</option>
+                <option value="luggage sets">luggage sets</option>
+                <option value="kids' luggage">kids' luggage</option>
+              </select>
+            </div>
+            <div class="filter-group sales">
+              <label for="sales">Sales</label>
+              <input type="checkbox" name="sales" id="sales" class="sales-filter">
+            </div>
+          </div>
+          <div class="actions">
+            <button type="reset" class="main-button btn-clear">Clear filters</button>
+            <button type="button" class="main-button btn-hide">Hide filters</button>
+          </div>
+        </form>
+      </section>
+        <section class="filter-bar">
+            <p class="results-count" id="productCount">Showing <span>0</span>-<span>0</span> of <span>0</span> Results</p>
+            <div class="user-panel">
+                <div class="sorting-container">
+                    <label for="sort" class="sorting-label"></label>
+                <select name="sort" id="sort" class="sorting-field">
+                    <option value="default">Default Sorting</option>
+                    <option value="price-asc">by price (lowest to highest)</option>
+                    <option value="price-desc">by price (highest to lowest)</option>
+                    <option value="popularity">by popularity</option>
+                    <option value="rating">by rating</option>
+                </select>
+                </div>
+                <form class="search-form" action="#">
+                    <input type="search" name="search" id="" placeholder="Search Models">
+                    <button type="submit" class="search-button">
+                        <svg class="search-icon">
+                            <use href="#search"></use>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+          <div class="catalog-layout">
+            <section class="products">
+                <!-- Тут контейнер для наших продуктів? А де картка власне одного продукта? Це product card in components? Як він підключається? -->
+              <div id="catalog-products" class="product-grid">
+                <!-- Видалити як підключу product card -->
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+                <article class="product-card" data-id="">
+                    <div class="image-wrapper">
+                        <img class="product-image" alt="product image" height="400" src="../assets/product-card-image1.png">
+                        <span class="badge main-button">SALE</span>
+                    </div>
+                    <div class="product-card-info">
+                        <p class="product-name">Vel vestibulum elit 
+                            tuvel euqen.</p>
+                        <p class="product-price">$250</p>
+                        <button class="main-button product-button">Add To Cart</button>
+                    </div>
+                </article>
+              </div>
+              <div class="pagination">
+                <button class="btn-prev" style="display: none;">PREVIOUS</button>
+                <!-- Empty container for dynamic buttons -->
+                 <!-- Що це означає? -->
+                <div class="page-buttons"></div>
+                <button class="btn-next">NEXT</button>
+              </div>
+          </section>
+          <aside class="sidebar">
+            <section class="top-sets">
+              <h2 class="top-set-title">Top Best Sets</h2>
+              <article class="top-set-card">
+                <div class="top-set-image">
+                  <img src="../assets/top-best-suitcase-set1.png" alt="Top set image" width="87" height="87" class="top-set-photo">
+               </div>
+               <div class="top-set-info">
+                 <p class="top-set-desc">Lorem ipsum dolor, sit amet consectetur ggggpisicing elit.</p>
+                 <div class="top-set-rating">
+                  <!-- <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg> -->
+                 </div>
+                 <p class="top-set-price">$1000</p>
+               </div>
+              </article>
+              <article class="top-set-card">
+                <div class="top-set-image">
+                  <img src="../assets/top-best-suitcase-set2.png" alt="Top set image" width="87" height="87" class="top-set-photo">
+               </div>
+               <div class="top-set-info">
+                 <p class="top-set-desc">Lorem ipsum dolor, sit amet consectetur ggggpisicing elit.</p>
+                 <div class="top-set-rating">
+                  <!-- <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg>
+                  <svg class="star-icon">
+                    <use href="#star"></use>
+                  </svg> -->
+                 </div>
+                 <p class="top-set-price">$1000</p>
+               </div>
+              </article>
+              <article class="top-set-card">
+                <div class="top-set-image">
+                  <img src="../assets/top-best-suitcase-set3.png" alt="Top set image" width="87" height="87" class="top-set-photo">
+               </div>
+               <div class="top-set-info">
+                 <p class="top-set-desc">Lorem ipsum dolor, sit amet consectetur ggggpisicing elit.</p>
+                 <div class="top-set-rating">
+                    <!-- <svg class="star-icon">
+                      <use href="#star"></use>
+                    </svg>
+                    <svg class="star-icon">
+                      <use href="#star"></use>
+                    </svg>
+                    <svg class="star-icon">
+                      <use href="#star"></use>
+                    </svg>
+                    <svg class="star-icon">
+                      <use href="#star"></use>
+                    </svg>
+                    <svg class="star-icon">
+                      <use href="#star"></use>
+                    </svg> -->
+                 </div>
+                 <p class="top-set-price">$1000</p>
+               </div>
+              </article>
+            </section>
+          </aside>
+          </div>  
+    </main>
+
+    <!-- Що це означає? -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <symbol id="search" fill="none">
+            <path fill="#504E4A" d="m16.293 16.707-4.1-4.1A7.007 7.007 0 1 1 13.6 11.19l4.1 4.1a1 1 0 1 1-1.414 1.414l.007.003ZM3 7a5 5 0 1 0 10 0A5 5 0 0 0 3 7Z"/>
+        </symbol>
+        <symbol fill="none" id="star">
+          <path fill="#F5B423" d="M5.1.873a1 1 0 0 1 1.8 0l.962 2a1 1 0 0 0 .779.56l2.2.27a1 1 0 0 1 .554 1.73L9.812 6.884a1 1 0 0 0-.306.93l.414 2.111A1 1 0 0 1 8.465 11L6.474 9.93a1 1 0 0 0-.947 0L3.535 11A1 1 0 0 1 2.08 9.926l.414-2.11a1 1 0 0 0-.306-.93L.6 5.43a1 1 0 0 1 .554-1.73l2.2-.27a1 1 0 0 0 .779-.56L5.1.873Z"/>
+        </symbol>
+    </svg>
+
+    <script type="module" src="/src/js/catalog.js"></script>
+</body>
+</html>
