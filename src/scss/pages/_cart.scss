@@ -55,9 +55,7 @@
 
 .cart-content {
     display: grid;
-    grid-template-columns: 1fr auto;
     gap: rem(80);
-    align-items: start;
 
     @media (max-width: 1024px) {
         grid-template-columns: 1fr;
@@ -176,9 +174,8 @@
 .cart-item__qty-btn {
     width: rem(32);
     height: rem(32);
-    border: rem(2) solid $color-primary;
     background-color: transparent;
-    color: $color-primary;
+    color: $color-black;
     font-family: $font-tertiary;
     font-weight: $font-weight-bold;
     font-size: rem(20);
@@ -260,7 +257,12 @@
 
     &:hover {
         background-color: $color-primary;
-        color: $color-white;
+        svg {
+            path {
+                stroke: $color-white;
+            }
+        }
+        transition: stroke 0.3s ease
     }
 
     svg {
