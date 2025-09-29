@@ -64,11 +64,11 @@
 }
 
 .cart-content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: rem(80);
 
     @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
         gap: rem(40);
     }
 }
@@ -333,14 +333,17 @@
 /* Cart Checkout */
 .cart-checkout {
     background-color: $color-gray;
+    margin-top: rem(-100);
     padding: rem(42);
     width: rem(571);
     height: fit-content;
+    align-self: flex-end;
 
     @media (max-width: 1024px) {
         width: 100%;
         max-width: rem(571);
         margin: 0 auto;
+        align-self: center;
     }
 
     @media (max-width: 768px) {
