@@ -305,15 +305,17 @@
     font-weight: $font-weight-bold;
     font-size: rem(15);
     line-height: $line-height-medium;
-    border: rem(2) solid $color-primary;
-    background-color: transparent;
-    color: $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: rem(10) 0;
+;
 
     &:hover {
-        background-color: $color-primary;
-        color: $color-white;
+        background-color: transparent;
+        color: $color-primary;
+        border: rem(2) solid $color-primary;
     }
 
     @media (max-width: 768px) {
