@@ -120,10 +120,6 @@
     align-items: center;
     border-bottom: rem(2) solid $color-primary;
 
-    &:last-child {
-        border-bottom: none;
-    }
-
     @media (max-width: 768px) {
         grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
         gap: rem(16);
@@ -297,7 +293,6 @@
     gap: rem(24);
     margin-top: rem(60);
     padding-top: rem(40);
-    border-top: rem(2) solid $color-primary;
 
     @media (max-width: 768px) {
         flex-direction: column;
