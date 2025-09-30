@@ -189,6 +189,20 @@ h1, h2, h3 {
   width: 30px;
   height: 33px;
 }
+.header__icon__cart {
+  position: relative;
+  display: inline-block;
+}
+.header__icon__cart__counter {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.5rem;
+  z-index: 10;
+  display: none;
+}
+.header__icon__cart__counter:not(:empty) {
+  display: block;
+}
 .header__nav {
   margin-bottom: 20px;
 }
