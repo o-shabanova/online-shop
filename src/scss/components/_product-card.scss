@@ -44,7 +44,8 @@
     font-size: $font-size-xl;
     color: $color-black;        
     line-height: $line-height-base;
-    // margin-bottom: 15px;
+    //щоб текст виглядав як у дизайні
+    padding: 0 50px;
 }
 
 .product-price {
@@ -53,10 +54,10 @@
     font-size: $font-size-xl;
     color: $color-gray;        
     line-height: $line-height-base;
-    // margin-bottom: 15px;
 }
 
 .product-button {
     font-size: $font-size-medium;
     padding: 10px 25px;
+    width: 55%;
 }
