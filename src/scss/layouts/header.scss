@@ -76,6 +76,26 @@
       width: 30px;
       height: 33px;
     }
+
+    &__cart {
+      position: relative;
+      display: inline-block;
+
+      &__counter {
+        position: absolute;
+        top: -0.6rem;
+        right: -0.5rem;
+        z-index: 10;
+        
+        // Hide by default
+        display: none;
+        
+        // Show when has items
+        &:not(:empty) {
+          display: block;
+        }
+      }
+    }
   }
 
   &__nav {
