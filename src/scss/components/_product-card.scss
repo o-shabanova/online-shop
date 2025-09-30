@@ -1,0 +1,62 @@
+@use "../abstracts/variables" as *;
+
+.product-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.image-wrapper {
+    position: relative;
+    aspect-ratio: 296 / 400;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.product-name {
+    font-family: $font-primary;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-xl;
+    color: $color-black;        
+    line-height: $line-height-base;
+    // margin-bottom: 15px;
+}
+
+.product-price {
+    font-family: $font-primary;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-xl;
+    color: $color-gray;        
+    line-height: $line-height-base;
+    // margin-bottom: 15px;
+}
+
+.product-button {
+    font-size: $font-size-medium;
+    padding: 10px 25px;
+}
