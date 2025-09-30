@@ -131,7 +131,6 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 29px;
 }
 .header__social {
   display: flex;
@@ -161,10 +160,11 @@ h1, h2, h3 {
   width: 35px;
   height: 35px;
   background-color: #B92770;
-  background-image: url("../assets/logo-bg.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 4px;
+  padding: 1px;
 }
 .header__logo-text {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -223,6 +223,7 @@ h1, h2, h3 {
   width: 100%;
   height: 1px;
   background-color: rgba(114, 113, 116, 0.2);
+  margin: 50px 0 29px;
 }
 
 /* src/scss/main.scss */
@@ -391,6 +392,14 @@ h1, h2, h3 {
 }
 
 /* Сторінкові стилі */
+.hidden {
+  position: absolute;
+  z-index: -100;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 .container, .testimonials-section, .banner-section, .products-section, .travel-section, .feature-section, .hero__content {
   max-width: 1300px;
   width: 100%;
