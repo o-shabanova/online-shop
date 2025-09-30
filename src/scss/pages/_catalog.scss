@@ -496,7 +496,7 @@
     line-height: $line-height-base;
 
     &:hover {
-        background: lighten($color-primary, 20%);
+        background: $color-primary;
         color: $color-white;
     }
 }
