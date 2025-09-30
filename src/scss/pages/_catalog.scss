@@ -386,13 +386,13 @@
 
 .top-set-image {
   height: 87px;
-  width: auto;
+  width: 87px;
   overflow: hidden;
 
   .top-set-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
   .top-set-info {
@@ -400,6 +400,7 @@
     flex-direction: column;
     gap: 8px;
     justify-content: space-between;
+    flex: 1;
   }
 
   .top-set-desc {
