@@ -96,7 +96,7 @@ class CatalogManager {
             const endIndex = Math.min(this.currentPage * this.productsPerPage, totalProducts);
             
             productCountElement.innerHTML = `
-                Showing <span>${startIndex}</span>-<span>${endIndex}</span> of <span>${totalProducts}</span> Results
+                Showing <span>${totalProducts === 0 ? 0 : startIndex}</span>-<span>${totalProducts === 0 ? 0 : endIndex}</span> of <span>${totalProducts}</span> Results
             `;
         }
     }
@@ -170,7 +170,7 @@ class CatalogManager {
     filterProducts(filters) {
         this.filteredProducts = this.products.filter(product => {
             // Size filter
-            if (filters.size && product.size !== filters.size) {
+            if (filters.size && !this.matchesSize(filters.size, product.size)) {
                 return false;
             }
             
@@ -184,7 +184,7 @@ class CatalogManager {
                 return false;
             }
             
-            // Sales filter
+            // Sales filter (true => only items on sale; false => no restriction)
             if (filters.sales && !product.salesStatus) {
                 return false;
             }
@@ -195,6 +195,41 @@ class CatalogManager {
         // Reset to first page when filtering
         this.currentPage = 1;
         this.renderProducts();
+    }
+
+    // Determine if a product size matches selected size including ranges/lists
+    matchesSize(selectedSize, productSize) {
+        const normalize = (str) => str.split(',').map(s => s.trim());
+
+        const RANGE_S_TO_L = ['S', 'M', 'L'];
+        const selectedIsRange = selectedSize === 'S-L';
+        const selectedIsSet = selectedSize === 'S, M, XL';
+        const productIsRange = productSize === 'S-L';
+        const productIsSet = productSize === 'S, M, XL';
+
+        // If user selects a single size (S/M/L/XL)
+        if (!selectedIsRange && !selectedIsSet) {
+            if (productIsRange) {
+                return RANGE_S_TO_L.includes(selectedSize);
+            }
+            if (productIsSet) {
+                return normalize('S, M, XL').includes(selectedSize);
+            }
+            // plain value comparison
+            return productSize === selectedSize;
+        }
+
+        // If user selects range S-L, match products that cover that range (range or exact same label)
+        if (selectedIsRange) {
+            return productIsRange || productSize === 'S-L';
+        }
+
+        // If user selects set S, M, XL, match only true set-labeled products
+        if (selectedIsSet) {
+            return productIsSet || productSize === 'S, M, XL';
+        }
+
+        return false;
     }
 
     // Sort products
@@ -250,28 +285,72 @@ function setupEventListeners(catalog) {
     // Filter form
     const filterForm = document.getElementById('filters-form');
     if (filterForm) {
-        filterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(filterForm);
-            const filters = {
-                size: formData.get('size'),
-                color: formData.get('color'),
-                category: formData.get('category'),
-                sales: formData.has('sales')
+        // Custom select interactions
+        const customSelects = filterForm.querySelectorAll('.custom-select');
+        customSelects.forEach(custom => {
+            const display = custom.querySelector('.select-display');
+            const optionsList = custom.querySelector('.select-options');
+            const targetName = custom.getAttribute('data-target');
+            const hiddenSelect = filterForm.querySelector(`select[name="${targetName}"]`);
+
+            const closeAll = () => {
+                filterForm.querySelectorAll('.custom-select.open').forEach(el => {
+                    el.classList.remove('open');
+                });
             };
-            
-            catalog.filterProducts(filters);
+
+            display.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = custom.classList.contains('open');
+                closeAll();
+                if (!isOpen) custom.classList.add('open');
+            });
+
+            optionsList.querySelectorAll('li').forEach(li => {
+                li.addEventListener('click', () => {
+                    const value = li.getAttribute('data-value') || '';
+                    const label = li.textContent || 'Choose option';
+                    if (hiddenSelect) {
+                        hiddenSelect.value = value;
+                        display.textContent = label;
+                        custom.classList.remove('open');
+                        applyFiltersFromForm(filterForm, catalog);
+                    }
+                });
+            });
         });
+
+        // Close dropdowns on outside click
+        document.addEventListener('click', () => {
+            filterForm.querySelectorAll('.custom-select.open').forEach(el => el.classList.remove('open'));
+        });
+
+        // Change-based filtering for native controls
+        const sizeSelect = filterForm.querySelector('select[name="size"]');
+        const colorSelect = filterForm.querySelector('select[name="color"]');
+        const categorySelect = filterForm.querySelector('select[name="category"]');
+        const salesCheckbox = filterForm.querySelector('input[name="sales"]');
+
+        [sizeSelect, colorSelect, categorySelect].forEach(sel => {
+            if (sel) sel.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
+        });
+        if (salesCheckbox) {
+            salesCheckbox.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
+        }
 
         // Clear filters
         const clearButton = filterForm.querySelector('.btn-clear');
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
+                // Reset custom select displays
+                filterForm.querySelectorAll('.custom-select .select-display').forEach(d => {
+                    d.textContent = 'Choose option';
+                });
                 catalog.filteredProducts = [...catalog.products];
                 catalog.currentPage = 1;
                 catalog.renderProducts();
+                catalog.updateProductCount();
             });
         }
     }
@@ -311,4 +390,15 @@ function setupEventListeners(catalog) {
             catalog.goToNextPage();
         });
     }
+}
+
+function applyFiltersFromForm(filterForm, catalog) {
+    const formData = new FormData(filterForm);
+    const filters = {
+        size: formData.get('size') || '',
+        color: formData.get('color') || '',
+        category: formData.get('category') || '',
+        sales: formData.has('sales')
+    };
+    catalog.filterProducts(filters);
 }
