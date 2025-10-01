@@ -127,8 +127,8 @@ class CatalogManager {
     // Update pagination controls
     updatePagination(totalPages) {
         const paginationNumbers = document.getElementById('pagination-numbers');
-        const prevButton = document.querySelector('.btn-prev');
-        const nextButton = document.querySelector('.btn-next');
+        const prevButton = document.querySelector('.catalog-pagination__button--prev');
+        const nextButton = document.querySelector('.catalog-pagination__button--next');
         
         if (!paginationNumbers || !prevButton || !nextButton) {
             return;
@@ -140,7 +140,7 @@ class CatalogManager {
         // Generate page numbers
         for (let i = 1; i <= totalPages; i++) {
             const pageButton = document.createElement('button');
-            pageButton.className = 'page-number';
+            pageButton.className = 'catalog-pagination__number';
             pageButton.textContent = i;
             pageButton.setAttribute('data-page', i);
             
@@ -348,7 +348,7 @@ class CatalogManager {
             return;
         }
 
-        const topSetsContainer = document.querySelector('.top-sets');
+        const topSetsContainer = document.querySelector('.catalog-top-sets');
         if (!topSetsContainer) {
             console.warn('Top sets container not found');
             return;
@@ -373,21 +373,21 @@ class CatalogManager {
     // Create a top set card element
     createTopSetCard(set) {
         const card = document.createElement('article');
-        card.className = 'top-set-card';
+        card.className = 'catalog-top-sets__card';
 
         const stars = this.generateStars(set.rating);
         const formattedPrice = `$${set.price}`;
 
         card.innerHTML = `
-            <div class="top-set-image">
-                <img src="${set.imageUrl}" alt="${set.name}" width="87" height="87" class="top-set-photo">
+            <div class="catalog-top-sets__image">
+                <img src="${set.imageUrl}" alt="${set.name}" width="87" height="87" class="catalog-top-sets__photo">
             </div>
-            <div class="top-set-info">
-                <p class="top-set-desc">${set.name}</p>
-                <div class="top-set-rating">
+            <div class="catalog-top-sets__info">
+                <p class="catalog-top-sets__desc">${set.name}</p>
+                <div class="catalog-top-sets__rating">
                     ${stars}
                 </div>
-                <p class="top-set-price">${formattedPrice}</p>
+                <p class="catalog-top-sets__price">${formattedPrice}</p>
             </div>
         `;
 
@@ -441,18 +441,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setupEventListeners(catalog) {
     // Filter form
-    const filterForm = document.getElementById('filters-form');
+    const filterForm = document.getElementById('catalog-filters-form');
     if (filterForm) {
         // Custom select interactions
-        const customSelects = filterForm.querySelectorAll('.custom-select');
+        const customSelects = filterForm.querySelectorAll('.catalog-filters__select');
         customSelects.forEach(custom => {
-            const display = custom.querySelector('.select-display');
-            const optionsList = custom.querySelector('.select-options');
+            const display = custom.querySelector('.catalog-filters__select-display');
+            const optionsList = custom.querySelector('.catalog-filters__select-options');
             const targetName = custom.getAttribute('data-target');
             const hiddenSelect = filterForm.querySelector(`select[name="${targetName}"]`);
 
             const closeAll = () => {
-                filterForm.querySelectorAll('.custom-select.open').forEach(el => {
+                filterForm.querySelectorAll('.catalog-filters__select.open').forEach(el => {
                     el.classList.remove('open');
                 });
             };
@@ -480,7 +480,7 @@ function setupEventListeners(catalog) {
 
         // Close dropdowns on outside click
         document.addEventListener('click', () => {
-            filterForm.querySelectorAll('.custom-select.open').forEach(el => el.classList.remove('open'));
+            filterForm.querySelectorAll('.catalog-filters__select.open').forEach(el => el.classList.remove('open'));
         });
 
         // Change-based filtering for native controls
@@ -497,12 +497,12 @@ function setupEventListeners(catalog) {
         }
 
         // Clear filters
-        const clearButton = filterForm.querySelector('.btn-clear');
+        const clearButton = filterForm.querySelector('.catalog-filters__button--clear');
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
                 // Reset custom select displays
-                filterForm.querySelectorAll('.custom-select .select-display').forEach(d => {
+                filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display').forEach(d => {
                     d.textContent = 'Choose option';
                 });
                 catalog.filteredProducts = [...catalog.products];
@@ -512,10 +512,10 @@ function setupEventListeners(catalog) {
             });
         }
         // Hide/Show filters
-        const hideButton = filterForm.querySelector('.btn-hide');
+        const hideButton = filterForm.querySelector('.catalog-filters__button--hide');
         if (hideButton) {
             hideButton.addEventListener('click', () => {
-                const filtersSection = document.querySelector('.row');
+                const filtersSection = document.querySelector('.catalog-filters__row');
                 const isHidden = filtersSection.style.display === 'none';
                 
                 if (isHidden) {
@@ -540,7 +540,7 @@ function setupEventListeners(catalog) {
     }
 
     // Search
-    const searchForm = document.querySelector('.search-form');
+    const searchForm = document.querySelector('.catalog-controls__search');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -552,8 +552,8 @@ function setupEventListeners(catalog) {
     }
 
     // Pagination navigation
-    const prevButton = document.querySelector('.btn-prev');
-    const nextButton = document.querySelector('.btn-next');
+    const prevButton = document.querySelector('.catalog-pagination__button--prev');
+    const nextButton = document.querySelector('.catalog-pagination__button--next');
     
     if (prevButton) {
         prevButton.addEventListener('click', () => {
