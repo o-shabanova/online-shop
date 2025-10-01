@@ -6,54 +6,104 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    &__image-wrapper {
+        position: relative;
+        aspect-ratio: 296 / 400;
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover &__image {
+        transform: scale(1.05);
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-grow: 1;
+    }
+
+    &__name {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-xl;
+        color: $color-black;        
+        line-height: $line-height-base;
+        //щоб текст виглядав як у дизайні
+        padding: 0 50px;
+    }
+
+    &__price {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-xl;
+        color: $color-gray;        
+        line-height: $line-height-base;
+    }
+
+    &__button {
+        font-size: $font-size-medium;
+        padding: 10px 25px;
+        width: 55%;
+    }
+
+    &__badge {
+        font-size: 12px;
+        padding: 6px 12px;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: $color-primary;
+        color: $color-white;
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        z-index: 1;
+    }
 }
 
-.image-wrapper {
-    position: relative;
-    aspect-ratio: 296 / 400;
-    overflow: hidden;
-    margin-bottom: 24px;
-}
-
-.badge {
-    font-size: 12px;
-    padding: 6px 12px;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-}
-
-.product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.product-card-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+//check where we use this style
+.main-button {
+    display: inline-flex;
     align-items: center;
-    gap: 15px;
-    flex-grow: 1;
-}
-
-.product-name {
+    justify-content: center;
+    padding: 10px 25px;
     font-family: $font-primary;
+    font-size: $font-size-medium;
     font-weight: $font-weight-bold;
-    font-size: $font-size-xl;
-    color: $color-black;        
     line-height: $line-height-base;
-    //щоб текст виглядав як у дизайні
-    padding: 0 50px;
-}
+    background-color: $color-primary;
+    color: $color-white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 40px;
 
-.product-price {
-    font-family: $font-primary;
-    font-weight: $font-weight-bold;
-    font-size: $font-size-xl;
-    color: $color-gray;        
-    line-height: $line-height-base;
+    &:hover {
+        background-color: darken($color-primary, 10%);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
 }
 
 .product-button {

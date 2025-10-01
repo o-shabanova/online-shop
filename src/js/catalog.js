@@ -86,17 +86,17 @@ class CatalogManager {
         card.setAttribute('data-id', product.id);
 
         const formattedPrice = `$${product.price}`;
-        const saleBadge = product.salesStatus ? '<span class="badge main-button">SALE</span>' : '';
+        const saleBadge = product.salesStatus ? '<span class="product-card__badge">SALE</span>' : '';
 
         card.innerHTML = `
-            <div class="image-wrapper">
-                <img class="product-image" alt="${product.name}" height="400" src="${product.imageUrl}">
+            <div class="product-card__image-wrapper">
+                <img class="product-card__image" alt="${product.name}" height="400" src="${product.imageUrl}">
                 ${saleBadge}
             </div>
-            <div class="product-card-info">
-                <p class="product-name">${product.name}</p>
-                <p class="product-price">${formattedPrice}</p>
-                <button class="main-button product-button">Add To Cart</button>
+            <div class="product-card__info">
+                <p class="product-card__name">${product.name}</p>
+                <p class="product-card__price">${formattedPrice}</p>
+                <button class="main-button product-card__button">Add To Cart</button>
             </div>
         `;
 
@@ -300,7 +300,7 @@ class CatalogManager {
         this.popup = document.getElementById('product-not-found-popup');
         if (!this.popup) return;
 
-        const closeBtn = this.popup.querySelector('.popup-close-btn');
+        const closeBtn = this.popup.querySelector('.catalog-popup__button');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.hidePopup());
         }
