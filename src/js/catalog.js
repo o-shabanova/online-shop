@@ -5,16 +5,19 @@ class CatalogManager {
         this.filteredProducts = [];
         this.currentPage = 1;
         this.productsPerPage = 12;
+        this.popup = null;
         this.init();
     }
 
     async init() {
         try {
             await this.loadProducts();
+            this.initPopup();
             this.renderProducts();
             this.updateProductCount();
         } catch (error) {
             console.error('Error initializing catalog:', error);
+            this.showPopup();
         }
     }
 
@@ -27,6 +30,11 @@ class CatalogManager {
             const data = await response.json();
             this.products = data.data;
             this.filteredProducts = [...this.products];
+            
+            // Check if no products available
+            if (!this.products || this.products.length === 0) {
+                throw new Error('No products available');
+            }
         } catch (error) {
             console.error('Error loading products:', error);
             throw error;
@@ -39,6 +47,17 @@ class CatalogManager {
             console.error('Product grid container not found');
             return;
         }
+        // Always clear existing content first
+        productGrid.innerHTML = '';
+
+        // Check if no products to display
+        if (this.filteredProducts.length === 0) {
+             // Show popup for no products
+            this.showPopup();
+            // Update pagination to show 0 results
+            this.updatePagination(0);
+        return;
+        }
 
         // Calculate pagination
         const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
@@ -48,8 +67,6 @@ class CatalogManager {
         // Get products for current page
         const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
         
-        // Clear existing content
-        productGrid.innerHTML = '';
 
         // Render each product
         productsToShow.forEach(product => {
@@ -270,6 +287,52 @@ class CatalogManager {
         // Reset to first page when searching
         this.currentPage = 1;
         this.renderProducts();
+    }
+
+    // Initialize popup functionality
+    initPopup() {
+        this.popup = document.getElementById('product-not-found-popup');
+        if (!this.popup) return;
+
+        const closeBtn = this.popup.querySelector('.popup-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.hidePopup());
+        }
+
+        // Close popup when clicking outside
+        this.popup.addEventListener('click', (e) => {
+            if (e.target === this.popup) {
+                this.hidePopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.popup.classList.contains('show')) {
+                this.hidePopup();
+            }
+        });
+    }
+
+    // Show popup
+    showPopup() {
+        if (this.popup) {
+            this.popup.style.display = 'flex';
+            // Trigger reflow to ensure display change is applied
+            this.popup.offsetHeight;
+            this.popup.classList.add('show');
+        }
+    }
+
+    // Hide popup
+    hidePopup() {
+        if (this.popup) {
+            this.popup.classList.remove('show');
+            // Hide after animation completes
+            setTimeout(() => {
+                this.popup.style.display = 'none';
+            }, 300);
+        }
     }
 }
 

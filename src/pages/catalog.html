@@ -286,14 +286,29 @@
     </main>
 
     <!-- Що це означає? -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
         <symbol id="search" fill="none">
             <path fill="#504E4A" d="m16.293 16.707-4.1-4.1A7.007 7.007 0 1 1 13.6 11.19l4.1 4.1a1 1 0 1 1-1.414 1.414l.007.003ZM3 7a5 5 0 1 0 10 0A5 5 0 0 0 3 7Z"/>
         </symbol>
         <symbol fill="none" id="star">
           <path fill="#F5B423" d="M5.1.873a1 1 0 0 1 1.8 0l.962 2a1 1 0 0 0 .779.56l2.2.27a1 1 0 0 1 .554 1.73L9.812 6.884a1 1 0 0 0-.306.93l.414 2.111A1 1 0 0 1 8.465 11L6.474 9.93a1 1 0 0 0-.947 0L3.535 11A1 1 0 0 1 2.08 9.926l.414-2.11a1 1 0 0 0-.306-.93L.6 5.43a1 1 0 0 1 .554-1.73l2.2-.27a1 1 0 0 0 .779-.56L5.1.873Z"/>
         </symbol>
-    </svg>
+    </svg> -->
+
+    <!-- Product Not Found Popup -->
+    <div id="product-not-found-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="30" stroke="#E9E9ED" stroke-width="2"/>
+                    <path d="M32 20V36M32 44H32.01" stroke="#E9E9ED" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h3 class="popup-title">Product Not Found</h3>
+            <p class="popup-message">Sorry, no products match your current search criteria. Please try adjusting your filters or search terms.</p>
+            <button class="main-button popup-close-btn">Close</button>
+        </div>
+    </div>
 
     <script type="module" src="../js/catalog.js"></script>
 </body>
