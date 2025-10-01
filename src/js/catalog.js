@@ -40,8 +40,13 @@ class CatalogManager {
             return;
         }
 
-        // Get first 12 products
-        const productsToShow = this.filteredProducts.slice(0, this.productsPerPage);
+        // Calculate pagination
+        const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+        const startIndex = (this.currentPage - 1) * this.productsPerPage;
+        const endIndex = startIndex + this.productsPerPage;
+        
+        // Get products for current page
+        const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
         
         // Clear existing content
         productGrid.innerHTML = '';
@@ -51,6 +56,9 @@ class CatalogManager {
             const productCard = this.createProductCard(product);
             productGrid.appendChild(productCard);
         });
+
+        // Update pagination
+        this.updatePagination(totalPages);
     }
 
     createProductCard(product) {
@@ -84,12 +92,78 @@ class CatalogManager {
         const productCountElement = document.getElementById('productCount');
         if (productCountElement) {
             const totalProducts = this.filteredProducts.length;
-            const displayedProducts = Math.min(this.productsPerPage, totalProducts);
+            const startIndex = (this.currentPage - 1) * this.productsPerPage + 1;
+            const endIndex = Math.min(this.currentPage * this.productsPerPage, totalProducts);
             
             productCountElement.innerHTML = `
-                Showing <span>1</span>-<span>${displayedProducts}</span> of <span>${totalProducts}</span> Results
+                Showing <span>${startIndex}</span>-<span>${endIndex}</span> of <span>${totalProducts}</span> Results
             `;
         }
+    }
+
+    // Update pagination controls
+    updatePagination(totalPages) {
+        const paginationNumbers = document.getElementById('pagination-numbers');
+        const prevButton = document.querySelector('.btn-prev');
+        const nextButton = document.querySelector('.btn-next');
+        
+        if (!paginationNumbers || !prevButton || !nextButton) {
+            return;
+        }
+
+        // Clear existing page numbers
+        paginationNumbers.innerHTML = '';
+
+        // Generate page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.className = 'page-number';
+            pageButton.textContent = i;
+            pageButton.setAttribute('data-page', i);
+            
+            if (i === this.currentPage) {
+                pageButton.classList.add('active');
+            }
+            
+            pageButton.addEventListener('click', () => this.goToPage(i));
+            paginationNumbers.appendChild(pageButton);
+        }
+
+        // Update prev/next button visibility
+        prevButton.style.display = this.currentPage > 1 ? 'block' : 'none';
+        // NEXT button is always visible
+
+        // Update product count
+        this.updateProductCount();
+    }
+
+    // Navigate to specific page
+    goToPage(page) {
+        const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+        
+        if (page >= 1 && page <= totalPages) {
+            this.currentPage = page;
+            this.renderProducts();
+        }
+    }
+
+    // Go to previous page
+    goToPreviousPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.renderProducts();
+        }
+    }
+
+    // Go to next page
+    goToNextPage() {
+        const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+        
+        if (this.currentPage < totalPages) {
+            this.currentPage++;
+            this.renderProducts();
+        }
+        // If on last page, do nothing (button remains visible but inactive)
     }
 
     // Filter products based on criteria
@@ -118,8 +192,9 @@ class CatalogManager {
             return true;
         });
 
+        // Reset to first page when filtering
+        this.currentPage = 1;
         this.renderProducts();
-        this.updateProductCount();
     }
 
     // Sort products
@@ -142,6 +217,8 @@ class CatalogManager {
                 break;
         }
 
+        // Reset to first page when sorting
+        this.currentPage = 1;
         this.renderProducts();
     }
 
@@ -155,8 +232,9 @@ class CatalogManager {
             );
         }
 
+        // Reset to first page when searching
+        this.currentPage = 1;
         this.renderProducts();
-        this.updateProductCount();
     }
 }
 
@@ -192,8 +270,8 @@ function setupEventListeners(catalog) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
                 catalog.filteredProducts = [...catalog.products];
+                catalog.currentPage = 1;
                 catalog.renderProducts();
-                catalog.updateProductCount();
             });
         }
     }
@@ -215,6 +293,22 @@ function setupEventListeners(catalog) {
             if (searchInput) {
                 catalog.searchProducts(searchInput.value);
             }
+        });
+    }
+
+    // Pagination navigation
+    const prevButton = document.querySelector('.btn-prev');
+    const nextButton = document.querySelector('.btn-next');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            catalog.goToPreviousPage();
+        });
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            catalog.goToNextPage();
         });
     }
 }

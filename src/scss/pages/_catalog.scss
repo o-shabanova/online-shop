@@ -496,6 +496,40 @@
     margin-right: 6px;
 }
 
+/* Pagination Numbers */
+.pagination-numbers {
+    display: flex;
+    gap: rem(2);
+    align-items: center;
+}
+
+.page-number {
+    width: rem(41);
+    height: rem(40);
+    border: none;
+    border-radius: rem(4);
+    background: transparent;
+    color: $color-black;
+    font-family: $font-helvetica;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+    line-height: $line-height-medium;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+        background: rgba($color-primary, 0.1);
+    }
+    
+    &.active {
+        background: $color-primary;
+        color: $color-white;
+    }
+}
+
 .notification-modal {
     position: fixed;
     top: 10px;
