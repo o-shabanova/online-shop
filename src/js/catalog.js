@@ -13,7 +13,7 @@ class CatalogManager {
         try {
             await this.loadProducts();
             this.initPopup();
-            this.renderProducts();
+            await this.renderProducts();
             this.updateProductCount();
         } catch (error) {
             console.error('Error initializing catalog:', error);
@@ -41,52 +41,48 @@ class CatalogManager {
         }
     }
 
-    renderProducts() {
-        const productGrid = document.getElementById('catalog-products');
-        if (!productGrid) {
-            console.error('Product grid container not found');
-            return;
-        }
-        // Always clear existing content first
-        productGrid.innerHTML = '';
+    async renderProducts() {
+        return new Promise((resolve) => {
+            requestAnimationFrame(() => {
+                const productGrid = document.getElementById('catalog-products');
+                if (!productGrid) {
+                    console.error('Product grid container not found');
+                    resolve();
+                    return;
+                }
+                
+                productGrid.innerHTML = '';
 
-        // Check if no products to display
-        if (this.filteredProducts.length === 0) {
-             // Show popup for no products
-            this.showPopup();
-            // Update pagination to show 0 results
-            this.updatePagination(0);
-        return;
-        }
+                if (this.filteredProducts.length === 0) {
+                    this.showPopup();
+                    this.updatePagination(0);
+                    resolve();
+                    return;
+                }
 
-        // Calculate pagination
-        const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
-        const startIndex = (this.currentPage - 1) * this.productsPerPage;
-        const endIndex = startIndex + this.productsPerPage;
-        
-        // Get products for current page
-        const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
-        
+                const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+                const startIndex = (this.currentPage - 1) * this.productsPerPage;
+                const endIndex = startIndex + this.productsPerPage;
+                const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
 
-        // Render each product
-        productsToShow.forEach(product => {
-            const productCard = this.createProductCard(product);
-            productGrid.appendChild(productCard);
+                // Create all product cards at once instead of sequentially
+                const productCards = productsToShow.map(product => this.createProductCardSync(product));
+                
+                // Append all cards at once
+                productCards.forEach(card => productGrid.appendChild(card));
+
+                this.updatePagination(totalPages);
+                resolve();
+            });
         });
-
-        // Update pagination
-        this.updatePagination(totalPages);
     }
 
-    createProductCard(product) {
+    createProductCardSync(product) {
         const card = document.createElement('article');
         card.className = 'product-card';
         card.setAttribute('data-id', product.id);
 
-        // Format price
         const formattedPrice = `$${product.price}`;
-        
-        // Determine if product is on sale
         const saleBadge = product.salesStatus ? '<span class="badge main-button">SALE</span>' : '';
 
         card.innerHTML = `
@@ -102,6 +98,13 @@ class CatalogManager {
         `;
 
         return card;
+    }
+
+    async createProductCard(product) {
+        return new Promise((resolve) => {
+            const card = this.createProductCardSync(product);
+            resolve(card);
+        });
     }
 
     // Update list count of rendered products
@@ -155,36 +158,36 @@ class CatalogManager {
     }
 
     // Navigate to specific page
-    goToPage(page) {
+    async goToPage(page) {
         const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
         
         if (page >= 1 && page <= totalPages) {
             this.currentPage = page;
-            this.renderProducts();
+            await this.renderProducts();
         }
     }
 
     // Go to previous page
-    goToPreviousPage() {
+    async goToPreviousPage() {
         if (this.currentPage > 1) {
             this.currentPage--;
-            this.renderProducts();
+            await this.renderProducts();
         }
     }
 
     // Go to next page
-    goToNextPage() {
+    async goToNextPage() {
         const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
         
         if (this.currentPage < totalPages) {
             this.currentPage++;
-            this.renderProducts();
+            await this.renderProducts();
         }
         // If on last page, do nothing (button remains visible but inactive)
     }
 
     // Filter products based on criteria
-    filterProducts(filters) {
+    async filterProducts(filters) {
         this.filteredProducts = this.products.filter(product => {
             // Size filter
             if (filters.size && !this.matchesSize(filters.size, product.size)) {
@@ -211,7 +214,7 @@ class CatalogManager {
 
         // Reset to first page when filtering
         this.currentPage = 1;
-        this.renderProducts();
+        await this.renderProducts();
     }
 
     // Determine if a product size matches selected size including ranges/lists
@@ -250,7 +253,7 @@ class CatalogManager {
     }
 
     // Sort products
-    sortProducts(sortType) {
+    async sortProducts(sortType) {
         switch (sortType) {
             case 'price-asc':
                 this.filteredProducts.sort((a, b) => a.price - b.price);
@@ -271,11 +274,11 @@ class CatalogManager {
 
         // Reset to first page when sorting
         this.currentPage = 1;
-        this.renderProducts();
+        await this.renderProducts();
     }
 
     // Search products
-    searchProducts(searchTerm) {
+    async searchProducts(searchTerm) {
         if (!searchTerm.trim()) {
             this.filteredProducts = [...this.products];
         } else {
@@ -286,7 +289,7 @@ class CatalogManager {
 
         // Reset to first page when searching
         this.currentPage = 1;
-        this.renderProducts();
+        await this.renderProducts();
     }
 
     // Initialize popup functionality
