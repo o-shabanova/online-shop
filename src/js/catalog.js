@@ -416,6 +416,24 @@ function setupEventListeners(catalog) {
                 catalog.updateProductCount();
             });
         }
+        // Hide/Show filters
+        const hideButton = filterForm.querySelector('.btn-hide');
+        if (hideButton) {
+            hideButton.addEventListener('click', () => {
+                const filtersSection = document.querySelector('.row');
+                const isHidden = filtersSection.style.display === 'none';
+                
+                if (isHidden) {
+                    // Show filters
+                    filtersSection.style.display = 'grid';
+                    hideButton.textContent = 'HIDE FILTERS';
+                } else {
+                    // Hide filters
+                    filtersSection.style.display = 'none';
+                    hideButton.textContent = 'OPEN FILTERS';
+                }
+            });
+        }
     }
 
     // Sorting
