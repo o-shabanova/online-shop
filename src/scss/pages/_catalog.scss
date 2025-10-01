@@ -353,8 +353,8 @@
   }
 
   .product-grid {
-    // щоб не стрибав контейнер при завантаженні
-    min-height: 100vh;
+    // щоб не стрибав контейнер при завантаженні, але чомусь розтягує картку якщо рендер видає умовно дві картки
+    // min-height: 100vh;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -442,35 +442,19 @@
     line-height: $line-height-base;
   }
 
-.pagination {
-    display: flex;
-    align-items: center;
-    position: relative; /* Для абсолютного позиціонування кнопок */
-    margin-top: 20px; /* Відступ зверху */
 
-    .btn-prev {
-        position: absolute;
-        left: 0; /* Розташування кнопки зліва */
-    }
-
-    .btn-next {
-        position: absolute;
-        right: 0; /* Розташування кнопки справа */
-    }
-
-    .page-buttons {
+    .pagination {
         display: flex;
-        gap: 5px; /* Відстань між кнопками сторінок */
-        justify-content: center; /* Центрування кнопок сторінок */
-        flex: 1; /* Займає весь доступний простір між кнопками prev і next */
+        gap: rem(24);
+        justify-content: end;
+        margin-top: rem(60);
     }
-}
 
 .page-button {
-    padding: 10px 17px;
+    padding: rem(10) rem(17);
     cursor: pointer;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: rem(15);
     background: $color-white;
 
     &.active {
