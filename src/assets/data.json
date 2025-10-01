@@ -260,5 +260,43 @@
     "popularity": 78,
     "blocks": []
   }
+],
+"topBestSets": [
+  {
+    "id": "TBS001",
+    "name": "Premium Travel Set Collection",
+    "price": 1000,
+    "imageUrl": "../assets/top-best-suitcase-set1.png",
+    "rating": 5.0
+  },
+  {
+    "id": "TBS002", 
+    "name": "Luxury Explorer Set Bundle",
+    "price": 1000,
+    "imageUrl": "../assets/top-best-suitcase-set2.png",
+    "rating": 4.3
+  },
+  {
+    "id": "TBS003",
+    "name": "Deluxe Family Travel Collection",
+    "price": 1000,
+    "imageUrl": "../assets/top-best-suitcase-set3.png",
+    "rating": 4.0
+  },
+  {
+    "id": "TBS003",
+    "name": "Comfortable Travel-Friendly Set",
+    "price": 1000,
+    "imageUrl": "../assets/top-best-suitcase-set3.png",
+    "rating": 3.0
+  },
+  {
+    "id": "TBS003",
+    "name": "Base Travel Luggage Set",
+    "price": 1000,
+    "imageUrl": "../assets/top-best-suitcase-set2.png",
+    "rating": 4.0
+  }
+
 ]
 }
