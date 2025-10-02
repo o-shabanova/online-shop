@@ -1,2 +1,304 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+
+/* Footer Styles */
+.footer {
+  margin-top: rem(120);
+
+  /* Footer Top Section - Benefits */
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+    background-color: $color-gray;
+    padding: $spacing-xxxl $spacing-lg;
+    // margin-bottom: $spacing-xxxl;
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: rem(32);
+    }
+
+    h2 {
+      color: $color-white;
+      font-family: $font-secondary;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      text-align: start;
+      // margin-bottom: $spacing-xl;
+    }
+  }
+
+  /* Benefits List */
+  .footer-benefits {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-md;
+      flex: 1;
+      max-width: rem(247);
+
+      img {
+        width: rem(60);
+        height: rem(60);
+        flex-shrink: 0;
+      }
+
+      p {
+        color: $color-white;
+        font-family: $font-helvetica;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        line-height: $line-height-medium;
+        margin: rem(8) 0 0 0;
+      }
+    }
+  }
+
+  /* Footer Bottom Section */
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xl;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xl;
+    }
+  }
+
+  /* Footer Navigation Links */
+  .footer-links {
+    display: flex;
+    gap: $spacing-xxxl;
+
+    .footer-col {
+      h3 {
+        margin-bottom: $spacing-md;
+
+        a {
+          color: $color-black;
+          font-family: $font-helvetica;
+          font-size: $font-size-base;
+          font-weight: $font-weight-bold;
+          line-height: $line-height-medium;
+          text-decoration: none;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+
+        li a {
+          color: $color-black;
+          font-family: $font-helvetica;
+          font-size: $font-size-base;
+          font-weight: $font-weight-regular;
+          line-height: $line-height-base;
+          text-decoration: none;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  /* Shipping Information */
+  &__bottom__left__shipping-information {
+    h3 {
+      color: $color-black;
+      font-family: $font-helvetica;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      color: $color-black;
+      font-family: $font-helvetica;
+      font-size: $font-size-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-base;
+      max-width: rem(639);
+    }
+  }
+
+  /* Contact Us Section */
+  &__bottom__right__contact-us {
+    h3 a {
+      color: $color-black;
+      font-family: $font-helvetica;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      text-decoration: none;
+      margin-bottom: $spacing-md;
+      display: inline-block;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    p {
+      color: $color-black;
+      font-family: $font-helvetica;
+      font-size: $font-size-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-base;
+      max-width: rem(367);
+    }
+  }
+
+  /* Contact Information */
+  &__bottom__right__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    font-style: normal;
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-sm;
+
+      svg {
+        width: rem(24);
+        height: rem(24);
+        flex-shrink: 0;
+        fill: $color-primary;
+        margin-top: rem(2);
+      }
+
+      p {
+        color: $color-black;
+        font-family: $font-helvetica;
+        font-size: $font-size-base;
+        font-weight: $font-weight-regular;
+        line-height: $line-height-base;
+        margin: 0;
+
+        a {
+          color: $color-black;
+          text-decoration: none;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+
+      &__working-hours {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  /* Copyright */
+  &__bottom > p {
+    text-align: center;
+    margin-top: $spacing-lg;
+
+    small {
+      color: $color-gray-dark;
+      font-family: $font-secondary;
+      font-size: rem(14);
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;
+    }
+  }
+}
+
+/* Desktop Layout */
+@media (min-width: rem(768)) {
+  .footer {
+    &__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      &__left {
+        flex: 1;
+        max-width: rem(639);
+      }
+
+      &__right {
+        flex: 1;
+        max-width: rem(373);
+        margin-left: $spacing-xxxl;
+      }
+    }
+
+    .footer-links {
+      .footer-col {
+        min-width: rem(85);
+
+        &:nth-child(2) {
+          min-width: rem(120);
+        }
+
+        &:nth-child(3) {
+          min-width: rem(138);
+        }
+      }
+    }
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: rem(767)) {
+  .footer {
+    .footer-benefits {
+      flex-direction: column;
+      gap: $spacing-lg;
+
+      &__item {
+        max-width: 100%;
+      }
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+
+    &__bottom__right__contacts {
+      &__item {
+        svg {
+          width: rem(20);
+          height: rem(20);
+        }
+      }
+    }
+  }
+}
