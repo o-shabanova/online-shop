@@ -341,11 +341,12 @@ h1, h2, h3 {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 7.5rem 0 6.875rem;
 }
 .footer__bottom__left {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3.125rem;
 }
 .footer__bottom__right {
   display: flex;
@@ -484,7 +485,6 @@ h1, h2, h3 {
 }
 .footer__copyright {
   text-align: center;
-  margin-top: 6.875rem;
   margin-bottom: 2.875rem;
 }
 .footer__copyright small {
