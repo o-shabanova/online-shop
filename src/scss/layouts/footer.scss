@@ -105,7 +105,7 @@
     &__right {
       display: flex;
       flex-direction: column;
-      gap: $spacing-xl;
+      // gap: $spacing-xl;
     }
   }
 
@@ -206,10 +206,13 @@
 
   /* Contact Information */
   &__bottom__right__contacts {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-md;
+    // display: flex;
+    // flex-direction: column;
+    // gap: $spacing-md;
     font-style: normal;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(10);
 
     &__item {
       display: flex;
@@ -286,7 +289,6 @@
       &__right {
         flex: 1;
         max-width: rem(373);
-        margin-left: $spacing-xxxl;
       }
     }
 
