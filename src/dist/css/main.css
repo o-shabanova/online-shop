@@ -254,13 +254,6 @@ h1, h2, h3 {
   gap: 2rem;
   background-color: #504E4A;
   overflow: hidden;
-}
-@media (min-width: 64rem) {
-  .footer__top {
-    min-height: 12rem;
-  }
-}
-.footer__top {
   /* Decorative Vector Lines */
 }
 .footer__top__vectors {

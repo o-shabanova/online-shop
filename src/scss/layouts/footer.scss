@@ -13,10 +13,6 @@
     gap: $spacing-xl;
     background-color: $color-gray;
     overflow: hidden;
-    
-    @media (min-width: rem(1024)) {
-      min-height: rem(192);
-    } 
 
     /* Decorative Vector Lines */
     &__vectors {
