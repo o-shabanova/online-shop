@@ -458,151 +458,115 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__bg"></div>
-        <div class="footer__lines"></div>
-        
-        <div class="container">
-            <div class="footer__top">
-                <h2 class="footer__title">Our Benefits</h2>
-                
-                <div class="footer__benefits">
-                    <div class="benefit-card">
-                        <img src="./assets/footer-icon1.png" alt="Benefit Icon" class="benefit-card__icon">
-                        <div class="benefit-card__content">
-                            <h3 class="benefit-card__title">
-                                <span>Velit nisl sodales eget</span>
-                                <span>donec quis. volutpat orci.</span>
-                            </h3>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-card">
-                        <img src="./assets/footer-icon2.png" alt="Benefit Icon" class="benefit-card__icon">
-                        <div class="benefit-card__content">
-                            <h3 class="benefit-card__title">
-                                <span>Dolor eu varius. Morbi</span>
-                                <span>fermentum velit nisl.</span>
-                            </h3>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-card">
-                        <img src="./assets/footer-icon3.png" alt="Benefit Icon" class="benefit-card__icon">
-                        <div class="benefit-card__content">
-                            <h3 class="benefit-card__title">
-                                <span>Malesuada fames ac ante</span>
-                                <span>ipsum primis in faucibus.</span>
-                            </h3>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-card">
-                        <img src="./assets/footer-icon4.png" alt="Benefit Icon" class="benefit-card__icon">
-                        <div class="benefit-card__content">
-                            <h3 class="benefit-card__title">
-                                <span>Nisl sodales eget donec</span>
-                                <span>quis. volutpat orci.</span>
-                            </h3>
-                        </div>
-                    </div>
+    <footer class="footer container">
+        <!-- Benefits -->
+        <section class="footer__top" aria-labelledby="footer-benefits-title">
+          <h2 id="footer-benefits-title">Our Benefits</h2>
+          <ul class="footer-benefits">
+            <li class="footer-benefits__item">
+              <img src="./assets/footer-icon1.png" alt="">
+              <p>Velit nisl sodales eget donec quis. volutpat orci.</p>
+            </li>
+            <li class="footer-benefits__item">
+              <img src="./assets/footer-icon2.png" alt="">
+              <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
+            </li>
+            <li class="footer-benefits__item">
+              <img src="./assets/footer-icon3.png" alt="">
+              <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
+            </li>
+            <li class="footer-benefits__item">
+              <img src="./assets/footer-icon4.png" alt="">
+              <p>Nisl sodales eget donec quis. volutpat orci.</p>
+            </li>
+          </ul>
+        </section>
+      
+        <!-- Bottom -->
+        <div class="footer__bottom">
+          <div class="footer__bottom__left">
+            <nav class="footer-links" aria-label="Footer">
+              <section class="footer-col" aria-labelledby="footer-about">
+                <h3 id="footer-about">
+                  <a href="./pages/about-us.html">About Us</a>
+                </h3>
+                <ul>
+                  <li><a href="#">Organisation</a></li>
+                  <li><a href="#">Partners</a></li>
+                  <li><a href="#">Clients</a></li>
+                </ul>
+              </section>
+      
+              <section class="footer-col" aria-labelledby="footer-interesting">
+                <h3 id="footer-interesting"><a href="#">Interesting Links</a></h3>
+                <ul>
+                  <li><a href="#">Photo Gallery</a></li>
+                  <li><a href="#">Our Team</a></li>
+                  <li><a href="#">Socials</a></li>
+                </ul>
+              </section>
+      
+              <section class="footer-col" aria-labelledby="footer-achievements">
+                <h3 id="footer-achievements"><a href="#">Achievements</a></h3>
+                <ul>
+                  <li><a href="#">Winning Awards</a></li>
+                  <li><a href="#">Press</a></li>
+                  <li><a href="#">Our Amazing Clients</a></li>
+                </ul>
+              </section>
+            </nav>
+      
+            <section class="footer__bottom__left__shipping-information" aria-labelledby="footer-shipping">
+              <h3 id="footer-shipping">Shipping Information</h3>
+              <p>
+                Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac. Ut sit amet erat nec nibh rhoncus varius
+                in non lorem. Donec interdum, lectus in convallis pulvinar, enim elit porta sapien, vel finibus erat felis sed neque.
+              </p>
+            </section>
+          </div>
+      
+          <div class="footer__bottom__right">
+            <section class="footer__bottom__right__contact-us" aria-labelledby="footer-contact">
+              <h3 id="footer-contact">
+                <a href="./pages/contact-us.html">Contact Us</a>
+              </h3>
+              <p>
+                Bendum dolor eu varius. Morbi fermentum velit sodales eget, volutpat orci. Sed ipsum felis, tristique egestas et,
+                convallis ac velit.
+              </p>
+            </section>
+      
+            <address class="footer__bottom__right__contacts">
+              <div class="footer__bottom__right__contacts__item">
+                <!-- decorative icon -->
+                <svg width="24" height="24" aria-hidden="true" focusable="false"><!-- … --></svg>
+                <p>Phone: <a href="tel:+632366322">(+63) 236 6322</a></p>
+              </div>
+      
+              <div class="footer__bottom__right__contacts__item">
+                <svg width="24" height="18" aria-hidden="true" focusable="false"><!-- … --></svg>
+                <p>Email: <a href="mailto:public@news.com">public@news.com</a></p>
+              </div>
+      
+              <div class="footer__bottom__right__contacts__item">
+                <svg width="27" height="27" aria-hidden="true" focusable="false"><!-- … --></svg>
+                <div class="footer__bottom__right__contacts__item__working-hours">
+                  <p>Mon–Fri: <time datetime="10:00">10am</time>–<time datetime="18:00">6pm</time></p>
+                  <p>Sat–Sun: <time datetime="10:00">10am</time>–<time datetime="18:00">6pm</time></p>
                 </div>
-            </div>
-            
-            <div class="footer__main">
-                <div class="footer__column">
-                    <h3 class="footer__column-title">About Us</h3>
-                    <ul class="footer__list">
-                        <li><a href="#" class="footer__link">Organisation</a></li>
-                        <li><a href="#" class="footer__link">Partners</a></li>
-                        <li><a href="#" class="footer__link">Clients</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer__column">
-                    <h3 class="footer__column-title">Interesting Links</h3>
-                    <ul class="footer__list">
-                        <li><a href="#" class="footer__link">Photo Gallery</a></li>
-                        <li><a href="#" class="footer__link">Our Team</a></li>
-                        <li><a href="#" class="footer__link">Socials</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer__column">
-                    <h3 class="footer__column-title">Achievements</h3>
-                    <ul class="footer__list">
-                        <li><a href="#" class="footer__link">Winning Awards</a></li>
-                        <li><a href="#" class="footer__link">Press</a></li>
-                        <li><a href="#" class="footer__link">Our Amazing Clients</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer__column">
-                    <h3 class="footer__column-title">Contact Us</h3>
-                    <div class="footer__contact">
-                        <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M22 16.92V19.92C22 20.92 21.11 21.92 20 21.92C9.39 21.92 1.11 13.64 1.11 3.03C1.11 1.92 2.11 1.03 3.11 1.03H6.11C7.11 1.03 8.11 1.92 8.11 3.03V6.03C8.11 7.03 7.11 7.92 6.11 7.92H4.11C4.11 12.34 7.69 15.92 12.11 15.92V13.92C12.11 12.92 13.11 11.92 14.11 11.92H17.11C18.11 11.92 19.11 12.92 19.11 13.92V16.92H22Z" stroke="#B92770" stroke-width="2" fill="none"/>
-                            </svg>
-                            <span>Phone: (+63) 236 6322</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="24" height="18" viewBox="0 0 24 18" fill="none">
-                                <path d="M2 2L12 10L22 2" stroke="#B92770" stroke-width="2"/>
-                                <rect x="1" y="1" width="22" height="16" stroke="#B92770" stroke-width="2"/>
-                            </svg>
-                            <span>public@news.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-                                <path d="M10 1C6.13 1 3 4.13 3 8C3 13 10 23 10 23S17 13 17 8C17 4.13 13.87 1 10 1ZM10 10.5C8.62 10.5 7.5 9.38 7.5 8C7.5 6.62 8.62 5.5 10 5.5C11.38 5.5 12.5 6.62 12.5 8C12.5 9.38 11.38 10.5 10 10.5Z" fill="#B92770"/>
-                            </svg>
-                            <div>
-                                <span>639 Jade Valley,</span>
-                                <span>Washington Dc</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="27" height="27" viewBox="0 0 27 27" fill="none">
-                                <circle cx="13.5" cy="13.5" r="12.5" stroke="#B92770" stroke-width="2"/>
-                                <path d="M13.5 7V13.5L17 17" stroke="#B92770" stroke-width="2"/>
-                            </svg>
-                            <div>
-                                <span>Mon - Fri: 10am - 6pm</span>
-                                <span>Sat - Sun: 10am - 6pm</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="footer__description">
-                        <p>
-                            Bendum dolor eu varius. Morbi fermentum velitsodales 
-                            egetonec. volutpat orci. Sed ipsum felis, tristique
-                            egestas et, convallis ac velitn consequat nec luctus.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="footer__column">
-                    <h3 class="footer__column-title">Shipping Information</h3>
-                    <div class="footer__shipping">
-                        <p>
-                            Nulla eleifend pulvinar purus, molestie euismod odio
-                            imperdiet ac. Ut sit amet erat nec nibh 
-                            rhoncus varius in non lorem. Donec interdum, lectus in
-                            convallis pulvinar, enim elit porta sapien, 
-                            vel finibus erat felis sed neque. Etiam aliquet neque
-                            sagittis erat tincidunt aliquam.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer__bottom">
-                <p class="footer__copyright">© Copyright 2025</p>
-            </div>
+              </div>
+      
+              <div class="footer__bottom__right__contacts__item">
+                <svg width="20" height="24" aria-hidden="true" focusable="false"><!-- … --></svg>
+                <p>639 Jade Valley, Washington DC</p>
+              </div>
+            </address>
+          </div>
+      
+          <p><small>© Copyright 2025</small></p>
         </div>
-    </footer>
+      </footer>
+      
 
     <script src="./js/main.js"></script>
 </body>
