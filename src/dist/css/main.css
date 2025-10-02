@@ -358,7 +358,7 @@ h1, h2, h3 {
 }
 .footer .footer-links {
   display: flex;
-  gap: 4rem;
+  justify-content: space-between;
 }
 .footer .footer-links .footer-col h3 {
   margin-bottom: 1rem;

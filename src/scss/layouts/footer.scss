@@ -112,7 +112,7 @@
   /* Footer Navigation Links */
   .footer-links {
     display: flex;
-    gap: $spacing-xxxl;
+    justify-content: space-between;
 
     .footer-col {
       h3 {
