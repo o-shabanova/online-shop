@@ -7,16 +7,50 @@
 
   /* Footer Top Section - Benefits */
   &__top {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: $spacing-xl;
     background-color: $color-gray;
-    padding: $spacing-xxxl $spacing-lg;
-    // margin-bottom: $spacing-xxxl;
+    overflow: hidden;
+    
+    @media (min-width: rem(1024)) {
+      min-height: rem(192);
+    } 
+
+    /* Decorative Vector Lines */
+    &__vectors {
+      position: absolute;
+      left: 0;
+      top: 0;        
+      width: 100%;
+      height: 100%;  
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    &__vector {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: auto;
+      opacity: 0.1;
+      
+      &--1 { top: 0; }
+      &--2 { top: rem(30); }
+      &--3 { top: rem(60); }
+      &--4 { top: rem(90); }
+      &--5 { top: rem(120); }
+      &--6 { top: rem(150); }
+    }
+    
     &__wrapper {
+      position: relative;
+      z-index: 2;
       display: flex;
       flex-direction: column;
       gap: rem(32);
+      padding: rem(40) 0;
     }
 
     h2 {
@@ -26,7 +60,6 @@
       font-weight: $font-weight-bold;
       line-height: $line-height-medium;
       text-align: start;
-      // margin-bottom: $spacing-xl;
     }
   }
 
