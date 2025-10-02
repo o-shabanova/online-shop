@@ -254,9 +254,9 @@
   }
 
   /* Copyright */
-  &__bottom > p {
+ &__copyright {
     text-align: center;
-    margin-top: $spacing-lg;
+    margin-bottom: 46px;
 
     small {
       color: $color-gray-dark;
