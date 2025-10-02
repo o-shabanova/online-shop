@@ -92,8 +92,11 @@
   /* Footer Bottom Section */
   &__bottom {
     display: flex;
-    flex-direction: column;
-    gap: $spacing-xl;
+    // flex-direction: column;
+    // gap: $spacing-xl;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: rem(120) 0 rem(110);
 
     &__left {
@@ -105,7 +108,8 @@
     &__right {
       display: flex;
       flex-direction: column;
-      // gap: $spacing-xl;
+      gap: rem(73);
+      
     }
   }
 
@@ -206,18 +210,16 @@
 
   /* Contact Information */
   &__bottom__right__contacts {
-    // display: flex;
-    // flex-direction: column;
-    // gap: $spacing-md;
     font-style: normal;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: rem(10);
+    gap: rem(30) rem(18);
+    max-width: rem(373);
 
     &__item {
       display: flex;
+      gap: rem(12);
       align-items: flex-start;
-      gap: $spacing-sm;
 
       svg {
         width: rem(24);
@@ -273,40 +275,40 @@
   }
 }
 
-/* Desktop Layout */
-@media (min-width: rem(768)) {
-  .footer {
-    &__bottom {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+// /* Desktop Layout */
+// @media (min-width: rem(768)) {
+//   .footer {
+//     &__bottom {
+//       // flex-direction: row;
+//       // justify-content: space-between;
+//       // align-items: flex-start;
 
-      &__left {
-        flex: 1;
-        max-width: rem(639);
-      }
+//       // &__left {
+//       //   flex: 1;
+//       //   max-width: rem(639);
+//       // }
 
-      &__right {
-        flex: 1;
-        max-width: rem(373);
-      }
-    }
+//       // &__right {
+//       //   flex: 1;
+//       //   max-width: rem(373);
+//       // }
+//     }
 
-    .footer-links {
-      .footer-col {
-        min-width: rem(85);
+//     // .footer-links {
+//     //   .footer-col {
+//     //     min-width: rem(85);
 
-        &:nth-child(2) {
-          min-width: rem(120);
-        }
+//     //     &:nth-child(2) {
+//     //       min-width: rem(120);
+//     //     }
 
-        &:nth-child(3) {
-          min-width: rem(138);
-        }
-      }
-    }
-  }
-}
+//     //     &:nth-child(3) {
+//     //       min-width: rem(138);
+//     //     }
+//     //   }
+//     // }
+//   }
+// }
 
 /* Mobile Responsive */
 @media (max-width: rem(767)) {
