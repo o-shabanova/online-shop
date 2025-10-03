@@ -1,6 +1,7 @@
 node_modules
 
 .cursor/
+
 # build artifacts
 src/dist/
 *.map
