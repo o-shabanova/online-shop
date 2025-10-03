@@ -1,7 +1,7 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-.main-button {
+.main-button, .product-details__btn {
     color: $color-white;
     font-family: $font-primary;
     font-weight: $font-weight-bold;
@@ -12,42 +12,42 @@
         background-color: darken($color-primary, 10%);
     }
 }
-.product-details-card {
+.product-details {
     display: flex;
     gap: rem(40);
     margin-bottom: rem(80);
 
-    .product-gallery {
+    &__gallery {
         flex: 1 1 45%;
         display: flex;
         flex-direction: column;
         gap: rem(10);
 
-        .product-details-image {
+        .product-details__image {
             width: 100%;
             object-fit: contain;
         }
 
-        .product-thumbnails {
+        .product-details__thumbnails {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: rem(15);
 
-            .thumb {
+            .product-details__thumbnail {
                  object-fit: cover;
             }
         } 
     }
 }
 
-.product-details-info {
+.product-details__info {
     flex: 1 1 45%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     
-    .product-details-title {
+    .product-details__title {
         font-family: $font-primary;
         font-weight: $font-weight-bold;
         font-size: rem(30);
@@ -56,11 +56,11 @@
         margin-bottom: rem(16);
     }
 
-    .card-details-rating {
+    .product-details__rating {
         margin-bottom: rem(15);
     }
 
-    .clients-review-counter {
+    .product-details__review-count {
         font-family: $font-primary;
         font-weight: $font-weight-regular;
         font-size: rem(13);
@@ -68,7 +68,7 @@
         line-height: 1.5;
     }
 
-    .product-details-price {
+    .product-details__price {
         font-family: $font-primary;
         font-weight: $font-weight-bold;
         font-size: rem(20);
@@ -77,7 +77,7 @@
         margin-bottom: rem(40);
     }
 
-    .product-details-desc {
+    .product-details__description {
         font-family: $font-primary;
         font-weight: $font-weight-regular;
         font-size: rem(17);
@@ -85,12 +85,12 @@
         line-height: 1.5;
     }
 
-    .product-details-desc + .product-details-desc {
+    .product-details__description + .product-details__description {
         margin-top: rem(40);
         margin-bottom: rem(70);
     }
 
-    .filter-group {
+    .product-details__filter {
                   display: flex;
                   flex-direction: column;
                   gap: rem(13);
@@ -120,19 +120,19 @@
                     }
                   } 
                  }
-    .product-details-quantity {
+    .product-details__quantity {
         display: flex;
         gap: rem(13);
         margin-top: rem(50);    
         margin-bottom: rem(60);
     
 
-        .quantity-controls {
+        .product-details__quantity-controls {
             display: flex;
             align-items: center;
             border: 2px solid $color-primary;
             
-            .qty-btn {
+            .product-details__qty-btn {
                 font-family: $font-primary;
                 font-weight: $font-weight-bold;
                 font-size: rem(25);
@@ -167,74 +167,76 @@
             }
         }
 
-        .add-to-cart {
+        .product-details__add-to-cart {
             flex: 1; 
         }
     }
-    .payment-options {
+    .product-details__payments {
         display: flex;
         align-items: center;
         gap: rem(20);
 
-        .payment-info {
+        .product-details__payment-label {
             line-height: 1.5;
             font-weight: $font-weight-bold;
             font-size: rem(23);
             color: $color-gray;
             
         }
+
+        /* Payment icons inherit size from inline SVG attributes; no additional rules needed */
     }
 }
 
 .product-tabs {
     margin-bottom: rem(100);
-    .tab-list {
+    &__list {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: rem(120);
         margin-bottom: rem(30);
+    }
 
-        .tab {
-            font-family: $font-primary;
-            font-weight: $font-weight-bold;
-            font-size: rem(17);
-            color: $color-black;
-            line-height: 1.5;
-            cursor: pointer;
+    &__tab {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(17);
+        color: $color-black;
+        line-height: 1.5;
+        cursor: pointer;
 
-            &.active {
-                border-bottom: 2px solid $color-primary;
-            }
+        &--active {
+            border-bottom: 2px solid $color-primary;
         }
     }
 
-    .tab-content {
-        .tab-panel {
+    &__content {
+        .product-tabs__panel {
             display:none;
 
-            .tab-text {
+            .product-tabs__text {
                 font-family: $font-primary;
                 font-weight: $font-weight-regular;
                 font-size: rem(17);
                 color: $color-gray;
                 line-height: 1.5;
 
-                & + .tab-text {
+                & + .product-tabs__text {
                     margin-top: rem(30);
                 }
             }
 
-            &.active {
+            &--active {
                 display: block;
             }
         }
     }
 
 
-.may-like-products {
+.related-products {
     margin-bottom: rem(100);
-    .may-like-title {
+    &__title {
         font-family: $font-primary;
         font-weight: 700;
         font-size: rem(30);
@@ -246,10 +248,10 @@
 }
 }
 
-.may-like-products {
+.related-products {
     margin-bottom: 100px;
     text-align: center;
-    .may-like-title {
+    &__title {
         font-family: $font-primary;
         font-weight: 700;
         font-size: rem(30);
@@ -263,13 +265,13 @@
 
 
   
-  .reviews-container {
+  .reviews__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: rem(145);
   }
 
-  .review-product-info {
+  .reviews__title {
     font-family: $font-primary;
     font-weight: $font-weight-bold;
     font-size: rem(18);
@@ -282,26 +284,26 @@
     display: flex;
     gap: rem(25); 
     
-    .review-author-photo {
+    &__author-photo {
         object-fit: contain;
         align-self: flex-start;
     }
     
   
-    .review-header {
+    &__header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       
       margin-bottom: rem(29);
 
-      .review-author-info {
+      .review__author-info {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: rem(18);
 
-        .review-author {
+        .review__author {
           font-family: $font-primary;
           font-weight: $font-weight-bold;
           font-size: rem(17);
@@ -318,7 +320,7 @@
         }
       }
   
-      .review-stars {
+      .review__stars {
         display: flex;
         gap: rem(4);
   
@@ -329,7 +331,7 @@
       }
     }
   
-    .review-text {
+    &__text {
       font-family: $font-primary;
       font-weight: $font-weight-regular;
       font-size: rem(17);
@@ -342,7 +344,7 @@
     display: flex;
     flex-direction: column;
     
-    .form-title {
+    &__title {
       font-family: $font-primary;
       font-weight: $font-weight-bold;
       font-size: rem(18);
@@ -351,7 +353,7 @@
       margin-bottom: rem(20);
     }
 
-    .form-note {
+    &__note {
       font-family: $font-primary;
       font-weight: $font-weight-regular;
       font-size: rem(13);
@@ -364,13 +366,13 @@
       }
     }
 
-    .rating-group {
+    &__rating-group {
       display: flex;
       align-items: center;
       gap: rem(15);
       margin-bottom: rem(30);
 
-      .rate-product {
+      .review-form__rate-label {
         font-family: $font-primary;
         font-weight: $font-weight-bold;
         font-size: rem(13);
@@ -379,7 +381,7 @@
       } 
     }
     
-    .star-rating {
+    &__stars {
       display: flex;
         gap: rem(5);
   
@@ -389,7 +391,7 @@
         }
     }
 
-    .review-textarea, .review-name, .review-email {
+    &__textarea, &__name, &__email {
       width: 100%;
       font-size: rem(16);
       resize: vertical;
@@ -408,25 +410,25 @@
       }
     }
 
-    .review-textarea {
+    &__textarea {
       padding: rem(15);
       min-height: rem(170);
       margin-bottom: rem(25);
     }
 
-    .user-info {
+    &__user-info {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: rem(20);
       margin-bottom: rem(35);
 
-      .review-name, .review-email {
+      .review-form__name, .review-form__email {
         padding: 10px 15px;
       }
     }
   
-    .remember-me {
+    &__remember {
       font-family: $font-primary;
       font-weight: $font-weight-regular;
       font-size: rem(13);
@@ -438,7 +440,7 @@
       margin-bottom: rem(30);
     }
   
-    .btn-submit {
+    &__submit {
       padding: 12px 22px;
       font-family: $font-primary;
       font-weight: $font-weight-bold;
@@ -452,7 +454,7 @@
       }
     }
   
-    .form-message {
+    &__message {
       font-size: rem(14);
       font-weight: $font-weight-bold;
       color: $color-green;
