@@ -1,0 +1,466 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.main-button {
+    color: $color-white;
+    font-family: $font-primary;
+    font-weight: $font-weight-bold;
+    background: $color-primary;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($color-primary, 10%);
+    }
+}
+.product-details-card {
+    display: flex;
+    gap: rem(40);
+    margin-bottom: rem(80);
+
+    .product-gallery {
+        flex: 1 1 45%;
+        display: flex;
+        flex-direction: column;
+        gap: rem(10);
+
+        .product-details-image {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .product-thumbnails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: rem(15);
+
+            .thumb {
+                 object-fit: cover;
+            }
+        } 
+    }
+}
+
+.product-details-info {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .product-details-title {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(30);
+        color: $color-black;
+        line-height: 1.5;
+        margin-bottom: rem(16);
+    }
+
+    .card-details-rating {
+        margin-bottom: rem(15);
+    }
+
+    .clients-review-counter {
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        font-size: rem(13);
+        color: $color-gray;
+        line-height: 1.5;
+    }
+
+    .product-details-price {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(20);
+        color: $color-black;
+        line-height: 1.5;
+        margin-bottom: rem(40);
+    }
+
+    .product-details-desc {
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        font-size: rem(17);
+        color: $color-gray;
+        line-height: 1.5;
+    }
+
+    .product-details-desc + .product-details-desc {
+        margin-top: rem(40);
+        margin-bottom: rem(70);
+    }
+
+    .filter-group {
+                  display: flex;
+                  flex-direction: column;
+                  gap: rem(13);
+                  margin-bottom: rem(30);
+          
+                  label {
+                    font-family: $font-primary;
+                    font-weight: $font-weight-bold;
+                    font-size: rem(17);
+                    color: $color-gray;
+                    line-height: 1.5;
+                  }
+          
+                  select {
+                    font-family: $font-primary;
+                    font-weight: $font-weight-regular;
+                    font-size: rem(16);
+                    color: $color-gray;
+                    line-height: 1.5;
+
+                    border: 2px solid $color-gray-light;
+                    padding: rem(10) rem(15);
+          
+                    &:focus {
+                      outline: none;
+                      border-color: $color-primary;
+                    }
+                  } 
+                 }
+    .product-details-quantity {
+        display: flex;
+        gap: rem(13);
+        margin-top: rem(50);    
+        margin-bottom: rem(60);
+    
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid $color-primary;
+            
+            .qty-btn {
+                font-family: $font-primary;
+                font-weight: $font-weight-bold;
+                font-size: rem(25);
+                color: $color-gray;
+                line-height: 1.5;
+                border: none;
+                padding: rem(12) rem(20);
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($color-gray-light, 10%);
+                }
+            }
+
+            input[type="number"] {
+                width: rem(50);
+                text-align: center;
+                border: none;
+                font-family: $font-primary;
+                font-weight: 700;
+                font-size: rem(25);
+                color: $color-gray;
+                line-height: 1.5;
+
+            
+
+               &::-webkit-outer-spin-button,
+               &::-webkit-inner-spin-button {
+               -webkit-appearance: none;
+                margin: 0;
+               }
+            }
+        }
+
+        .add-to-cart {
+            flex: 1; 
+        }
+    }
+    .payment-options {
+        display: flex;
+        align-items: center;
+        gap: rem(20);
+
+        .payment-info {
+            line-height: 1.5;
+            font-weight: $font-weight-bold;
+            font-size: rem(23);
+            color: $color-gray;
+            
+        }
+    }
+}
+
+.product-tabs {
+    margin-bottom: rem(100);
+    .tab-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: rem(120);
+        margin-bottom: rem(30);
+
+        .tab {
+            font-family: $font-primary;
+            font-weight: $font-weight-bold;
+            font-size: rem(17);
+            color: $color-black;
+            line-height: 1.5;
+            cursor: pointer;
+
+            &.active {
+                border-bottom: 2px solid $color-primary;
+            }
+        }
+    }
+
+    .tab-content {
+        .tab-panel {
+            display:none;
+
+            .tab-text {
+                font-family: $font-primary;
+                font-weight: $font-weight-regular;
+                font-size: rem(17);
+                color: $color-gray;
+                line-height: 1.5;
+
+                & + .tab-text {
+                    margin-top: rem(30);
+                }
+            }
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+
+.may-like-products {
+    margin-bottom: rem(100);
+    .may-like-title {
+        font-family: $font-primary;
+        font-weight: 700;
+        font-size: rem(30);
+        color: $color-black;
+        line-height: 1.5;
+        border-bottom: 2px solid $color-primary;
+        margin-bottom: rem(60);
+    }
+}
+}
+
+.may-like-products {
+    margin-bottom: 100px;
+    text-align: center;
+    .may-like-title {
+        font-family: $font-primary;
+        font-weight: 700;
+        font-size: rem(30);
+        color: $color-black;
+        line-height: 1.5;
+        display: inline-block;
+        border-bottom: 2px solid $color-primary;
+        margin-bottom: rem(60);
+    }
+}
+
+
+  
+  .reviews-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(145);
+  }
+
+  .review-product-info {
+    font-family: $font-primary;
+    font-weight: $font-weight-bold;
+    font-size: rem(18);
+    color: $color-black;
+    line-height: 1.5;
+    margin-bottom: rem(90);
+  }
+  
+  .review {
+    display: flex;
+    gap: rem(25); 
+    
+    .review-author-photo {
+        object-fit: contain;
+        align-self: flex-start;
+    }
+    
+  
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      margin-bottom: rem(29);
+
+      .review-author-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: rem(18);
+
+        .review-author {
+          font-family: $font-primary;
+          font-weight: $font-weight-bold;
+          font-size: rem(17);
+          color: $color-gray;
+          line-height: 1.5;
+        }
+    
+        time {
+          font-family: $font-primary;
+          font-weight: $font-weight-regular;
+          font-size: rem(13);
+          color: $color-gray;
+          line-height: 1.5;
+        }
+      }
+  
+      .review-stars {
+        display: flex;
+        gap: rem(4);
+  
+        svg {
+          width: 16px;
+          height: 15px;
+        }
+      }
+    }
+  
+    .review-text {
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      font-size: rem(17);
+      color: $color-black;
+      line-height: 1.5;
+    }
+  }
+  
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    
+    .form-title {
+      font-family: $font-primary;
+      font-weight: $font-weight-bold;
+      font-size: rem(18);
+      color: $color-black;
+      line-height: 1.5;
+      margin-bottom: rem(20);
+    }
+
+    .form-note {
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      font-size: rem(13);
+      color: $color-black;
+      line-height: 1.5;
+      margin-bottom: rem(30);
+
+      span {
+        color: $color-primary;
+      }
+    }
+
+    .rating-group {
+      display: flex;
+      align-items: center;
+      gap: rem(15);
+      margin-bottom: rem(30);
+
+      .rate-product {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(13);
+        color: $color-black;
+        line-height: 1.5;
+      } 
+    }
+    
+    .star-rating {
+      display: flex;
+        gap: rem(5);
+  
+        svg {
+          width: 16px;
+          height: 15px;
+        }
+    }
+
+    .review-textarea, .review-name, .review-email {
+      width: 100%;
+      font-size: rem(16);
+      resize: vertical;
+      border: 2px solid rgba($color-primary, 0.5);
+
+       &::placeholder {
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        font-size: rem(13);
+        color: $color-gray;
+        line-height: 1.5;
+       }
+      &:focus {
+        outline: none;
+        border: 2px solid $color-primary;
+      }
+    }
+
+    .review-textarea {
+      padding: rem(15);
+      min-height: rem(170);
+      margin-bottom: rem(25);
+    }
+
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: rem(20);
+      margin-bottom: rem(35);
+
+      .review-name, .review-email {
+        padding: 10px 15px;
+      }
+    }
+  
+    .remember-me {
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      font-size: rem(13);
+      color: $color-gray;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: rem(30);
+    }
+  
+    .btn-submit {
+      padding: 12px 22px;
+      font-family: $font-primary;
+      font-weight: $font-weight-bold;
+      font-size: rem(12);
+      color: $color-white;
+      line-height: 1.5;
+      align-self: flex-start;
+      
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+  
+    .form-message {
+      font-size: rem(14);
+      font-weight: $font-weight-bold;
+      color: $color-green;
+  
+      &.error {
+        color: $color-red;
+      }
+    }
+  }
+
+
