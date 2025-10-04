@@ -222,8 +222,8 @@ class CartManager {
         if (this.cart.length === 0) {
             cartItemsContainer.innerHTML = `
                 <div class="cart-empty">
-                    <h3>Your cart is empty</h3>
-                    <p>Add some items to get started!</p>
+                    <h3>Your cart is empty.</h3>
+                    <p>Use the catalog to add new items.</p>
                 </div>
             `;
             return;
@@ -257,17 +257,16 @@ class CartManager {
     }
 
     renderCartSummary() {
-        const subtotalElement = document.querySelector('.cart-checkout__value');
-        const discountElement = document.querySelector('.cart-checkout__row:nth-child(3) .cart-checkout__value');
-        const shippingElement = document.querySelector('.cart-checkout__row:nth-child(5) .cart-checkout__value');
-        const totalElement = document.querySelector('.cart-checkout__value--total');
+        // Use IDs for reliable element selection
+        const subtotalElement = document.getElementById('cart-subtotal');
+        const discountElement = document.getElementById('cart-discount');
+        const shippingElement = document.getElementById('cart-shipping');
+        const totalElement = document.getElementById('cart-total');
 
         const subtotal = this.getSubtotal();
         const discount = this.getDiscount();
         const shipping = this.getShipping();
         const total = this.getTotal();
-
-        console.log('Cart summary values:', { subtotal, discount, shipping, total });
 
         if (subtotalElement) subtotalElement.textContent = `$${subtotal}`;
         if (discountElement) discountElement.textContent = `$${discount}`;
