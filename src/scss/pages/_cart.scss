@@ -11,8 +11,11 @@
     justify-content: center;
     overflow: hidden;
     width: 100vw;
+    //instead of this
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+    //try this instead
+    //margin-inline: auto;
 
     &__bg {
         position: absolute;
@@ -57,16 +60,13 @@
 .cart-main {
     background-color: $color-white;
     
-    /* Cart Content Section */
-    .container:last-child {
-        padding: rem(70) 0 rem(100);
-    }
 }
 
 .cart-content {
     display: flex;
     flex-direction: column;
     gap: rem(80);
+    margin-top: rem(70);
 
     @media (max-width: 1024px) {
         gap: rem(40);
