@@ -101,7 +101,10 @@ class CartManager {
     }
 
     removeItem(productId) {
+        console.log('Removing item with ID:', productId);
+        console.log('Cart before removal:', this.cart);
         this.cart = this.cart.filter(item => item.id !== productId);
+        console.log('Cart after removal:', this.cart);
         this.saveCart();
         this.updateCartCounter();
         this.dispatchCartUpdate();
@@ -274,6 +277,10 @@ class CartManager {
     }
 
     bindEvents() {
+        // Remove existing event listeners to prevent duplicates
+        if (this.eventListenersAdded) return;
+        this.eventListenersAdded = true;
+        
         // Listen for add to cart buttons
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-add-to-cart]')) {
@@ -293,16 +300,13 @@ class CartManager {
 
         // Listen for remove from cart buttons
         document.addEventListener('click', (e) => {
-            if (e.target.matches('[data-remove-from-cart]')) {
+            // Check if the clicked element or its parent has the data-remove-from-cart attribute
+            const deleteBtn = e.target.closest('[data-remove-from-cart]');
+            if (deleteBtn) {
                 e.preventDefault();
-                const cartItem = e.target.closest('.cart-item');
-                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
-                if (itemIndex >= 0 && itemIndex < this.cart.length) {
-                    this.cart.splice(itemIndex, 1);
-                    this.saveCart();
-                    this.updateCartCounter();
-                    this.dispatchCartUpdate();
-                }
+                const productId = deleteBtn.getAttribute('data-product-id');
+                console.log('Delete button clicked for product:', productId);
+                this.removeItem(productId);
             }
         });
 
@@ -310,21 +314,19 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-item__qty-btn--plus')) {
                 e.preventDefault();
-                const cartItem = e.target.closest('.cart-item');
-                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
-                const item = this.cart[itemIndex];
+                const productId = e.target.getAttribute('data-product-id');
+                const item = this.cart.find(item => item.id === productId);
                 if (item) {
-                    this.updateItemQuantityByIndex(itemIndex, item.quantity + 1);
+                    this.updateItemQuantity(productId, item.quantity + 1);
                 }
             }
             
             if (e.target.matches('.cart-item__qty-btn--minus')) {
                 e.preventDefault();
-                const cartItem = e.target.closest('.cart-item');
-                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
-                const item = this.cart[itemIndex];
+                const productId = e.target.getAttribute('data-product-id');
+                const item = this.cart.find(item => item.id === productId);
                 if (item) {
-                    this.updateItemQuantityByIndex(itemIndex, item.quantity - 1);
+                    this.updateItemQuantity(productId, item.quantity - 1);
                 }
             }
         });
