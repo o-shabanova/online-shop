@@ -7,12 +7,14 @@
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="../dist/css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+    <!-- Header -->
+    <include src="./components/header.html"></include>
 
     <!-- Main Content -->
     <main class="main">
@@ -100,22 +102,22 @@
                         <form class="contact-form__form">
                             <div class="contact-form__field">
                                 <label for="name" class="contact-form__label">Your Name <span class="contact-form__label-required">*</span></label>
-                                <input type="text" id="name" name="name" class="contact-form__input" required>
+                                <input type="text" id="name" name="name" class="contact-form__input" required="">
                             </div>
                             
                             <div class="contact-form__field">
                                 <label for="email" class="contact-form__label">Your Email Address <span class="contact-form__label-required">*</span></label>
-                                <input type="email" id="email" name="email" class="contact-form__input" required>
+                                <input type="email" id="email" name="email" class="contact-form__input" required="">
                             </div>
                             
                             <div class="contact-form__field">
                                 <label for="topic" class="contact-form__label">Topic <span class="contact-form__label-required">*</span></label>
-                                <input type="text" id="topic" name="topic" class="contact-form__input" required>
+                                <input type="text" id="topic" name="topic" class="contact-form__input" required="">
                             </div>
                             
                             <div class="contact-form__field contact-form__field--textarea">
                                 <label for="message" class="contact-form__label">Your Message <span class="contact-form__label-required">*</span></label>
-                                <textarea id="message" name="message" class="contact-form__textarea" rows="5" required></textarea>
+                                <textarea id="message" name="message" class="contact-form__textarea" rows="5" required=""></textarea>
                             </div>
                             
                             <button type="submit" class="btn btn--primary contact-form__submit">SEND</button>
@@ -124,6 +126,9 @@
                 </div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <include src="./components/footer.html"></include>
 
 </body>
 </html>

@@ -2,6 +2,9 @@ node_modules
 
 .cursor/
 
+#check later, what we need to add to action README.md
+POSTHTML_SETUP.md
+
 # build artifacts
-src/dist/
+dist/
 *.map

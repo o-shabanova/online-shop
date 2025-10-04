@@ -6,12 +6,14 @@
     <title>Catalog - Best Shop</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../dist/css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-
+    <!-- Header -->
+    <include src="./components/header.html"></include>
+    
     <main class="container">
       <section class="catalog-filters">
         <form id="catalog-filters-form" class="catalog-filters__form">
@@ -29,7 +31,7 @@
                   <li data-value="S, M, XL">S, M, XL</li>
                 </ul>
               </div>
-              <select id="size" name="size" class="catalog-filters__select-hidden" hidden>
+              <select id="size" name="size" class="catalog-filters__select-hidden" hidden="">
                 <option value="">Choose option</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -53,7 +55,7 @@
                   <li data-value="pink">pink</li>
                 </ul>
               </div>
-              <select id="color" name="color" class="catalog-filters__select-hidden" hidden>
+              <select id="color" name="color" class="catalog-filters__select-hidden" hidden="">
                 <option value="">Choose option</option>
                 <option value="red">red</option>
                 <option value="blue">blue</option>
@@ -75,7 +77,7 @@
                   <li data-value="kids' luggage">kids' luggage</li>
                 </ul>
               </div>
-              <select id="category" name="category" class="catalog-filters__select-hidden" hidden>
+              <select id="category" name="category" class="catalog-filters__select-hidden" hidden="">
                 <option value="">Choose option</option>
                 <option value="carry-ons">carry-ons</option>
                 <option value="suitcases">suitcases</option>
@@ -111,7 +113,7 @@
                     <input type="search" name="search" id="" placeholder="Search Models" class="catalog-controls__search-input">
                     <button type="submit" class="catalog-controls__search-button">
                         <svg class="catalog-controls__search-icon" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+                            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"></path>
                         </svg>
                     </button>
                 </form>
@@ -144,8 +146,8 @@
         <div class="catalog-popup__content">
             <div class="catalog-popup__icon">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="32" cy="32" r="30" stroke="#E9E9ED" stroke-width="2"/>
-                    <path d="M32 20V36M32 44H32.01" stroke="#E9E9ED" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="32" cy="32" r="30" stroke="#E9E9ED" stroke-width="2"></circle>
+                    <path d="M32 20V36M32 44H32.01" stroke="#E9E9ED" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
             </div>
             <h3 class="catalog-popup__title">Product Not Found</h3>
@@ -153,6 +155,9 @@
             <button class="catalog-popup__button">Close</button>
         </div>
     </div>
+
+  <!-- Footer -->
+  <include src="./components/footer.html"></include>
 
     <script type="module" src="../js/catalog.js"></script>
 </body>
