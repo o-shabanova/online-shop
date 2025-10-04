@@ -431,13 +431,18 @@ class CatalogManager {
     }
 }
 
-// Initialize catalog when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const catalog = new CatalogManager();
+// Export the CatalogManager class
+export { CatalogManager };
+
+// Initialize catalog setup function
+export function initializeCatalog() {
+    const catalogManager = new CatalogManager();
     
     // Set up event listeners for filters, sorting, and search
-    setupEventListeners(catalog);
-});
+    setupEventListeners(catalogManager);
+    
+    return catalogManager;
+}
 
 function setupEventListeners(catalog) {
     // Filter form

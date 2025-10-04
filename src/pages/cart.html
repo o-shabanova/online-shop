@@ -41,82 +41,9 @@
                         <div class="cart-table__header-item">DELETE</div>
                     </div>
 
-                    <!-- Cart Items -->
+                    <!-- Cart Items - Dynamically rendered -->
                     <div class="cart-items">
-                        <!-- Item 1 -->
-                        <div class="cart-item">
-                            <div class="cart-item__image">
-                                <img src="/assets/cart-image1.png" alt="Nomad Haven">
-                            </div>
-                            <div class="cart-item__name">Nomad Haven</div>
-                            <div class="cart-item__price">$250</div>
-                            <div class="cart-item__quantity">
-                                <button class="cart-item__qty-btn cart-item__qty-btn--minus">-</button>
-                                <span class="cart-item__qty-value">1</span>
-                                <button class="cart-item__qty-btn cart-item__qty-btn--plus">+</button>
-                            </div>
-                            <div class="cart-item__total">$250</div>
-                            <div class="cart-item__delete">
-                                <button class="cart-item__delete-btn" data-remove-from-cart data-product-id={}>
-                                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 5H19" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M8 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M12 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>                                        
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="cart-item">
-                            <div class="cart-item__image">
-                                <img src="/assets/cart-image2.png" alt="WanderWay Kid">
-                            </div>
-                            <div class="cart-item__name">WanderWay Kid</div>
-                            <div class="cart-item__price">$690</div>
-                            <div class="cart-item__quantity">
-                                <button class="cart-item__qty-btn cart-item__qty-btn--minus">-</button>
-                                <span class="cart-item__qty-value">1</span>
-                                <button class="cart-item__qty-btn cart-item__qty-btn--plus">+</button>
-                            </div>
-                            <div class="cart-item__total">$690</div>
-                            <div class="cart-item__delete">
-                                <button class="cart-item__delete-btn" data-remove-from-cart data-product-id="2">
-                                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 5H19" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M8 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M12 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>                                        
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="cart-item">
-                            <div class="cart-item__image">
-                                <img src="/assets/cart-image3.png" alt="Crossroads Elite">
-                            </div>
-                            <div class="cart-item__name">Crossroads Elite</div>
-                            <div class="cart-item__price">$1200</div>
-                            <div class="cart-item__quantity">
-                                <button class="cart-item__qty-btn cart-item__qty-btn--minus">-</button>
-                                <span class="cart-item__qty-value">1</span>
-                                <button class="cart-item__qty-btn cart-item__qty-btn--plus">+</button>
-                            </div>
-                            <div class="cart-item__total">$1200</div>
-                            <div class="cart-item__delete">
-                                <button class="cart-item__delete-btn" data-remove-from-cart data-product-id=${product.id}>
-                                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 5H19" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M8 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M12 10V16" stroke="#B92770" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                </button>
-                            </div>
-                        </div>
+                        <!-- Items will be dynamically rendered here -->
                     </div>
 
                     <!-- Cart Actions -->
@@ -131,33 +58,33 @@
                     <div class="cart-checkout__summary">
                         <div class="cart-checkout__row">
                             <span class="cart-checkout__label">Sub Total</span>
-                            <span class="cart-checkout__value">$3000</span>
+                            <span class="cart-checkout__value">$0</span>
                         </div>
                         <div class="cart-checkout__divider"></div>
                         <div class="cart-checkout__row">
                             <span class="cart-checkout__label discount">Discount</span>
-                            <span class="cart-checkout__value">$300</span>
+                            <span class="cart-checkout__value">$0</span>
                         </div>
                         <div class="cart-checkout__divider"></div>
                         <div class="cart-checkout__row">
                             <span class="cart-checkout__label">Shipping</span>
-                            <span class="cart-checkout__value">$30</span>
+                            <span class="cart-checkout__value">$0</span>
                         </div>
                         <div class="cart-checkout__divider"></div>
                         <div class="cart-checkout__row cart-checkout__row--total">
                             <span class="cart-checkout__label total">Total</span>
-                            <span class="cart-checkout__value cart-checkout__value--total">$2730</span>
+                            <span class="cart-checkout__value cart-checkout__value--total">$0</span>
                         </div>
                     </div>
                     <button class="btn btn--primary cart-checkout__btn">CHECKOUT</button>
                 </div>
-            </div>
+                </div>
     </main>
 
     <!-- Footer -->
     <include src="./components/footer.html"></include>
     
-    <script src="/js/main.js"></script>
+    <script type="module" src="/js/main.js"></script>
 
 </body>
 </html>
