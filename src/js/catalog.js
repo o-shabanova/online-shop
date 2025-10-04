@@ -25,7 +25,7 @@ class CatalogManager {
 
     async loadProducts() {
         try {
-            const response = await fetch('../assets/data.json');
+            const response = await fetch('/assets/data.json');
             if (!response.ok) {
                 throw new Error('Failed to fetch products data');
             }
