@@ -91,7 +91,7 @@
                             <input type="number" id="product-details__quantity" name="quantity" value="1" min="1">
                             <button class="product-details__qty-btn">+</button>
                         </div>
-                          <button class="product-details__btn product-details__add-to-cart">Add To Cart</button>
+                          <button class="product-details__btn product-details__add-to-cart" data-add-to-cart data-product-id="${product.id}" data-quantity="1">Add To Cart</button>
                       </div>
                    </div>
                    <div class="product-details__payments">
@@ -221,5 +221,7 @@
     </main>
     <!--Footer-->
     <include src="./components/footer.html"></include>
+    
+    <script src="/js/main.js"></script>
 </body>
 </html>

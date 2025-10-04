@@ -96,7 +96,7 @@ class CatalogManager {
             <div class="product-card__info">
                 <p class="product-card__name">${product.name}</p>
                 <p class="product-card__price">${formattedPrice}</p>
-                <button class="main-button product-card__button">Add To Cart</button>
+                <button class="main-button product-card__button" data-add-to-cart data-product-id="${product.id}" data-quantity="1">Add To Cart</button>
             </div>
         `;
 
