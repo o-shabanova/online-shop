@@ -130,13 +130,12 @@
 .cart-item__image {
     width: rem(80);
     height: rem(80);
-    border-radius: rem(8);
     overflow: hidden;
 
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     @media (max-width: 768px) {
@@ -150,6 +149,7 @@
     font-weight: $font-weight-bold;
     font-size: rem(18);
     line-height: $line-height-medium;
+    text-align: center;
     color: $color-black;
 
     @media (max-width: 768px) {

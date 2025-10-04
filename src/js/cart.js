@@ -370,8 +370,7 @@ class CartManager {
                     alert('Your cart is empty!');
                     return;
                 }
-                // Here you would typically redirect to checkout page
-                alert('Checkout functionality would be implemented here');
+                this.processCheckout();
             }
         });
 
@@ -381,6 +380,86 @@ class CartManager {
                 this.renderCart();
             }
         });
+    }
+
+    processCheckout() {
+        // Clear the cart
+        this.clearCart();
+        
+        // Show thank you message
+        this.showThankYouMessage();
+    }
+
+    showThankYouMessage() {
+        // Create and display thank you message overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'checkout-overlay';
+        overlay.innerHTML = `
+            <div class="checkout-message">
+                <h2>Thank you for your purchase!</h2>
+                <p>Your order has been processed successfully.</p>
+                <button class="checkout-message__btn" onclick="this.closest('.checkout-overlay').remove()">
+                    Continue Shopping
+                </button>
+            </div>
+        `;
+        
+        // Add styles for the overlay
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        `;
+        
+        // Style the message box
+        const messageBox = overlay.querySelector('.checkout-message');
+        messageBox.style.cssText = `
+            background: white;
+            padding: 3rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            max-width: 30rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
+        `;
+        
+        // Style the button
+        const button = overlay.querySelector('.checkout-message__btn');
+        button.style.cssText = `
+            background-color: #B92770;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        `;
+        
+        // Add hover effect
+        button.addEventListener('mouseenter', () => {
+            button.style.backgroundColor = '#9a1f5a';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.backgroundColor = '#B92770';
+        });
+        
+        // Add to page and auto-remove after 5 seconds
+        document.body.appendChild(overlay);
+        
+        setTimeout(() => {
+            if (overlay.parentNode) {
+                overlay.remove();
+            }
+        }, 5000);
     }
 
     showAddToCartFeedback(button) {
