@@ -25,3 +25,7 @@ http://localhost:5173
 
 Це сервер де все компілюється в dist
  http://localhost:50412 (your dist server)
+
+
+#Можливо треба запустити все однією командою? По ідеє це запустить проєкт на сервері 5173
+npm run build && npm run start:dist

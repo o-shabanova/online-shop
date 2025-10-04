@@ -158,9 +158,9 @@ class CartManager {
     }
 
     getDiscount() {
-        // 10% discount for orders over $1000
+        // 10% discount for orders over $3000
         const subtotal = this.getSubtotal();
-        return subtotal > 1000 ? Math.round(subtotal * 0.1) : 0;
+        return subtotal > 3000 ? Math.round(subtotal * 0.1) : 0;
     }
 
     getShipping() {
@@ -168,9 +168,7 @@ class CartManager {
         if (this.cart.length === 0) {
             return 0;
         }
-        // Free shipping for orders over $500, otherwise $30
-        const subtotal = this.getSubtotal();
-        return subtotal > 500 ? 0 : 30;
+        return 30;
     }
 
     getTotal() {
