@@ -60,22 +60,39 @@ class CartManager {
                 id: productId,
                 name: 'Product',
                 price: 0,
-                imageUrl: '/assets/product1.png'
+                imageUrl: '/assets/product1.png',
+                color: 'unknown',
+                size: 'unknown'
             };
         }
         
-        const existingItem = this.cart.find(item => item.id === productId);
+        // Ensure productData has color and size properties
+        if (!productData.color) productData.color = 'unknown';
+        if (!productData.size) productData.size = 'unknown';
+        
+        // Find existing item with matching name, size, and color
+        const existingItem = this.cart.find(item => 
+            item.name === productData.name && 
+            item.size === productData.size && 
+            item.color === productData.color
+        );
         
         if (existingItem) {
+            // Merge entries and update quantity if name, size, and color match
             existingItem.quantity += quantity;
+            console.log('Merged with existing item:', existingItem);
         } else {
+            // Keep separate entries if only the name matches (or no match at all)
             this.cart.push({
                 id: productData.id,
                 name: productData.name,
                 price: productData.price,
                 imageUrl: productData.imageUrl,
+                color: productData.color,
+                size: productData.size,
                 quantity: quantity
             });
+            console.log('Added new item to cart:', productData);
         }
         
         this.saveCart();
@@ -101,6 +118,19 @@ class CartManager {
                 this.updateCartCounter();
                 this.dispatchCartUpdate();
             }
+        }
+    }
+
+    updateItemQuantityByIndex(index, quantity) {
+        if (index >= 0 && index < this.cart.length) {
+            if (quantity <= 0) {
+                this.cart.splice(index, 1);
+            } else {
+                this.cart[index].quantity = quantity;
+            }
+            this.saveCart();
+            this.updateCartCounter();
+            this.dispatchCartUpdate();
         }
     }
 
@@ -265,8 +295,14 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-remove-from-cart]')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
-                this.removeItem(productId);
+                const cartItem = e.target.closest('.cart-item');
+                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
+                if (itemIndex >= 0 && itemIndex < this.cart.length) {
+                    this.cart.splice(itemIndex, 1);
+                    this.saveCart();
+                    this.updateCartCounter();
+                    this.dispatchCartUpdate();
+                }
             }
         });
 
@@ -274,19 +310,21 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-item__qty-btn--plus')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
-                const item = this.cart.find(item => item.id === productId);
+                const cartItem = e.target.closest('.cart-item');
+                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
+                const item = this.cart[itemIndex];
                 if (item) {
-                    this.updateItemQuantity(productId, item.quantity + 1);
+                    this.updateItemQuantityByIndex(itemIndex, item.quantity + 1);
                 }
             }
             
             if (e.target.matches('.cart-item__qty-btn--minus')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
-                const item = this.cart.find(item => item.id === productId);
+                const cartItem = e.target.closest('.cart-item');
+                const itemIndex = Array.from(cartItem.parentNode.children).indexOf(cartItem);
+                const item = this.cart[itemIndex];
                 if (item) {
-                    this.updateItemQuantity(productId, item.quantity - 1);
+                    this.updateItemQuantityByIndex(itemIndex, item.quantity - 1);
                 }
             }
         });
@@ -345,12 +383,3 @@ class CartManager {
 // Export the CartManager class
 export { CartManager };
 
-// Initialize cart when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.cartManager = new CartManager();
-    
-    // If we're on the cart page, render the cart
-    if (document.querySelector('.cart-items')) {
-        window.cartManager.renderCart();
-    }
-});

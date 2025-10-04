@@ -24,9 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.cart-items')) {
         cartManager.renderCart();
     }
-    
-    // Note: Instances are now properly encapsulated in modules
-    // No need for global window variables
+
     
     console.log('Application initialized with modules');
 });
