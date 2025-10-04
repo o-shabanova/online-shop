@@ -272,6 +272,12 @@ class CartManager {
     }
 
     renderCart() {
+        // Handle table header visibility based on cart content
+        const cartTableHeader = document.querySelector('.cart-table__header');
+        if (cartTableHeader) {
+            cartTableHeader.style.display = this.cart.length === 0 ? 'none' : 'flex';
+        }
+        
         this.renderCartItems();
         this.renderCartSummary();
     }
