@@ -164,6 +164,10 @@ class CartManager {
     }
 
     getShipping() {
+        // No shipping if cart is empty
+        if (this.cart.length === 0) {
+            return 0;
+        }
         // Free shipping for orders over $500, otherwise $30
         const subtotal = this.getSubtotal();
         return subtotal > 500 ? 0 : 30;
@@ -275,7 +279,13 @@ class CartManager {
         // Handle table header visibility based on cart content
         const cartTableHeader = document.querySelector('.cart-table__header');
         if (cartTableHeader) {
-            cartTableHeader.style.display = this.cart.length === 0 ? 'none' : 'flex';
+            cartTableHeader.style.display = this.cart.length === 0 ? 'none' : 'grid';
+        }
+        
+        // Handle checkout section visibility based on cart content
+        const cartCheckout = document.querySelector('.cart-checkout');
+        if (cartCheckout) {
+            cartCheckout.style.display = this.cart.length === 0 ? 'none' : 'block';
         }
         
         this.renderCartItems();
