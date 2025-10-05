@@ -12,7 +12,154 @@ export class ProductDetailsManager {
      * Initialize the product details manager
      */
     init() {
-        console.log('Product Details Manager initialized');
-        // Product details functionality will be implemented here
+        const productId = this.getProductIdFromUrl();
+        if (!productId) {
+            console.error('Product id is missing in URL');
+            return;
+        }
+
+        this.loadAndRenderProduct(productId);
+    }
+
+    /**
+     * Parse product id from current URL (?id=SU001)
+     */
+    getProductIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    /**
+     * Fetch data.json and render product by id
+     */
+    async loadAndRenderProduct(productId) {
+        try {
+            const response = await fetch('/assets/data.json');
+            if (!response.ok) {
+                throw new Error('Failed to load product data');
+            }
+            const data = await response.json();
+            const products = Array.isArray(data?.data) ? data.data : [];
+            const product = products.find(p => p.id === productId);
+
+            if (!product) {
+                console.error('Product not found for id:', productId);
+                return;
+            }
+
+            this.renderProduct(product, products);
+        } catch (err) {
+            console.error('Error loading product:', err);
+        }
+    }
+
+    /**
+     * Render product content into the DOM
+     */
+    renderProduct(product, allProducts) {
+        const titleEl = document.querySelector('.product-details__title');
+        const priceEl = document.querySelector('.product-details__price');
+        const imageEl = document.getElementById('product-details__photo');
+        const addToCartBtn = document.querySelector('.product-details__add-to-cart');
+        const sizeSelect = document.getElementById('size');
+        const colorSelect = document.getElementById('color');
+        const categorySelect = document.getElementById('category');
+
+        if (titleEl) titleEl.textContent = product.name;
+        if (priceEl) priceEl.textContent = `$${product.price}`;
+        if (imageEl) {
+            imageEl.src = product.imageUrl;
+            imageEl.alt = product.name;
+        }
+        if (addToCartBtn) {
+            addToCartBtn.setAttribute('data-product-id', product.id);
+        }
+
+        // Set default selects to the product values if present in options
+        if (sizeSelect && this.optionExists(sizeSelect, product.size)) {
+            sizeSelect.value = product.size;
+        }
+        if (colorSelect && this.optionExists(colorSelect, product.color)) {
+            colorSelect.value = product.color;
+        }
+        if (categorySelect && this.optionExists(categorySelect, product.category)) {
+            categorySelect.value = product.category;
+        }
+
+        // Render rating stars if a container exists inside .product-details__rating
+        this.renderRating(product.rating);
+
+        // Render simple related products by same category (max 4)
+        this.renderRelatedProducts(product, allProducts);
+    }
+
+    /**
+     * Check if a select has an option with given value
+     */
+    optionExists(select, value) {
+        return Array.from(select.options).some(opt => opt.value === value);
+    }
+
+    /**
+     * Render rating stars by replacing existing stars if a rating container exists
+     */
+    renderRating(rating) {
+        const ratingContainer = document.querySelector('.product-details__rating');
+        if (!ratingContainer || typeof rating !== 'number') return;
+
+        const full = Math.floor(rating);
+        const hasHalf = rating % 1 !== 0;
+        const empty = 5 - full - (hasHalf ? 1 : 0);
+
+        const starSvg = (fill) => `
+<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.60486 0.790725C7.6879 0.624581 7.81557 0.484847 7.97356 0.387185C8.13155 0.289523 8.31362 0.237793 8.49936 0.237793C8.6851 0.237793 8.86717 0.289523 9.02516 0.387185C9.18315 0.484847 9.31082 0.624581 9.39386 0.790725L11.1079 4.22372C11.182 4.372 11.2918 4.49954 11.4274 4.59484C11.563 4.69015 11.7202 4.75025 11.8849 4.76972L15.7769 5.22972C15.9686 5.25242 16.1497 5.33013 16.2982 5.45348C16.4468 5.57684 16.5564 5.74055 16.6139 5.92486C16.6715 6.10918 16.6744 6.3062 16.6224 6.49214C16.5704 6.67809 16.4657 6.845 16.3209 6.97272L13.5429 9.42373C13.4112 9.54003 13.3124 9.68898 13.2566 9.85558C13.2008 10.0222 13.1898 10.2005 13.2249 10.3727L13.9529 13.9497C13.9904 14.1346 13.9749 14.3264 13.9081 14.5028C13.8413 14.6793 13.726 14.8333 13.5754 14.9469C13.4248 15.0606 13.2451 15.1294 13.0571 15.1453C12.8691 15.1612 12.6804 15.1235 12.5129 15.0367L8.95986 13.1997C8.81771 13.1261 8.65996 13.0876 8.49986 13.0876C8.33977 13.0876 8.18201 13.1261 8.03986 13.1997L4.48486 15.0377C4.31733 15.1245 4.12866 15.1622 3.94065 15.1463C3.75264 15.1304 3.57295 15.0616 3.42236 14.948C3.27177 14.8343 3.15641 14.6803 3.08961 14.5038C3.02281 14.3274 3.0073 14.1356 3.04486 13.9507L3.77286 10.3737C3.8079 10.2015 3.79696 10.0232 3.74113 9.85658C3.6853 9.68998 3.58657 9.54103 3.45486 9.42473L0.676861 6.97372C0.532065 6.846 0.427341 6.67909 0.375336 6.49314C0.32333 6.3072 0.326267 6.11018 0.383792 5.92586C0.441316 5.74155 0.550969 5.57784 0.699507 5.45448C0.848046 5.33113 1.02912 5.25342 1.22086 5.23072L5.11286 4.77072C5.27748 4.75125 5.43468 4.69115 5.57031 4.59584C5.70594 4.50054 5.81575 4.373 5.88986 4.22472L7.60486 0.790725Z" fill="${fill}"/>
+</svg>`;
+
+        const container = document.createElement('div');
+        for (let i = 0; i < full; i++) container.insertAdjacentHTML('beforeend', starSvg('#F5B423'));
+        if (hasHalf) container.insertAdjacentHTML('beforeend', starSvg('#F5B423'));
+        for (let i = 0; i < empty; i++) container.insertAdjacentHTML('beforeend', starSvg('#E9E9ED'));
+
+        // Replace existing stars but keep review count element if present
+        const reviewCount = ratingContainer.querySelector('.product-details__review-count');
+        ratingContainer.innerHTML = '';
+        ratingContainer.appendChild(container);
+        if (reviewCount) ratingContainer.appendChild(reviewCount);
+    }
+
+    /**
+     * Populate related products grid with up to 4 items from same category
+     */
+    renderRelatedProducts(currentProduct, allProducts) {
+        const grid = document.querySelector('.related-products__grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+        const related = allProducts
+            .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+            .slice(0, 4);
+
+        related.forEach(p => {
+            const card = document.createElement('article');
+            card.className = 'product-card';
+            card.setAttribute('data-id', p.id);
+            card.innerHTML = `
+<div class="product-card__image-wrapper">
+    <img class="product-card__image" alt="${p.name}" height="200" src="${p.imageUrl}">
+</div>
+<div class="product-card__info">
+    <p class="product-card__name">${p.name}</p>
+    <p class="product-card__price">$${p.price}</p>
+    <button class="main-button product-card__button" data-add-to-cart data-product-id="${p.id}" data-quantity="1">Add To Cart</button>
+</div>`;
+
+            card.addEventListener('click', (event) => {
+                if (event.target.matches('[data-add-to-cart]')) return;
+                window.location.href = `/pages/product-details-template?id=${p.id}`;
+            });
+
+            grid.appendChild(card);
+        });
     }
 }
