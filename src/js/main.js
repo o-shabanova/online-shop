@@ -2,6 +2,7 @@
 import { CatalogManager, initializeCatalog } from './catalog.js';
 import { CartManager } from './cart.js';
 import { ContactFormValidator } from './contact.js';
+import { ProductDetailsManager } from './product-details-template.js';
 
 // Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize contact form validation (only on contact page)
     if (document.querySelector('.contact-form__form')) {
         new ContactFormValidator();
+    }
+
+    // Initialize product details manager (only on product details page)
+    if (document.querySelector('.product-details')) {
+        new ProductDetailsManager();
     }
     
     console.log('Application initialized with modules');
