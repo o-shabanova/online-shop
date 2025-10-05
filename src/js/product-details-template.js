@@ -22,6 +22,9 @@ export class ProductDetailsManager {
         this.bindProductTabs();
 
         this.loadAndRenderProduct(productId);
+
+        // Initialize review form validator/handler
+        new ReviewFormValidator();
     }
 
     /**
@@ -262,5 +265,229 @@ export class ProductDetailsManager {
                 }
             });
         });
+    }
+}
+
+/**
+ * Review Form Validation and Submission Handler
+ * Mirrors the validation UX used on contact.js
+ */
+class ReviewFormValidator {
+    constructor() {
+        this.form = document.getElementById('review-form');
+        this.submitButton = this.form ? this.form.querySelector('.review-form__submit') : null;
+        this.fields = {
+            name: document.getElementById('review-form__name'),
+            email: document.getElementById('review-form__email'),
+            review: document.getElementById('review-form__text')
+        };
+
+        this.validationRules = {
+            name: {
+                required: true,
+                minLength: 2,
+                maxLength: 50,
+                pattern: /^[a-zA-Z\s\u0400-\u04FF]+$/
+            },
+            email: {
+                required: true,
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            },
+            review: {
+                required: true,
+                minLength: 10,
+                maxLength: 1000
+            }
+        };
+
+        this.errorMessages = {
+            name: {
+                required: 'Name is required',
+                minLength: 'Name must be at least 2 characters long',
+                maxLength: 'Name must not exceed 50 characters',
+                pattern: 'Name can only contain letters and spaces'
+            },
+            email: {
+                required: 'Email address is required',
+                pattern: 'Please enter a valid email address'
+            },
+            review: {
+                required: 'Review is required',
+                minLength: 'Review must be at least 10 characters long',
+                maxLength: 'Review must not exceed 1000 characters'
+            }
+        };
+
+        this.init();
+    }
+
+    init() {
+        if (!this.form) return;
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        Object.keys(this.fields).forEach((fieldName) => {
+            const field = this.fields[fieldName];
+            if (!field) return;
+            field.addEventListener('blur', () => this.validateField(fieldName));
+            field.addEventListener('input', () => {
+                this.clearError(fieldName);
+                this.validateField(fieldName);
+            });
+        });
+
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    getErrorElement(field, fieldName) {
+        // Prefer field-specific error container if markup provides it
+        const specific = this.form.querySelector(`.review-form__error--${fieldName}`);
+        if (specific) return specific;
+        // Otherwise use the direct next sibling span if present
+        if (field && field.nextElementSibling && field.nextElementSibling.classList.contains('review-form__error')) {
+            return field.nextElementSibling;
+        }
+        // Fallback: first error element inside the form
+        return this.form.querySelector('.review-form__error');
+    }
+
+    validateField(fieldName) {
+        const field = this.fields[fieldName];
+        const rules = this.validationRules[fieldName];
+        if (!field || !rules) return true;
+
+        const value = (field.value || '').trim();
+        const errorElement = this.getErrorElement(field, fieldName);
+
+        const show = (msg) => {
+            if (errorElement) {
+                errorElement.textContent = msg;
+                errorElement.style.display = 'block';
+            }
+            field.classList.add('review-form__input--error');
+        };
+
+        if (rules.required && !value) {
+            show(this.errorMessages[fieldName].required);
+            return false;
+        }
+        if (value && rules.minLength && value.length < rules.minLength) {
+            show(this.errorMessages[fieldName].minLength);
+            return false;
+        }
+        if (value && rules.maxLength && value.length > rules.maxLength) {
+            show(this.errorMessages[fieldName].maxLength);
+            return false;
+        }
+        if (value && rules.pattern && !rules.pattern.test(value)) {
+            show(this.errorMessages[fieldName].pattern);
+            return false;
+        }
+
+        this.clearError(fieldName);
+        return true;
+    }
+
+    clearError(fieldName) {
+        const field = this.fields[fieldName];
+        if (!field) return;
+        const errorElement = this.getErrorElement(field, fieldName);
+        field.classList.remove('review-form__input--error');
+        if (errorElement) {
+            errorElement.style.display = 'none';
+            errorElement.textContent = '';
+        }
+    }
+
+    validateAllFields() {
+        let isValid = true;
+        Object.keys(this.fields).forEach((name) => {
+            const ok = this.validateField(name);
+            if (!ok) isValid = false;
+        });
+        return isValid;
+    }
+
+    async handleSubmit(event) {
+        event.preventDefault();
+        if (!this.validateAllFields()) {
+            this.showSubmissionMessage('Please fix the errors above before submitting.', 'error');
+            return;
+        }
+
+        this.setSubmitButtonState(true);
+
+        try {
+            const payload = this.getFormData();
+            await this.submitForm(payload);
+            this.showSubmissionMessage('Thank you! Your review has been submitted successfully.', 'success');
+            this.resetForm();
+        } catch (err) {
+            
+            this.showSubmissionMessage('Sorry, there was an error submitting your review. Please try again.', 'error');
+        } finally {
+            this.setSubmitButtonState(false);
+        }
+    }
+
+    getFormData() {
+        return {
+            name: (this.fields.name?.value || '').trim(),
+            email: (this.fields.email?.value || '').trim(),
+            review: (this.fields.review?.value || '').trim(),
+            timestamp: new Date().toISOString()
+        };
+    }
+
+    async submitForm(data) {
+        // Simulate async submission
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(true);
+            }, 800);
+        });
+    }
+
+    showSubmissionMessage(message, type) {
+        this.removeExistingMessage();
+
+        const el = document.createElement('div');
+        el.className = `review-form__message review-form__message--${type}`;
+        el.textContent = message;
+        el.setAttribute('role', 'alert');
+        el.setAttribute('aria-live', 'polite');
+
+        this.form.insertBefore(el, this.form.firstChild);
+
+        setTimeout(() => {
+            el.style.opacity = '0';
+            setTimeout(() => {
+                if (el.parentNode) el.parentNode.removeChild(el);
+            }, 300);
+        }, 5000);
+    }
+
+    removeExistingMessage() {
+        const existing = this.form.querySelector('.review-form__message');
+        if (existing) existing.remove();
+    }
+
+    setSubmitButtonState(isLoading) {
+        if (!this.submitButton) return;
+        if (isLoading) {
+            this.submitButton.disabled = true;
+            this.submitButton.textContent = 'SUBMITTING...';
+            this.submitButton.classList.add('review-form__submit--loading');
+        } else {
+            this.submitButton.disabled = false;
+            this.submitButton.textContent = 'SUBMIT';
+            this.submitButton.classList.remove('review-form__submit--loading');
+        }
+    }
+
+    resetForm() {
+        this.form.reset();
+        Object.keys(this.fields).forEach((name) => this.clearError(name));
     }
 }

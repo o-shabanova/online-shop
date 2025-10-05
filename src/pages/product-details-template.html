@@ -195,9 +195,13 @@
                                 </div>
                             </div>                      
                             <textarea id="review-form__text" name="review" class="review-form__textarea" placeholder="Your Review*" required=""></textarea>
+                            <span class="review-form__error review-form__error--review" aria-live="polite"></span>
                             <div class="review-form__user-info">
                               <input type="text" id="review-form__name" name="name" class="review-form__name" placeholder="Your Name*" required="">
+                              <span class="review-form__error review-form__error--name" aria-live="polite"></span>
+
                               <input type="email" id="review-form__email" name="email" class="review-form__email" placeholder="Your Email*" required="">
+                              <span class="review-form__error review-form__error--email" aria-live="polite"></span>
                             </div>                
                               <label class="review-form__remember">
                               <input type="checkbox" name="remember">
