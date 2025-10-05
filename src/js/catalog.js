@@ -100,6 +100,25 @@ class CatalogManager {
             </div>
         `;
 
+        // Add click event listener to navigate to product details page
+        card.addEventListener('click', (event) => {
+            // Don't navigate if clicking on the Add to Cart button
+            if (event.target.closest('[data-add-to-cart]')) {
+                return;
+            }
+            
+            // Navigate to product details page with product ID
+            window.location.href = `/pages/product-details-template.html?id=${product.id}`;
+        });
+
+        // Add event listener to the Add to Cart button to prevent event bubbling
+        const addToCartButton = card.querySelector('[data-add-to-cart]');
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        }
+
         return card;
     }
 
