@@ -3,7 +3,8 @@
 
 /* Contact Form Validation Styles */
 
-.contact-form {
+.contact-form,
+ .review-form {
     &__field {
         min-height: rem(70, 16); /* Reserve space for error message to prevent layout shift */
         
@@ -70,6 +71,122 @@
                 border-radius: 50%;
                 animation: spin 1s linear infinite;
             }
+        }
+    }
+}
+
+/* Review Form Layout Styles */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    
+    &__title {
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(18);
+        color: $color-black;
+        line-height: 1.5;
+        margin-bottom: rem(20);
+    }
+
+    &__note {
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        font-size: rem(13);
+        color: $color-black;
+        line-height: 1.5;
+        margin-bottom: rem(30);
+
+        span {
+            color: $color-primary;
+        }
+    }
+
+    &__rating-group {
+        display: flex;
+        align-items: center;
+        gap: rem(15);
+        margin-bottom: rem(30);
+
+        .review-form__rate-label {
+            font-family: $font-primary;
+            font-weight: $font-weight-bold;
+            font-size: rem(13);
+            color: $color-black;
+            line-height: 1.5;
+        } 
+    }
+    
+    &__stars {
+        display: flex;
+        gap: rem(5);
+
+        svg {
+            width: 16px;
+            height: 15px;
+        }
+    }
+
+    &__textarea, &__name, &__email {
+        width: 100%;
+        font-size: rem(16);
+        resize: vertical;
+        border: 2px solid rgba($color-primary, 0.5);
+
+        &::placeholder {
+            font-family: $font-primary;
+            font-weight: $font-weight-regular;
+            font-size: rem(13);
+            color: $color-gray;
+            line-height: 1.5;
+        }
+        &:focus {
+            outline: none;
+            border: 2px solid $color-primary;
+        }
+    }
+
+    &__textarea {
+        padding: rem(15);
+        min-height: rem(170);
+        margin-bottom: rem(25);
+    }
+
+    &__user-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(20);
+        margin-bottom: rem(35);
+
+        .review-form__name, .review-form__email {
+            padding: 10px 15px;
+        }
+    }
+  
+    &__remember {
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        font-size: rem(13);
+        color: $color-gray;
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: rem(30);
+    }
+  
+    &__submit {
+        padding: 12px 22px;
+        font-family: $font-primary;
+        font-weight: $font-weight-bold;
+        font-size: rem(12);
+        color: $color-white;
+        line-height: 1.5;
+        align-self: flex-start;
+        
+        &:hover {
+            background-color: darken($color-primary, 10%);
         }
     }
 }
