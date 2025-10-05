@@ -3,6 +3,54 @@ import { CatalogManager, initializeCatalog } from './catalog.js';
 import { CartManager } from './cart.js';
 import { ContactFormValidator } from './contact.js';
 import { ProductDetailsManager } from './product-details-template.js';
+import { loadProductCardTemplate, renderProductCard } from './product-card.js';
+
+
+//helpers functions
+
+async function loadJSON(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed to load ${url}`);
+    return res.json();
+  }
+  //selected-product-grid
+  async function renderSelectedProductsIndex() {
+    const grid = document.getElementById('selected-products-grid');
+    if (!grid) return; // only runs on index.html
+  
+    // Adjust paths as needed for your project structure
+    const data = await loadJSON('/assets/data.json');
+  
+    const products = (data.data || []).filter(p =>
+      Array.isArray(p.blocks) && p.blocks.includes('Selected Products')
+    );
+  
+    const tpl = await loadProductCardTemplate('/components/product-card.html');
+  
+    const frag = document.createDocumentFragment();
+    products.forEach(p => frag.appendChild(renderProductCard(tpl, p)));
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+  }
+
+  //new-products-arrival
+  async function renderNewProductsArrivalIndex() {
+    const grid = document.getElementById('new-products-arrival-grid');
+    if (!grid) return; // only runs on index.html
+  
+  const data = await loadJSON('/assets/data.json');
+
+  const products = (data.data || []).filter(p =>
+    Array.isArray(p.blocks) && p.blocks.includes('New Products Arrival')
+  );
+  
+  const tpl = await loadProductCardTemplate('/components/product-card.html');
+
+  const frag = document.createDocumentFragment();
+  products.forEach(p => frag.appendChild(renderProductCard(tpl, p)));
+  grid.innerHTML = '';
+  grid.appendChild(frag);
+}
 
 // Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,6 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.product-details')) {
         new ProductDetailsManager();
     }
-    
+
+    //  Home page cards (only runs if the grid exists on index.html)
+  renderSelectedProductsIndex().catch(console.error);
+  renderNewProductsArrivalIndex().catch(console.error);
+
     console.log('Application initialized with modules');
 });

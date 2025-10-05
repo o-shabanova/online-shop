@@ -63,7 +63,7 @@
     "salesStatus": false,
     "rating": 4.0,
     "popularity": 70,
-    "blocks": []
+    "blocks": ["New Products Arrival"]
   },
   {
     "id": "SU006",
@@ -128,7 +128,7 @@
     "salesStatus": true,
     "rating": 4.0,
     "popularity": 75,
-    "blocks": ["New Products Arrival"]
+    "blocks": ["New Products Arrival", "Selected Products"]
   },
   {
     "id": "SU011",
