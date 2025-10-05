@@ -261,6 +261,12 @@
         border-bottom: 2px solid $color-primary;
         margin-bottom: rem(60);
     }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: rem(30);
+    }
 }
 
 
