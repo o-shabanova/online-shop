@@ -64,6 +64,7 @@ export class ProductDetailsManager {
         const sizeSelect = document.getElementById('size');
         const colorSelect = document.getElementById('color');
         const categorySelect = document.getElementById('category');
+        const qtyInput = document.getElementById('product-details__quantity');
 
         if (titleEl) titleEl.textContent = product.name;
         if (priceEl) priceEl.textContent = `$${product.price}`;
@@ -73,6 +74,10 @@ export class ProductDetailsManager {
         }
         if (addToCartBtn) {
             addToCartBtn.setAttribute('data-product-id', product.id);
+            if (qtyInput) {
+                const initialQty = Math.max(1, parseInt(qtyInput.value) || 1);
+                addToCartBtn.setAttribute('data-quantity', String(initialQty));
+            }
         }
 
         // Set default selects to the product values if present in options
@@ -91,6 +96,9 @@ export class ProductDetailsManager {
 
         // Render simple related products by same category (max 4)
         this.renderRelatedProducts(product, allProducts);
+
+        // Bind quantity +/- controls
+        this.bindQuantityControls();
     }
 
     /**
@@ -162,5 +170,46 @@ export class ProductDetailsManager {
 
             grid.appendChild(card);
         });
+    }
+
+    /**
+     * Bind +/- buttons to update quantity input and sync Add to Cart attribute
+     */
+    bindQuantityControls() {
+        const container = document.querySelector('.product-details__quantity-controls');
+        const qtyInput = document.getElementById('product-details__quantity');
+        const addToCartBtn = document.querySelector('.product-details__add-to-cart');
+        if (!container || !qtyInput) return;
+
+        const sanitize = (val) => {
+            const n = parseInt(val);
+            return isNaN(n) || n < 1 ? 1 : n;
+        };
+
+        const sync = () => {
+            const qty = sanitize(qtyInput.value);
+            qtyInput.value = String(qty);
+            if (addToCartBtn) addToCartBtn.setAttribute('data-quantity', String(qty));
+        };
+
+        container.addEventListener('click', (e) => {
+            const btn = e.target.closest('.product-details__qty-btn');
+            if (!btn) return;
+            e.preventDefault();
+
+            const label = (btn.textContent || '').trim();
+            const isMinus = label === '-' || label === '−';
+            const isPlus = label === '+';
+
+            let current = sanitize(qtyInput.value);
+            if (isMinus) current = Math.max(1, current - 1);
+            if (isPlus) current = current + 1;
+            qtyInput.value = String(current);
+            sync();
+        });
+
+        qtyInput.addEventListener('input', sync);
+        qtyInput.addEventListener('change', sync);
+        sync();
     }
 }
