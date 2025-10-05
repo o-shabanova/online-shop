@@ -1,0 +1,80 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+/* Contact Form Validation Styles */
+
+.contact-form {
+    &__field {
+        min-height: rem(70, 16); /* Reserve space for error message to prevent layout shift */
+        
+        &--textarea {
+            min-height: rem(140, 16); /* Extra space for textarea + error */
+        }
+    }
+    &__input {
+        &--error {
+            border-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+        }
+    }
+    
+    &__error {
+        color: #e74c3c;
+        font-size: rem(14, 16);
+        font-family: $font-primary;
+        font-weight: $font-weight-regular;
+        margin-top: rem(4, 16);
+        display: none;
+        line-height: 1.4;
+    }
+    
+    &__message {
+        padding: rem(12, 16) rem(16, 16);
+        border-radius: rem(4, 16);
+        margin-bottom: rem(20, 16);
+        font-family: $font-primary;
+        font-size: rem(14, 16);
+        font-weight: $font-weight-medium;
+        line-height: 1.4;
+        transition: opacity 0.3s ease;
+        
+        &--success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        &--error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    }
+    
+    &__submit {
+        &--loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                right: rem(10, 16);
+                top: 50%;
+                transform: translateY(-50%);
+                width: rem(16, 16);
+                height: rem(16, 16);
+                border: 2px solid transparent;
+                border-top: 2px solid currentColor;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
