@@ -108,7 +108,7 @@ class CatalogManager {
             }
             
             // Navigate to product details page with product ID
-            window.location.href = `/pages/product-details-template.html?id=${product.id}`;
+            window.location.href = `/pages/product-details-template?id=${product.id}`;
         });
 
         return card;
