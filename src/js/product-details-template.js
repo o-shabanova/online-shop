@@ -136,9 +136,10 @@ export class ProductDetailsManager {
         if (!grid) return;
 
         grid.innerHTML = '';
-        const related = allProducts
-            .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
-            .slice(0, 4);
+        // Select 4 random products from the dataset (excluding the current product)
+        const pool = allProducts.filter(p => p.id !== currentProduct.id);
+        const shuffled = [...pool].sort(() => Math.random() - 0.5);
+        const related = shuffled.slice(0, 4);
 
         related.forEach(p => {
             const card = document.createElement('article');
