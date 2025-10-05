@@ -18,6 +18,9 @@ export class ProductDetailsManager {
             return;
         }
 
+        // Bind tabs interaction
+        this.bindProductTabs();
+
         this.loadAndRenderProduct(productId);
     }
 
@@ -211,5 +214,53 @@ export class ProductDetailsManager {
         qtyInput.addEventListener('input', sync);
         qtyInput.addEventListener('change', sync);
         sync();
+    }
+
+    /**
+     * Tabs: toggle active classes for tabs and corresponding panels
+     */
+    bindProductTabs() {
+        const tabs = Array.from(document.querySelectorAll('.product-tabs__tab'));
+        const panels = Array.from(document.querySelectorAll('.product-tabs__panel'));
+        if (tabs.length === 0 || panels.length === 0) return;
+
+        const activate = (index) => {
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('product-tabs__tab--active');
+                    tab.setAttribute('aria-selected', 'true');
+                    tab.setAttribute('tabindex', '0');
+                } else {
+                    tab.classList.remove('product-tabs__tab--active');
+                    tab.setAttribute('aria-selected', 'false');
+                    tab.setAttribute('tabindex', '-1');
+                }
+            });
+
+            panels.forEach((panel, i) => {
+                if (i === index) {
+                    panel.classList.add('product-tabs__panel--active');
+                    panel.removeAttribute('hidden');
+                    panel.setAttribute('aria-hidden', 'false');
+                } else {
+                    panel.classList.remove('product-tabs__panel--active');
+                    panel.setAttribute('hidden', '');
+                    panel.setAttribute('aria-hidden', 'true');
+                }
+            });
+        };
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                activate(index);
+            });
+            tab.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    activate(index);
+                }
+            });
+        });
     }
 }
