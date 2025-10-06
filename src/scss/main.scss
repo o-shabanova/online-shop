@@ -17,7 +17,7 @@
 @use 'pages/product-details';
 
 
-//General styles
+
 .hidden {
   position: absolute;
   z-index: -100;
@@ -26,14 +26,13 @@
   height: 0;
 }
 
-// Container utility 
 .container {
     max-width: 1300px;
     width: 100%;
     margin-inline: auto;
   }
 
-//General section styles
+
 .hero,
 .travel-section,
 .products-section,
@@ -51,8 +50,7 @@
   place-items: center;
 }
 
-// Hero Section
-
+  
    .hero {
     position: relative;
     z-index: $z-index-hero;
@@ -92,12 +90,11 @@
     }
   }
 
-// Feature Section 
+  
 
    .feature-section {
     @extend .container;
     position: relative;
-    //але що зробити щоб секція не перекривалася іншими секціями
     z-index: $z-index-feature;
    
     grid-template-columns: 1fr 1fr;          
@@ -105,7 +102,7 @@
     margin-block-start: -$section-overlap;
     box-shadow: $shadow-card;
   
-    /* ліва картка */
+    
     &__left {
       block-size: 100%;
       background: $color-white;
@@ -225,7 +222,7 @@
   
   
 
-// Travel Section
+  
    .travel-section {
     @extend .container;                  
     padding-block: rem(140);             
@@ -374,7 +371,6 @@
   max-width: 181px;
 }
 
-/* Carousel controls for travel section */
 .carousel-controls {
   display: flex;
   align-items: center;
@@ -406,8 +402,6 @@
     }
   }
 }
-
-// Selected Products Section
 
    .products-section {
     @extend .container;                   
@@ -539,7 +533,6 @@
   }
   
   
-// Testimonials Section
 .testimonials-section {
   padding: 119px 0;
   @extend .container;
@@ -621,7 +614,6 @@
   color: $color-primary;
 }
 
-// Contact Page Styles
 .contact-hero {
   position: relative;
   height: 554px;
@@ -881,8 +873,7 @@
     }
   }
 }
-
-// Contact Page Responsive Design
+  
 @media (max-width: 1200px) {
 .contact-form {
     grid-template-columns: 1fr;
