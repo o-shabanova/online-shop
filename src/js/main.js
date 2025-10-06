@@ -52,6 +52,51 @@ async function loadJSON(url) {
   grid.appendChild(frag);
 }
 
+//card navigation
+function setupCardNavigation(containerSelector, detailsPath = '/pages/product-details-template.html') {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+  
+    container.addEventListener('click', (event) => {
+      // If click happened inside the Add-to-Cart button → do nothing here.
+      if (event.target.closest('[data-add-to-cart]')) {
+        return;
+      }
+  
+      // Navigate when clicking anywhere else on the card
+      const card = event.target.closest('.product-card');
+      if (!card || !container.contains(card)) return;
+  
+      const id = card.dataset.id;
+      if (!id) return;
+  
+      const url = new URL(detailsPath, window.location);
+      url.searchParams.set('id', id);
+      window.location.href = url.toString();
+    });
+  }
+
+// Global card navigation for all product cards (including dynamically added ones)
+function setupGlobalCardNavigation() {
+  document.addEventListener('click', (event) => {
+    // If click happened inside the Add-to-Cart button → do nothing here.
+    if (event.target.closest('[data-add-to-cart]')) {
+      return;
+    }
+
+    // Navigate when clicking anywhere else on the card
+    const card = event.target.closest('.product-card');
+    if (!card) return;
+
+    const id = card.dataset.id;
+    if (!id) return;
+
+    window.location.href = `/pages/product-details-template?id=${id}`;
+  });
+}
+  
+
+
 // Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     let catalogManager = null;
@@ -86,8 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //  Home page cards (only runs if the grid exists on index.html)
-  renderSelectedProductsIndex().catch(console.error);
-  renderNewProductsArrivalIndex().catch(console.error);
+    renderSelectedProductsIndex().catch(console.error);
+    renderNewProductsArrivalIndex().catch(console.error);
+    
+    // Setup global card navigation for all product cards (including dynamically added ones)
+    setupGlobalCardNavigation();
 
     console.log('Application initialized with modules');
 });

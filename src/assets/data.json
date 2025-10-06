@@ -89,7 +89,7 @@
     "salesStatus": true,
     "rating": 3.5,
     "popularity": 72,
-    "blocks": []
+    "blocks": ["You May Also Like"]
   },
   {
     "id": "SU008",
