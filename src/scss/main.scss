@@ -1,23 +1,16 @@
-/* src/scss/main.scss */
-
-/* Абстракції */
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
 
-/* Базові стилі */
 @use 'base/reset';
 @use 'base/fonts';
 
-/* Компоненти */
 @use 'components/buttons';
 @use 'components/forms';
 @use 'components/product-card';
 
-/* Layouts */
 @use 'layouts/header';
 @use 'layouts/footer';
 
-/* Сторінкові стилі */
 @use 'pages/about';
 @use 'pages/cart';
 @use 'pages/catalog';
@@ -175,7 +168,6 @@
       }
     }
   
-    /* права картка */
     &__right { block-size: 100%; min-inline-size: 0; }
   
     &__card {
@@ -190,7 +182,6 @@
       block-size: 100%;
       object-fit: cover;
       object-position: center;
-      /* за потреби: aspect-ratio: 4 / 5; */
     }
   
     &__card-content {
@@ -241,7 +232,6 @@
     padding-inline: $section-pad-inline; 
     overflow: hidden;
   
-    /* scope title/subtitle to this section */
     .section__title {
       font-family: $font-primary;
       font-size: $font-size-title;       
@@ -263,7 +253,6 @@
     }
   }
   
-  /* Block: travel (cards grid) */
   .travel {
     &__grid {
       display: grid;
@@ -287,17 +276,7 @@
       block-size: 100%;
       object-fit: cover;
       object-position: center;
-      // If you want strict proportions instead of min-block-size:
-      // aspect-ratio: 296 / 600;
     }
-  
-    // &__card-overlay {
-    //   position: absolute;
-    //   inset: 0;
-    //   background-color: rgba(0, 0, 0, 0.4);
-    //   z-index: 1;
-    //   pointer-events: none;
-    // }
   
     &__card-content {
       position: absolute;
@@ -460,7 +439,6 @@
     }
   }
   
-  /* Block scope for products grid/cards */
   .products {
     &__grid {
       display: grid;
@@ -469,9 +447,7 @@
     }
   }
   
-  /* Card styles are now in components/_product-card.scss */
 
-// Banner Section
 .banner-section {
     @extend .container;
     position: relative;
@@ -489,10 +465,8 @@
       z-index: 0;
     }
   
-  
-    /* CONTENT */
+
     .banner__content {
-    // above overlays
       position: relative;                   
       z-index: 1;
       display: flex;
@@ -502,15 +476,13 @@
       color: $color-white;
     }
   
-    /* two columns */
     .banner__left,
     .banner__right {
       flex: 1 1 0;                          
       min-width: 0;
       text-align: left;
     }
-  
-    /* TYPO */
+
     .banner__discount {
       display: block;
       margin: 0 0 rem(-50);                 
@@ -730,12 +702,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-//   justify-content: space-between;
   justify-content: flex-start;
   gap: clamp(rem(24), 6vw, rem(100));
-//   gap: rem(100);
-//check if we need this
-//    height: auto;
+
 }
 
 .contact-form {
@@ -756,15 +725,12 @@
       grid-area: image;
       position: relative;
       overflow: hidden;
-      /* prevent overflow in grid children */
       min-width: 0;
-      /* Use aspect ratio to maintain image proportions */
       aspect-ratio: 1 / 1;
       min-height: rem(400);
       display: block;
     }
   
-    /* The image fully covers its grid cell */
     &__bg {
       position: absolute;
       inset: 0;
@@ -773,8 +739,6 @@
       display: block;
       object-fit: cover;
       object-position: center;
-    //   max-width: none;
-    //   max-height: none;
     }
   
     &__content {
@@ -784,10 +748,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      /* Match the image height */
       min-height: rem(400);
-      /* prevent text overflow in grid */
-    //   min-width: 0;
     }
   
     &__title {
@@ -924,20 +885,17 @@
 // Contact Page Responsive Design
 @media (max-width: 1200px) {
 .contact-form {
-    /* stack vertically: content first, image second (matches your old order) */
     grid-template-columns: 1fr;
     grid-template-areas:
       "content"
       "image";
     row-gap: rem(24);
 
-    /* allow the block to shrink naturally on small screens */
     min-height: auto;
     max-height: none;
 
     &__content { padding: rem(24) rem(20); }
 
-    /* image shrinks but stays visually substantial and fully covered */
     &__image { min-height: clamp(200px, 35vh, 360px); }
   }
 

@@ -46,8 +46,7 @@
         font-weight: $font-weight-bold;
         font-size: $font-size-xl;
         color: $color-black;        
-        line-height: $line-height-base;
-        //щоб текст виглядав як у дизайні
+        line-height: $line-height-base;        
         padding: 0 50px;
     }
 
@@ -79,7 +78,6 @@
     }
 }
 
-//check where we use this style
 .main-button {
     display: inline-flex;
     align-items: center;

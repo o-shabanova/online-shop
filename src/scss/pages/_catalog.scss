@@ -111,9 +111,6 @@
 }
   
 .catalog-filters {
-//   &__form {
-//     // Form styles
-//   }
 
   &__row {
     display: grid;
@@ -136,10 +133,6 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-    // &--sales {
-    //   // Sales-specific styles can be added here if needed
-    // }
   }
 
   &__label {
@@ -167,10 +160,6 @@
       padding: 10px 15px;
       position: relative;
     }
-
-    // &-hidden {
-    //   // Hidden select styles can be added here if needed
-    // }
 
     &::after {
       content: "";
@@ -250,9 +239,6 @@
       margin-right: 20px;
     }
 
-    // &--hide {
-    //   // Hide button specific styles can be added here if needed
-    // }
   }
 }
 .catalog-layout {
@@ -264,8 +250,6 @@
   flex: 1;
 
   &__grid {
-    // щоб не стрибав контейнер при завантаженні, але чомусь розтягує картку якщо рендер видає умовно дві картки
-    // min-height: 100vh;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -428,7 +412,6 @@
 }
 
 
-/* Product Not Found Popup */
 .catalog-popup {
   position: fixed;
   top: 0;

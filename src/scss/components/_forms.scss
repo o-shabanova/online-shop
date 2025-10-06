@@ -1,15 +1,14 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-/* Contact Form Validation Styles */
 
 .contact-form,
  .review-form {
     &__field {
-        min-height: rem(70, 16); /* Reserve space for error message to prevent layout shift */
+        min-height: rem(70, 16); 
         
         &--textarea {
-            min-height: rem(140, 16); /* Extra space for textarea + error */
+            min-height: rem(140, 16); 
         }
     }
     &__input {
@@ -75,7 +74,6 @@
     }
 }
 
-/* Review Form Layout Styles */
 .review-form {
     display: flex;
     flex-direction: column;

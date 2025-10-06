@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart - Best Shop</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -13,12 +12,9 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <!-- Header -->
     <include src="./components/header.html"></include>
     
-    <!-- Cart Content -->
     <main class="cart-main">
-                <!-- Cart Hero Section -->
                 <section class="cart-hero">
                     <div class="cart-hero__bg">
                         <img src="/assets/cart-hero-bg.png" alt="Cart background" class="cart-hero__image">
@@ -30,7 +26,6 @@
                 </section>
 
                 <div class="cart-content container">
-                <!-- Cart Table -->
                 <div class="cart-table">
                     <div class="cart-table__header">
                         <div class="cart-table__header-item">IMAGE</div>
@@ -41,19 +36,14 @@
                         <div class="cart-table__header-item">DELETE</div>
                     </div>
 
-                    <!-- Cart Items - Dynamically rendered -->
                     <div class="cart-items">
-                        <!-- Items will be dynamically rendered here -->
                     </div>
-
-                    <!-- Cart Actions -->
                     <div class="cart-actions">
                         <button class="btn btn--secondary cart-actions__btn">CONTINUE SHOPPING</button>
                         <button class="btn btn--secondary cart-actions__btn">CLEAR SHOPPING CART</button>
                     </div>
                 </div>
 
-                <!-- Checkout Summary -->
                 <div class="cart-checkout">
                     <div class="cart-checkout__summary">
                         <div class="cart-checkout__row">
@@ -80,8 +70,6 @@
                 </div>
                 </div>
     </main>
-
-    <!-- Footer -->
     <include src="./components/footer.html"></include>
     
     <script type="module" src="/js/main.js"></script>

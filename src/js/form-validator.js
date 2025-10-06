@@ -1,24 +1,15 @@
-/**
- * Base Form Validator Class
- * Provides reusable form validation and submission functionality
- */
 export class FormValidator {
     constructor(config) {
         this.form = config.form;
         this.submitButton = config.submitButton;
         this.fields = config.fields;
         this.formClassPrefix = config.formClassPrefix || 'form';
-        
-        // Use custom validation rules or merge with defaults
         this.validationRules = this.mergeValidationRules(config.validationRules);
         this.errorMessages = this.mergeErrorMessages(config.errorMessages);
         
         this.init();
     }
     
-    /**
-     * Default validation rules for common field types
-     */
     getDefaultValidationRules() {
         return {
             name: {
@@ -49,9 +40,7 @@ export class FormValidator {
         };
     }
     
-    /**
-     * Default error messages for common field types
-     */
+
     getDefaultErrorMessages() {
         return {
             name: {
@@ -82,9 +71,7 @@ export class FormValidator {
         };
     }
     
-    /**
-     * Merge custom validation rules with defaults
-     */
+
     mergeValidationRules(customRules = {}) {
         const defaults = this.getDefaultValidationRules();
         const merged = { ...defaults };
@@ -95,10 +82,7 @@ export class FormValidator {
         
         return merged;
     }
-    
-    /**
-     * Merge custom error messages with defaults
-     */
+
     mergeErrorMessages(customMessages = {}) {
         const defaults = this.getDefaultErrorMessages();
         const merged = { ...defaults };

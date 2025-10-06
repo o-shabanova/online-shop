@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog - Best Shop</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <!-- Header -->
     <include src="./components/header.html"></include>
-    
     <main class="container">
       <section class="catalog-filters">
         <form id="catalog-filters-form" class="catalog-filters__form">
@@ -122,12 +119,12 @@
           <div class="catalog-layout">
             <section class="catalog-products">
               <div id="catalog-products" class="catalog-products__grid">
-                <!-- Products will be dynamically loaded here -->
+                
               </div>
               <div class="catalog-pagination">
                 <button class="catalog-pagination__button catalog-pagination__button--prev" style="display: none;">PREVIOUS</button>
                 <div class="catalog-pagination__numbers" id="pagination-numbers">
-                  <!-- Dynamic page numbers will be inserted here -->
+                  
                 </div>
                 <button class="catalog-pagination__button catalog-pagination__button--next">NEXT</button>
               </div>
@@ -135,13 +132,11 @@
           <aside class="catalog-sidebar">
             <section class="catalog-top-sets">
               <h2 class="catalog-top-sets__title">Top Best Sets</h2>
-              <!-- Top best sets will be dynamically loaded here -->
+              
             </section>
           </aside>
           </div>  
-    </main>
-
-    <!-- Product Not Found Popup -->
+    </main> 
     <div id="product-not-found-popup" class="catalog-popup" style="display: none;">
         <div class="catalog-popup__content">
             <div class="catalog-popup__icon">
@@ -156,7 +151,6 @@
         </div>
     </div>
 
-  <!-- Footer -->
   <include src="./components/footer.html"></include>
 
     <script type="module" src="/js/main.js"></script>

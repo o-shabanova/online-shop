@@ -1,9 +1,4 @@
 import { FormValidator } from './form-validator.js';
-
-/**
- * Contact Form Validation and Submission Handler
- * Extends the base FormValidator with contact-specific configuration
- */
 export class ContactFormValidator extends FormValidator {
     constructor() {
         const config = {

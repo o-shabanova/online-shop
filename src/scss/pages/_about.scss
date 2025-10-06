@@ -2,7 +2,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// About Hero Section
 .about-hero {
   position: relative;
   height: rem(554);
@@ -63,7 +62,6 @@
   }
 }
 
-// About Benefits Section
 .about-benefits {
     padding: rem(80) 0;
     background-color: $color-white;
@@ -124,7 +122,6 @@
     }
   }
 
-// About New Arrivals Section
 .about-new-arrivals {
   padding: rem(80) 0;
   
@@ -185,7 +182,6 @@
   }
 }
 
-// About Team Section
 .about-team {
   padding: rem(80) 0;
   background-color: $color-white;
@@ -247,7 +243,6 @@
   }
 }
 
-// About Banner Section
 .about-banner {
   position: relative;
   height: rem(407);
@@ -357,7 +352,6 @@
   }
 }
 
-// Responsive Design - Desktop First
 @media (max-width: 1200px) {
   .about-benefits__grid {
     grid-template-columns: repeat(2, 1fr);

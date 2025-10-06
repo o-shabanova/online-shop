@@ -9,7 +9,7 @@ class CatalogManager {
         this.currentPage = 1;
         this.productsPerPage = 12;
         this.popup = null;
-        this.productCardTemplate = null; // Cache the template
+        this.productCardTemplate = null; 
         this.init();
     }
 
@@ -38,7 +38,6 @@ class CatalogManager {
             this.topBestSets = data.topBestSets || [];
             this.filteredProducts = [...this.products];
             
-            // Check if no products available
             if (!this.products || this.products.length === 0) {
                 throw new Error('No products available');
             }
@@ -77,7 +76,7 @@ class CatalogManager {
         const endIndex = startIndex + this.productsPerPage;
         const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
 
-        // Use cached template
+
         const fragment = document.createDocumentFragment();
         productsToShow.forEach(product => {
             const cardNode = renderProductCard(this.productCardTemplate, product);
@@ -88,7 +87,6 @@ class CatalogManager {
         this.updatePagination(totalPages);
     }
 
-    // Update list count of rendered products
     updateProductCount() {
         const productCountElement = document.getElementById('productCount');
         if (productCountElement) {
@@ -102,7 +100,6 @@ class CatalogManager {
         }
     }
 
-    // Update pagination controls
     updatePagination(totalPages) {
         const paginationNumbers = document.getElementById('pagination-numbers');
         const prevButton = document.querySelector('.catalog-pagination__button--prev');
@@ -112,10 +109,10 @@ class CatalogManager {
             return;
         }
 
-        // Clear existing page numbers
+
         paginationNumbers.innerHTML = '';
 
-        // Generate page numbers
+
         for (let i = 1; i <= totalPages; i++) {
             const pageButton = document.createElement('button');
             pageButton.className = 'catalog-pagination__number';
@@ -130,15 +127,13 @@ class CatalogManager {
             paginationNumbers.appendChild(pageButton);
         }
 
-        // Update prev/next button visibility
-        prevButton.style.display = this.currentPage > 1 ? 'block' : 'none';
-        // NEXT button is always visible
 
-        // Update product count
+        prevButton.style.display = this.currentPage > 1 ? 'block' : 'none';
+
         this.updateProductCount();
     }
 
-    // Navigate to specific page
+
     async goToPage(page) {
         const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
         
@@ -148,7 +143,6 @@ class CatalogManager {
         }
     }
 
-    // Go to previous page
     async goToPreviousPage() {
         if (this.currentPage > 1) {
             this.currentPage--;
@@ -156,7 +150,6 @@ class CatalogManager {
         }
     }
 
-    // Go to next page
     async goToNextPage() {
         const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
         
@@ -166,7 +159,6 @@ class CatalogManager {
         }
     }
 
-    // Filter products based on criteria
     async filterProducts(filters) {
         this.filteredProducts = this.products.filter(product => {
             return (!filters.size || this.matchesSize(filters.size, product.size)) &&
@@ -179,7 +171,6 @@ class CatalogManager {
         await this.renderProducts();
     }
 
-    // Determine if a product size matches selected size including ranges/lists
     matchesSize(selectedSize, productSize) {
         const normalize = (str) => str.split(',').map(s => s.trim());
 
@@ -189,7 +180,6 @@ class CatalogManager {
         const productIsRange = productSize === 'S-L';
         const productIsSet = productSize === 'S, M, XL';
 
-        // If user selects a single size (S/M/L/XL)
         if (!selectedIsRange && !selectedIsSet) {
             if (productIsRange) {
                 return RANGE_S_TO_L.includes(selectedSize);
@@ -197,16 +187,13 @@ class CatalogManager {
             if (productIsSet) {
                 return normalize('S, M, XL').includes(selectedSize);
             }
-            // plain value comparison
             return productSize === selectedSize;
         }
 
-        // If user selects range S-L, match products that cover that range (range or exact same label)
         if (selectedIsRange) {
             return productIsRange || productSize === 'S-L';
         }
 
-        // If user selects set S, M, XL, match only true set-labeled products
         if (selectedIsSet) {
             return productIsSet || productSize === 'S, M, XL';
         }
@@ -214,7 +201,6 @@ class CatalogManager {
         return false;
     }
 
-    // Sort products
     async sortProducts(sortType) {
         const sortMethods = {
             'price-asc': (a, b) => a.price - b.price,
@@ -231,7 +217,6 @@ class CatalogManager {
         await this.renderProducts();
     }
 
-    // Search products
     async searchProducts(searchTerm) {
         this.filteredProducts = searchTerm.trim() 
             ? this.products.filter(product => 
@@ -243,7 +228,6 @@ class CatalogManager {
         await this.renderProducts();
     }
 
-    // Initialize popup functionality
     initPopup() {
         this.popup = document.getElementById('product-not-found-popup');
         if (!this.popup) return;
@@ -253,14 +237,12 @@ class CatalogManager {
             closeBtn.addEventListener('click', () => this.hidePopup());
         }
 
-        // Close popup when clicking outside
         this.popup.addEventListener('click', (e) => {
             if (e.target === this.popup) {
                 this.hidePopup();
             }
         });
 
-        // Close popup with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.popup.classList.contains('show')) {
                 this.hidePopup();
@@ -268,28 +250,23 @@ class CatalogManager {
         });
     }
 
-    // Show popup
     showPopup() {
         if (this.popup) {
             this.popup.style.display = 'flex';
-            // Trigger reflow to ensure display change is applied
             this.popup.offsetHeight;
             this.popup.classList.add('show');
         }
     }
 
-    // Hide popup
     hidePopup() {
         if (this.popup) {
             this.popup.classList.remove('show');
-            // Hide after animation completes
             setTimeout(() => {
                 this.popup.style.display = 'none';
             }, 300);
         }
     }
 
-    // Render top best sets section
     async renderTopBestSets() {
         if (!this.topBestSets || this.topBestSets.length === 0) {
             console.warn('No top best sets data available');
@@ -302,23 +279,19 @@ class CatalogManager {
             return;
         }
 
-        // Get three random items from topBestSets
         const randomSets = this.getRandomItems(this.topBestSets, 3);
 
-        // Create cards for each random set
         randomSets.forEach(set => {
             const card = this.createTopSetCard(set);
             topSetsContainer.appendChild(card);
         });
     }
 
-    // Get random items from an array
     getRandomItems(array, count) {
         const shuffled = [...array].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     }
 
-    // Create a top set card element
     createTopSetCard(set) {
         const card = document.createElement('article');
         card.className = 'catalog-top-sets__card';
@@ -342,7 +315,6 @@ class CatalogManager {
         return card;
     }
 
-    // Generate star rating HTML
     generateStars(rating) {
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating % 1 !== 0;
@@ -350,17 +322,14 @@ class CatalogManager {
 
         let starsHTML = '';
 
-        // Full stars
         for (let i = 0; i < fullStars; i++) {
             starsHTML += this.createStarSVG('#F5B423');
         }
 
-        // Half star (if needed)
         if (hasHalfStar) {
             starsHTML += this.createStarSVG('#F5B423', true);
         }
 
-        // Empty stars
         for (let i = 0; i < emptyStars; i++) {
             starsHTML += this.createStarSVG('#E9E9ED');
         }
@@ -368,7 +337,6 @@ class CatalogManager {
         return starsHTML;
     }
 
-    // Create star SVG element
     createStarSVG(fillColor, isHalf = false) {
         const opacity = isHalf ? '0.5' : '1';
         return `
@@ -379,24 +347,21 @@ class CatalogManager {
     }
 }
 
-// Export the CatalogManager class
+
 export { CatalogManager };
 
-// Initialize catalog setup function
+
 export function initializeCatalog() {
     const catalogManager = new CatalogManager();
     
-    // Set up event listeners for filters, sorting, and search
     setupEventListeners(catalogManager);
     
     return catalogManager;
 }
 
 function setupEventListeners(catalog) {
-    // Filter form
     const filterForm = document.getElementById('catalog-filters-form');
     if (filterForm) {
-        // Custom select interactions
         const customSelects = filterForm.querySelectorAll('.catalog-filters__select');
         customSelects.forEach(custom => {
             const display = custom.querySelector('.catalog-filters__select-display');
@@ -431,12 +396,10 @@ function setupEventListeners(catalog) {
             });
         });
 
-        // Close dropdowns on outside click
         document.addEventListener('click', () => {
             filterForm.querySelectorAll('.catalog-filters__select.open').forEach(el => el.classList.remove('open'));
         });
 
-        // Change-based filtering for native controls
         const sizeSelect = filterForm.querySelector('select[name="size"]');
         const colorSelect = filterForm.querySelector('select[name="color"]');
         const categorySelect = filterForm.querySelector('select[name="category"]');
@@ -449,12 +412,10 @@ function setupEventListeners(catalog) {
             salesCheckbox.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
         }
 
-        // Clear filters
         const clearButton = filterForm.querySelector('.catalog-filters__button--clear');
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
-                // Reset custom select displays
                 filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display').forEach(d => {
                     d.textContent = 'Choose option';
                 });
@@ -464,7 +425,6 @@ function setupEventListeners(catalog) {
                 catalog.updateProductCount();
             });
         }
-        // Hide/Show filters
         const hideButton = filterForm.querySelector('.catalog-filters__button--hide');
         if (hideButton) {
             hideButton.addEventListener('click', () => {
@@ -472,11 +432,9 @@ function setupEventListeners(catalog) {
                 const isHidden = filtersSection.style.display === 'none';
                 
                 if (isHidden) {
-                    // Show filters
                     filtersSection.style.display = 'grid';
                     hideButton.textContent = 'HIDE FILTERS';
                 } else {
-                    // Hide filters
                     filtersSection.style.display = 'none';
                     hideButton.textContent = 'OPEN FILTERS';
                 }
@@ -484,7 +442,6 @@ function setupEventListeners(catalog) {
         }
     }
 
-    // Sorting
     const sortSelect = document.getElementById('sort');
     if (sortSelect) {
         sortSelect.addEventListener('change', (e) => {
@@ -492,7 +449,6 @@ function setupEventListeners(catalog) {
         });
     }
 
-    // Search
     const searchForm = document.querySelector('.catalog-controls__search');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
@@ -504,7 +460,6 @@ function setupEventListeners(catalog) {
         });
     }
 
-    // Pagination navigation
     const prevButton = document.querySelector('.catalog-pagination__button--prev');
     const nextButton = document.querySelector('.catalog-pagination__button--next');
     

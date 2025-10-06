@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // margin-bottom: 29px;
   }
 
   &__social {
@@ -86,11 +85,8 @@
         top: -0.6rem;
         right: -0.5rem;
         z-index: 10;
-        
-        // Hide by default
         display: none;
         
-        // Show when has items
         &:not(:empty) {
           display: block;
         }

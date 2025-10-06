@@ -1,4 +1,3 @@
-// Main application module
 import { CatalogManager, initializeCatalog } from './catalog.js';
 import { CartManager } from './cart.js';
 import { ContactFormValidator } from './contact.js';
@@ -6,19 +5,15 @@ import { ProductDetailsManager } from './product-details-template.js';
 import { loadProductCardTemplate, renderProductCard } from './product-card.js';
 
 
-//helpers functions
-
 async function loadJSON(url) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Failed to load ${url}`);
     return res.json();
   }
-  //selected-product-grid
   async function renderSelectedProductsIndex() {
     const grid = document.getElementById('selected-products-grid');
-    if (!grid) return; // only runs on index.html
+    if (!grid) return;
   
-    // Adjust paths as needed for your project structure
     const data = await loadJSON('/assets/data.json');
   
     const products = (data.data || []).filter(p =>
@@ -33,10 +28,10 @@ async function loadJSON(url) {
     grid.appendChild(frag);
   }
 
-  //new-products-arrival
+  
   async function renderNewProductsArrivalIndex() {
     const grid = document.getElementById('new-products-arrival-grid');
-    if (!grid) return; // only runs on index.html
+    if (!grid) return;
   
   const data = await loadJSON('/assets/data.json');
 
@@ -53,15 +48,12 @@ async function loadJSON(url) {
 }
 
 
-// Global card navigation for all product cards (including dynamically added ones)
 function setupGlobalCardNavigation() {
   document.addEventListener('click', (event) => {
-    // If click happened inside the Add-to-Cart button → do nothing here.
     if (event.target.closest('[data-add-to-cart]')) {
       return;
     }
 
-    // Navigate when clicking anywhere else on the card
     const card = event.target.closest('.product-card');
     if (!card) return;
 
@@ -74,44 +66,35 @@ function setupGlobalCardNavigation() {
   
 
 
-// Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     let catalogManager = null;
     let cartManager = null;
     
-    // Initialize catalog manager (only on catalog page)
     if (document.querySelector('#catalog-products')) {
         catalogManager = initializeCatalog();
     }
     
-    // Initialize cart manager
     cartManager = new CartManager();
     
-    // Pass catalog manager to cart manager for product data access
     if (catalogManager) {
         cartManager.setCatalogManager(catalogManager);
     }
     
-    // If we're on the cart page, render the cart
     if (document.querySelector('.cart-items')) {
         cartManager.renderCart();
     }
 
-    // Initialize contact form validation (only on contact page)
     if (document.querySelector('.contact-form__form')) {
         new ContactFormValidator();
     }
 
-    // Initialize product details manager (only on product details page)
     if (document.querySelector('.product-details')) {
         new ProductDetailsManager();
     }
 
-    //  Home page cards (only runs if the grid exists on index.html)
     renderSelectedProductsIndex().catch(console.error);
     renderNewProductsArrivalIndex().catch(console.error);
     
-    // Setup global card navigation for all product cards (including dynamically added ones)
     setupGlobalCardNavigation();
 
   // Travel carousel
@@ -124,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.carousel-next');
     if (!prevBtn || !nextBtn || cards.length === 0) return;
 
-    const desktopTargetVisible = 4; // desktop-first requirement
+    const desktopTargetVisible = 4; 
     let currentIndex = 0;
     let autoSlide = null;
 
@@ -139,10 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getVisibleCount() {
       const cardWidthWithGap = getCardWidthWithGap();
-      const container = travelCards.parentElement; // wrapper inside section container
+      const container = travelCards.parentElement; 
       const containerWidth = container ? container.clientWidth : window.innerWidth;
       const approx = Math.max(1, Math.floor((containerWidth + (parseFloat(getComputedStyle(travelCards).gap) || 0)) / cardWidthWithGap));
-      // Keep desktop intent but never exceed actual cards length
+
       return Math.min(Math.max(1, Math.min(desktopTargetVisible, approx)), cards.length);
     }
 
@@ -150,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);
       const nothingToScroll = maxIndex === 0;
-      // Always keep buttons visible; disable when nothing to scroll
+      
       prevBtn.style.display = '';
       nextBtn.style.display = '';
       prevBtn.disabled = nothingToScroll || currentIndex === 0;
@@ -191,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (autoSlide) clearInterval(autoSlide);
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);
-      if (maxIndex === 0) return; // don't auto-slide if there's nothing to scroll
+      if (maxIndex === 0) return; 
       autoSlide = setInterval(goNext, 4000);
     }
 
@@ -206,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      // Snap back if currentIndex exceeds new max after resize
+      
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);
       if (currentIndex > maxIndex) currentIndex = maxIndex;
@@ -214,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resetAutoSlide();
     });
 
-    // Start auto-slide and initial state
+    
     updateCarousel();
     resetAutoSlide();
   })();

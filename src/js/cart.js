@@ -1,7 +1,5 @@
-// Import CatalogManager
 import { CatalogManager } from './catalog.js';
 
-// Cart functionality
 class CartManager {
     constructor() {
         this.cart = this.loadCart();
@@ -16,7 +14,6 @@ class CartManager {
     }
 
     loadCart() {
-        // Load cart from localStorage or initialize empty cart
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
     }
@@ -28,7 +25,6 @@ class CartManager {
     addItem(productId, quantity = 1) {
         console.log('Adding item to cart:', productId, quantity);
         
-        // Try to get product data from the catalog manager if available
         let productData = null;
         
         if (this.catalogManager && this.catalogManager.products) {
@@ -36,7 +32,6 @@ class CartManager {
             console.log('Found product in catalog:', productData);
         }
         
-        // If not found in catalog, try to extract from DOM
         if (!productData) {
             const productElement = document.querySelector(`[data-product-id="${productId}"]`)?.closest('.product-card, .product-details');
             if (productElement) {
@@ -54,7 +49,6 @@ class CartManager {
             }
         }
         
-        // Fallback if still no data found
         if (!productData) {
             productData = {
                 id: productId,
@@ -66,11 +60,9 @@ class CartManager {
             };
         }
         
-        // Ensure productData has color and size properties
         if (!productData.color) productData.color = 'unknown';
         if (!productData.size) productData.size = 'unknown';
         
-        // Find existing item with matching name, size, and color
         const existingItem = this.cart.find(item => 
             item.name === productData.name && 
             item.size === productData.size && 
@@ -78,11 +70,9 @@ class CartManager {
         );
         
         if (existingItem) {
-            // Merge entries and update quantity if name, size, and color match
             existingItem.quantity += quantity;
             console.log('Merged with existing item:', existingItem);
         } else {
-            // Keep separate entries if only the name matches (or no match at all)
             this.cart.push({
                 id: productData.id,
                 name: productData.name,
@@ -158,13 +148,11 @@ class CartManager {
     }
 
     getDiscount() {
-        // 10% discount for orders over $3000
         const subtotal = this.getSubtotal();
         return subtotal > 3000 ? Math.round(subtotal * 0.1) : 0;
     }
 
     getShipping() {
-        // No shipping if cart is empty
         if (this.cart.length === 0) {
             return 0;
         }
@@ -177,7 +165,6 @@ class CartManager {
 
     extractPrice(priceText) {
         if (!priceText) return 0;
-        // Remove $ and any non-numeric characters except decimal point
         const cleanPrice = priceText.replace(/[^0-9.]/g, '');
         const price = parseFloat(cleanPrice);
         return isNaN(price) ? 0 : price;
@@ -191,7 +178,6 @@ class CartManager {
         if (counter) {
             counter.textContent = totalItems;
             
-            // Show/hide counter based on items
             const counterCircle = document.querySelector('.header__icon__cart__counter');
             if (counterCircle) {
                 if (totalItems > 0) {
@@ -204,7 +190,6 @@ class CartManager {
     }
 
     dispatchCartUpdate() {
-        // Dispatch custom event for other components to listen
         const event = new CustomEvent('cartUpdated', {
             detail: { cart: this.cart, totalItems: this.getTotalItems() }
         });
@@ -255,7 +240,6 @@ class CartManager {
     }
 
     renderCartSummary() {
-        // Use IDs for reliable element selection
         const subtotalElement = document.getElementById('cart-subtotal');
         const discountElement = document.getElementById('cart-discount');
         const shippingElement = document.getElementById('cart-shipping');
@@ -273,13 +257,11 @@ class CartManager {
     }
 
     renderCart() {
-        // Handle table header visibility based on cart content
         const cartTableHeader = document.querySelector('.cart-table__header');
         if (cartTableHeader) {
             cartTableHeader.style.display = this.cart.length === 0 ? 'none' : 'grid';
         }
         
-        // Handle checkout section visibility based on cart content
         const cartCheckout = document.querySelector('.cart-checkout');
         if (cartCheckout) {
             cartCheckout.style.display = this.cart.length === 0 ? 'none' : 'block';
@@ -290,11 +272,9 @@ class CartManager {
     }
 
     bindEvents() {
-        // Remove existing event listeners to prevent duplicates
         if (this.eventListenersAdded) return;
         this.eventListenersAdded = true;
         
-        // Listen for add to cart buttons
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-add-to-cart]')) {
                 e.preventDefault();
@@ -303,7 +283,6 @@ class CartManager {
                 
                 if (productId) {
                     this.addItem(productId, quantity);
-                    // Show feedback to user
                     this.showAddToCartFeedback(e.target);
                 } else {
                     console.warn('No product ID found for add to cart button');
@@ -311,9 +290,7 @@ class CartManager {
             }
         });
 
-        // Listen for remove from cart buttons
         document.addEventListener('click', (e) => {
-            // Check if the clicked element or its parent has the data-remove-from-cart attribute
             const deleteBtn = e.target.closest('[data-remove-from-cart]');
             if (deleteBtn) {
                 e.preventDefault();
@@ -323,7 +300,6 @@ class CartManager {
             }
         });
 
-        // Listen for quantity change buttons
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-item__qty-btn--plus')) {
                 e.preventDefault();
@@ -344,7 +320,6 @@ class CartManager {
             }
         });
 
-        // Listen for clear cart button
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-actions__btn:last-child')) {
                 e.preventDefault();
@@ -354,7 +329,6 @@ class CartManager {
             }
         });
 
-        // Listen for continue shopping button
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-actions__btn:first-child')) {
                 e.preventDefault();
@@ -362,7 +336,6 @@ class CartManager {
             }
         });
 
-        // Listen for checkout button
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-checkout__btn')) {
                 e.preventDefault();
@@ -374,7 +347,6 @@ class CartManager {
             }
         });
 
-        // Listen for cart updates to re-render cart page
         document.addEventListener('cartUpdated', () => {
             if (document.querySelector('.cart-items')) {
                 this.renderCart();
@@ -383,15 +355,12 @@ class CartManager {
     }
 
     processCheckout() {
-        // Clear the cart
         this.clearCart();
         
-        // Show thank you message
         this.showThankYouMessage();
     }
 
     showThankYouMessage() {
-        // Create and display thank you message overlay
         const overlay = document.createElement('div');
         overlay.className = 'checkout-overlay';
         overlay.innerHTML = `
@@ -404,7 +373,6 @@ class CartManager {
             </div>
         `;
         
-        // Add styles for the overlay
         overlay.style.cssText = `
             position: fixed;
             top: 0;
@@ -417,8 +385,7 @@ class CartManager {
             align-items: center;
             z-index: 10000;
         `;
-        
-        // Style the message box
+
         const messageBox = overlay.querySelector('.checkout-message');
         messageBox.style.cssText = `
             background: white;
@@ -429,7 +396,7 @@ class CartManager {
             box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
         `;
         
-        // Style the button
+            
         const button = overlay.querySelector('.checkout-message__btn');
         button.style.cssText = `
             background-color: #B92770;
@@ -443,7 +410,7 @@ class CartManager {
             transition: background-color 0.3s ease;
         `;
         
-        // Add hover effect
+            
         button.addEventListener('mouseenter', () => {
             button.style.backgroundColor = '#9a1f5a';
         });
@@ -451,8 +418,7 @@ class CartManager {
         button.addEventListener('mouseleave', () => {
             button.style.backgroundColor = '#B92770';
         });
-        
-        // Add to page and auto-remove after 5 seconds
+                  
         document.body.appendChild(overlay);
         
         setTimeout(() => {
@@ -474,6 +440,5 @@ class CartManager {
     }
 }
 
-// Export the CartManager class
 export { CartManager };
 

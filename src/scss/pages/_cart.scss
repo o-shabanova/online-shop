@@ -1,8 +1,6 @@
-/* Cart Page Styles */
 @use '../abstracts/mixins' as *;
 @use '../abstracts/variables' as *;
 
-/* Cart Hero Section */
 .cart-hero {
     position: relative;
     height: rem(229);
@@ -11,11 +9,8 @@
     justify-content: center;
     overflow: hidden;
     width: 100vw;
-    //instead of this
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    //try this instead
-    //margin-inline: auto;
 
     &__bg {
         position: absolute;
@@ -56,7 +51,6 @@
     }
 }
 
-/* Cart Main Content */
 .cart-main {
     background-color: $color-white;
     
@@ -73,7 +67,6 @@
     }
 }
 
-/* Cart Table */
 .cart-table {
     flex: 1;
 }
@@ -287,7 +280,6 @@
     }
 }
 
-/* Cart Actions */
 .cart-actions {
     display: flex;
     gap: rem(24);
@@ -330,7 +322,6 @@
     }
 }
 
-/* Cart Checkout */
 .cart-checkout {
     background-color: $color-gray;
     margin-top: rem(-100);
@@ -435,7 +426,6 @@
     }
 }
 
-/* Cart Empty State */
 .cart-empty {
     text-align: center;
     padding: rem(80) 0;
@@ -478,7 +468,6 @@
     }
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
     .cart-content {
         gap: rem(60);

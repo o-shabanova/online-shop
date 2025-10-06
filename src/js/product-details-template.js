@@ -1,18 +1,10 @@
 import { FormValidator } from './form-validator.js';
-
-/**
- * Product Details Template Manager
- * Handles all functionality for the product details page
- */
 export class ProductDetailsManager {
     constructor() {
-        // Initialize the product details functionality
+        
         this.init();
     }
 
-    /**
-     * Initialize the product details manager
-     */
     init() {
         const productId = this.getProductIdFromUrl();
         if (!productId) {
@@ -20,26 +12,20 @@ export class ProductDetailsManager {
             return;
         }
 
-        // Bind tabs interaction
+        
         this.bindProductTabs();
 
         this.loadAndRenderProduct(productId);
 
-        // Initialize review form validator/handler
+        
         new ReviewFormValidator();
     }
 
-    /**
-     * Parse product id from current URL (?id=SU001)
-     */
     getProductIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         return params.get('id');
     }
 
-    /**
-     * Fetch data.json and render product by id
-     */
     async loadAndRenderProduct(productId) {
         try {
             const response = await fetch('/assets/data.json');
@@ -61,9 +47,6 @@ export class ProductDetailsManager {
         }
     }
 
-    /**
-     * Render product content into the DOM
-     */
     renderProduct(product, allProducts) {
         const titleEl = document.querySelector('.product-details__title');
         const priceEl = document.querySelector('.product-details__price');
@@ -88,7 +71,7 @@ export class ProductDetailsManager {
             }
         }
 
-        // Set default selects to the product values if present in options
+        
         if (sizeSelect && this.optionExists(sizeSelect, product.size)) {
             sizeSelect.value = product.size;
         }
@@ -99,26 +82,20 @@ export class ProductDetailsManager {
             categorySelect.value = product.category;
         }
 
-        // Render rating stars if a container exists inside .product-details__rating
+        
         this.renderRating(product.rating);
 
-        // Render simple related products by same category (max 4)
+        
         this.renderRelatedProducts(product, allProducts);
 
-        // Bind quantity +/- controls
+        
         this.bindQuantityControls();
     }
 
-    /**
-     * Check if a select has an option with given value
-     */
     optionExists(select, value) {
         return Array.from(select.options).some(opt => opt.value === value);
     }
 
-    /**
-     * Render rating stars by replacing existing stars if a rating container exists
-     */
     renderRating(rating) {
         const ratingContainer = document.querySelector('.product-details__rating');
         if (!ratingContainer || typeof rating !== 'number') return;
@@ -137,22 +114,17 @@ export class ProductDetailsManager {
         if (hasHalf) container.insertAdjacentHTML('beforeend', starSvg('#F5B423'));
         for (let i = 0; i < empty; i++) container.insertAdjacentHTML('beforeend', starSvg('#E9E9ED'));
 
-        // Replace existing stars but keep review count element if present
         const reviewCount = ratingContainer.querySelector('.product-details__review-count');
         ratingContainer.innerHTML = '';
         ratingContainer.appendChild(container);
         if (reviewCount) ratingContainer.appendChild(reviewCount);
     }
 
-    /**
-     * Populate related products grid with up to 4 items from same category
-     */
     renderRelatedProducts(currentProduct, allProducts) {
         const grid = document.querySelector('.related-products__grid');
         if (!grid) return;
 
         grid.innerHTML = '';
-        // Select 4 random products from the dataset (excluding the current product)
         const pool = allProducts.filter(p => p.id !== currentProduct.id);
         const shuffled = [...pool].sort(() => Math.random() - 0.5);
         const related = shuffled.slice(0, 4);
@@ -180,9 +152,6 @@ export class ProductDetailsManager {
         });
     }
 
-    /**
-     * Bind +/- buttons to update quantity input and sync Add to Cart attribute
-     */
     bindQuantityControls() {
         const container = document.querySelector('.product-details__quantity-controls');
         const qtyInput = document.getElementById('product-details__quantity');
@@ -221,9 +190,6 @@ export class ProductDetailsManager {
         sync();
     }
 
-    /**
-     * Tabs: toggle active classes for tabs and corresponding panels
-     */
     bindProductTabs() {
         const tabs = Array.from(document.querySelectorAll('.product-tabs__tab'));
         const panels = Array.from(document.querySelectorAll('.product-tabs__panel'));
@@ -270,10 +236,6 @@ export class ProductDetailsManager {
     }
 }
 
-/**
- * Review Form Validation and Submission Handler
- * Extends the base FormValidator with review-specific configuration
- */
 class ReviewFormValidator extends FormValidator {
     constructor() {
         const form = document.getElementById('review-form');

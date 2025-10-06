@@ -1,11 +1,9 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-/* Footer Styles */
 .footer {
   margin-top: rem(120);
 
-  /* Footer Top Section - Benefits */
   &__top {
     position: relative;
     display: flex;
@@ -14,7 +12,6 @@
     background-color: $color-gray;
     overflow: hidden;
 
-    /* Decorative Vector Lines */
     &__vectors {
       position: absolute;
       left: 0;
@@ -59,7 +56,6 @@
     }
   }
 
-  /* Benefits List */
   .footer-benefits {
     display: flex;
     justify-content: space-between;
@@ -89,11 +85,8 @@
     }
   }
 
-  /* Footer Bottom Section */
   &__bottom {
     display: flex;
-    // flex-direction: column;
-    // gap: $spacing-xl;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
@@ -113,7 +106,6 @@
     }
   }
 
-  /* Footer Navigation Links */
   .footer-links {
     display: flex;
     justify-content: space-between;
@@ -160,7 +152,6 @@
     }
   }
 
-  /* Shipping Information */
   &__bottom__left__shipping-information {
     h3 {
       color: $color-black;
@@ -181,7 +172,6 @@
     }
   }
 
-  /* Contact Us Section */
   &__bottom__right__contact-us {
     h3 a {
       color: $color-black;
@@ -208,7 +198,6 @@
     }
   }
 
-  /* Contact Information */
   &__bottom__right__contacts {
     font-style: normal;
     display: grid;
@@ -259,10 +248,8 @@
     }
   }
 
-  /* Copyright */
  &__copyright {
     text-align: center;
-    // margin-top: rem(110);
     margin-bottom: rem(46);
 
     small {
@@ -275,7 +262,6 @@
   }
 }
 
-/* Mobile Responsive */
 @media (max-width: rem(767)) {
   .footer {
     .footer-benefits {
