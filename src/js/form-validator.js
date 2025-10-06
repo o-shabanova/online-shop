@@ -186,12 +186,12 @@ export class FormValidator {
     
     validateAllFields() {
         let isValid = true;
-        Object.keys(this.fields).forEach(fieldName => {
+        for (const fieldName of Object.keys(this.fields)) {
             const fieldValid = this.validateField(fieldName);
             if (!fieldValid) {
                 isValid = false;
             }
-        });
+        }
         return isValid;
     }
     
@@ -279,8 +279,8 @@ export class FormValidator {
     
     resetForm() {
         this.form.reset();
-        Object.keys(this.fields).forEach(fieldName => {
+        for (const fieldName of Object.keys(this.fields)) {
             this.clearError(fieldName);
-        });
+        }
     }
 }

@@ -64,7 +64,7 @@ function setupGlobalCardNavigation() {
     const id = card.dataset.id;
     if (!id) return;
 
-    window.location.href = `/pages/product-details-template?id=${id}`;
+    globalThis.location.href = `/pages/product-details-template?id=${id}`;
   });
 }
   

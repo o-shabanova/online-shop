@@ -1,9 +1,7 @@
-#!/usr/bin/env node
-
-const fs = require('node:fs');
-const path = require('node:path');
-const posthtml = require('posthtml');
-const posthtmlInclude = require('posthtml-include');
+import fs from 'node:fs';
+import path from 'node:path';
+import posthtml from 'posthtml';
+import posthtmlInclude from 'posthtml-include';
 
 const convertToAbsolutePaths = () => {
   return function(tree) {
@@ -119,10 +117,9 @@ async function buildHTML() {
   console.log('HTML build completed! Output saved to dist/ directory');
 }
 
-(async () => {
-  try {
-    await buildHTML();
-  } catch (error) {
-    console.error(error);
-  }
-})();
+try {
+  await buildHTML();
+} catch (error) {
+  console.error(error);
+}
+

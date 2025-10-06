@@ -13,33 +13,39 @@ export async function loadProductCardTemplate(url = '/components/product-card.ht
     const node = templateEl.content.cloneNode(true);
   
     const article = node.querySelector('.product-card');
+
+    const applyIf = (selector, fn) => {
+      if (!article) return;
+      const el = article.querySelector(selector);
+      if (el) fn(el);
+    };
+
     if (article) {
       article.dataset.id = product.id;
-  
-      const img = article.querySelector('.product-card__image');
-      if (img) {
-        img.src = product.imageUrl;
-        img.alt = product.name;
-      }
-  
-      const badge = article.querySelector('.product-card__badge');
-      if (badge) {
-        badge.textContent = product.salesStatus ? 'SALE' : '';
-        badge.style.display = product.salesStatus ? '' : 'none';
-      }
-  
-      const name = article.querySelector('.product-card__name');
-      if (name) name.textContent = product.name;
-  
-      const price = article.querySelector('.product-card__price');
-      if (price) price.textContent = `$${product.price}`;
-  
-      const btn = article.querySelector('[data-add-to-cart]');
-      if (btn) {
-        btn.dataset.productId = product.id;
-        btn.dataset.quantity = '1';
-      }
     }
+
+    applyIf('.product-card__image', (el) => {
+      el.src = product.imageUrl;
+      el.alt = product.name;
+    });
+
+    applyIf('.product-card__badge', (el) => {
+      el.textContent = product.salesStatus ? 'SALE' : '';
+      el.style.display = product.salesStatus ? '' : 'none';
+    });
+
+    applyIf('.product-card__name', (el) => {
+      el.textContent = product.name;
+    });
+
+    applyIf('.product-card__price', (el) => {
+      el.textContent = `$${product.price}`;
+    });
+
+    applyIf('[data-add-to-cart]', (el) => {
+      el.dataset.productId = product.id;
+      el.dataset.quantity = '1';
+    });
   
     return node;
   }

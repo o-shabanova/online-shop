@@ -252,8 +252,9 @@ class CatalogManager {
     showPopup() {
         if (this.popup) {
             this.popup.style.display = 'flex';
-            void this.popup.offsetHeight;
-            this.popup.classList.add('show');
+            requestAnimationFrame(() => {
+                this.popup.classList.add('show');
+            });
         }
     }
 
@@ -360,19 +361,17 @@ export async function initializeCatalog() {
 function setupEventListeners(catalog) {
     const filterForm = document.getElementById('catalog-filters-form');
     if (filterForm) {
-        const customSelects = filterForm.querySelectorAll('.catalog-filters__select');
-        for (const custom of customSelects) {
+        const closeAll = () => {
+            for (const el of filterForm.querySelectorAll('.catalog-filters__select.open')) {
+                el.classList.remove('open');
+            }
+        };
+
+        const bindCustomSelect = (custom) => {
             const display = custom.querySelector('.catalog-filters__select-display');
             const optionsList = custom.querySelector('.catalog-filters__select-options');
             const targetName = custom.dataset.target;
             const hiddenSelect = filterForm.querySelector(`select[name="${targetName}"]`);
-
-            const closeAll = () => {
-            const opened = filterForm.querySelectorAll('.catalog-filters__select.open');
-            for (const el of opened) {
-                el.classList.remove('open');
-            }
-            };
 
             display.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -381,8 +380,7 @@ function setupEventListeners(catalog) {
                 if (!isOpen) custom.classList.add('open');
             });
 
-            const listItems = optionsList.querySelectorAll('li');
-            for (const li of listItems) {
+            for (const li of optionsList.querySelectorAll('li')) {
                 li.addEventListener('click', () => {
                     const value = li.dataset.value || '';
                     const label = li.textContent || 'Choose option';
@@ -394,31 +392,26 @@ function setupEventListeners(catalog) {
                     }
                 });
             }
+        };
+
+        for (const custom of filterForm.querySelectorAll('.catalog-filters__select')) {
+            bindCustomSelect(custom);
         }
 
-        document.addEventListener('click', () => {
-            const opened = filterForm.querySelectorAll('.catalog-filters__select.open');
-            for (const el of opened) el.classList.remove('open');
-        });
+        document.addEventListener('click', closeAll);
 
-        const sizeSelect = filterForm.querySelector('select[name="size"]');
-        const colorSelect = filterForm.querySelector('select[name="color"]');
-        const categorySelect = filterForm.querySelector('select[name="category"]');
+        const bindChange = (el) => el && el.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
+        bindChange(filterForm.querySelector('select[name="size"]'));
+        bindChange(filterForm.querySelector('select[name="color"]'));
+        bindChange(filterForm.querySelector('select[name="category"]'));
         const salesCheckbox = filterForm.querySelector('input[name="sales"]');
-
-        for (const sel of [sizeSelect, colorSelect, categorySelect]) {
-            if (sel) sel.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
-        }
-        if (salesCheckbox) {
-            salesCheckbox.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
-        }
+        if (salesCheckbox) salesCheckbox.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
 
         const clearButton = filterForm.querySelector('.catalog-filters__button--clear');
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
-                const displays = filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display');
-                for (const d of displays) {
+                for (const d of filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display')) {
                     d.textContent = 'Choose option';
                 }
                 catalog.filteredProducts = [...catalog.products];
@@ -432,14 +425,8 @@ function setupEventListeners(catalog) {
             hideButton.addEventListener('click', () => {
                 const filtersSection = document.querySelector('.catalog-filters__row');
                 const isHidden = filtersSection.style.display === 'none';
-                
-                if (isHidden) {
-                    filtersSection.style.display = 'grid';
-                    hideButton.textContent = 'HIDE FILTERS';
-                } else {
-                    filtersSection.style.display = 'none';
-                    hideButton.textContent = 'OPEN FILTERS';
-                }
+                filtersSection.style.display = isHidden ? 'grid' : 'none';
+                hideButton.textContent = isHidden ? 'HIDE FILTERS' : 'OPEN FILTERS';
             });
         }
     }

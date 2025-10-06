@@ -1,8 +1,5 @@
 import { FormValidator } from './form-validator.js';
 export class ProductDetailsManager {
-    constructor() {
-        
-    }
 
     async init() {
         const productId = this.getProductIdFromUrl();
@@ -195,7 +192,8 @@ export class ProductDetailsManager {
         if (tabs.length === 0 || panels.length === 0) return;
 
         const activate = (index) => {
-            tabs.forEach((tab, i) => {
+            for (let i = 0; i < tabs.length; i++) {
+                const tab = tabs[i];
                 if (i === index) {
                     tab.classList.add('product-tabs__tab--active');
                     tab.setAttribute('aria-selected', 'true');
@@ -205,9 +203,10 @@ export class ProductDetailsManager {
                     tab.setAttribute('aria-selected', 'false');
                     tab.setAttribute('tabindex', '-1');
                 }
-            });
+            }
 
-            panels.forEach((panel, i) => {
+            for (let i = 0; i < panels.length; i++) {
+                const panel = panels[i];
                 if (i === index) {
                     panel.classList.add('product-tabs__panel--active');
                     panel.removeAttribute('hidden');
@@ -217,10 +216,11 @@ export class ProductDetailsManager {
                     panel.setAttribute('hidden', '');
                     panel.setAttribute('aria-hidden', 'true');
                 }
-            });
+            }
         };
 
-        tabs.forEach((tab, index) => {
+        for (let index = 0; index < tabs.length; index++) {
+            const tab = tabs[index];
             tab.addEventListener('click', (e) => {
                 e.preventDefault();
                 activate(index);
@@ -231,7 +231,7 @@ export class ProductDetailsManager {
                     activate(index);
                 }
             });
-        });
+        }
     }
 }
 
