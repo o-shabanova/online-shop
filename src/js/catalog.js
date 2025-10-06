@@ -400,7 +400,7 @@ function setupEventListeners(catalog) {
 
         document.addEventListener('click', closeAll);
 
-        const bindChange = (el) => el && el.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
+        const bindChange = (el) => el?.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
         bindChange(filterForm.querySelector('select[name="size"]'));
         bindChange(filterForm.querySelector('select[name="color"]'));
         bindChange(filterForm.querySelector('select[name="category"]'));
