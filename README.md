@@ -14,6 +14,7 @@ npm run build && npm run start:dist
 #if no try manually
 http://localhost:5173
 
+```
 
 ## Things not yet implemented
 - Log in modal window
@@ -21,4 +22,4 @@ http://localhost:5173
 
 ## Things to improve
 - Fix some styles based on figma design (including form styles)
-- Extract some common finctionality to one place (like start rating)
+- Extract some common finctionality to one place (like start rating and some styles, make mixin for common stuff)
