@@ -10,18 +10,18 @@ async function loadJSON(url) {
     if (!res.ok) throw new Error(`Failed to load ${url}`);
     return res.json();
   }
-  async function renderSelectedProductsIndex() {
-    const grid = document.getElementById('selected-products-grid');
+
+  async function renderProductsByBlock(gridId, blockName) {
+    const grid = document.getElementById(gridId);
     if (!grid) return;
-  
+
     const data = await loadJSON('/assets/data.json');
-  
     const products = (data.data || []).filter(p =>
-      Array.isArray(p.blocks) && p.blocks.includes('Selected Products')
+      Array.isArray(p.blocks) && p.blocks.includes(blockName)
     );
-  
+
     const tpl = await loadProductCardTemplate('/components/product-card.html');
-  
+
     const frag = document.createDocumentFragment();
     for (const p of products) {
       frag.appendChild(renderProductCard(tpl, p));
@@ -30,26 +30,13 @@ async function loadJSON(url) {
     grid.appendChild(frag);
   }
 
-  
-  async function renderNewProductsArrivalIndex() {
-    const grid = document.getElementById('new-products-arrival-grid');
-    if (!grid) return;
-  
-  const data = await loadJSON('/assets/data.json');
-
-  const products = (data.data || []).filter(p =>
-    Array.isArray(p.blocks) && p.blocks.includes('New Products Arrival')
-  );
-  
-  const tpl = await loadProductCardTemplate('/components/product-card.html');
-
-  const frag = document.createDocumentFragment();
-  for (const p of products) {
-    frag.appendChild(renderProductCard(tpl, p));
+  async function renderSelectedProductsIndex() {
+    return renderProductsByBlock('selected-products-grid', 'Selected Products');
   }
-  grid.innerHTML = '';
-  grid.appendChild(frag);
-}
+
+  async function renderNewProductsArrivalIndex() {
+    return renderProductsByBlock('new-products-arrival-grid', 'New Products Arrival');
+  }
 
 
 function setupGlobalCardNavigation() {
