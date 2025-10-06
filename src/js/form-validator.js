@@ -118,7 +118,7 @@ export class FormValidator {
         const specific = this.form.querySelector(`.${this.formClassPrefix}__error--${fieldName}`);
         if (specific) return specific;
         
-        if (field && field.nextElementSibling && field.nextElementSibling.classList.contains(`${this.formClassPrefix}__error`)) {
+        if (field?.nextElementSibling?.classList.contains(`${this.formClassPrefix}__error`)) {
             return field.nextElementSibling;
         }
         
@@ -251,7 +251,7 @@ export class FormValidator {
             messageElement.style.opacity = '0';
             setTimeout(() => {
                 if (messageElement.parentNode) {
-                    messageElement.parentNode.removeChild(messageElement);
+                    messageElement.remove();
                 }
             }, 300);
         }, 5000);

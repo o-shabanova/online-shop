@@ -66,12 +66,12 @@ function setupGlobalCardNavigation() {
   
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     let catalogManager = null;
     let cartManager = null;
     
     if (document.querySelector('#catalog-products')) {
-        catalogManager = initializeCatalog();
+        catalogManager = await initializeCatalog();
     }
     
     cartManager = new CartManager();
@@ -85,11 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.querySelector('.contact-form__form')) {
-        new ContactFormValidator();
+        window.contactFormValidator = new ContactFormValidator();
     }
 
     if (document.querySelector('.product-details')) {
-        new ProductDetailsManager();
+        const pdm = new ProductDetailsManager();
+        await pdm.init();
     }
 
     renderSelectedProductsIndex().catch(console.error);
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCardWidthWithGap() {
       const firstCard = cards[0];
       const computed = getComputedStyle(travelCards);
-      const gap = parseFloat(computed.gap) || 0;
+      const gap = Number.parseFloat(computed.gap) || 0;
       return firstCard.offsetWidth + gap;
     }
 
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cardWidthWithGap = getCardWidthWithGap();
       const container = travelCards.parentElement; 
       const containerWidth = container ? container.clientWidth : window.innerWidth;
-      const approx = Math.max(1, Math.floor((containerWidth + (parseFloat(getComputedStyle(travelCards).gap) || 0)) / cardWidthWithGap));
+      const approx = Math.max(1, Math.floor((containerWidth + (Number.parseFloat(getComputedStyle(travelCards).gap) || 0)) / cardWidthWithGap));
 
       return Math.min(Math.max(1, Math.min(desktopTargetVisible, approx)), cards.length);
     }

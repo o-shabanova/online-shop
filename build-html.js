@@ -1,35 +1,35 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const posthtml = require('posthtml');
 const posthtmlInclude = require('posthtml-include');
 
 const convertToAbsolutePaths = () => {
   return function(tree) {
     tree.match({ tag: 'link' }, function(node) {
-      if (node.attrs && node.attrs.href && node.attrs.href.startsWith('../')) {
+      if (node.attrs?.href?.startsWith('../')) {
         node.attrs.href = node.attrs.href.replace('../', '/');
       }
       return node;
     });
     
     tree.match({ tag: 'script' }, function(node) {
-      if (node.attrs && node.attrs.src && node.attrs.src.startsWith('../')) {
+      if (node.attrs?.src?.startsWith('../')) {
         node.attrs.src = node.attrs.src.replace('../', '/');
       }
       return node;
     });
     
     tree.match({ tag: 'img' }, function(node) {
-      if (node.attrs && node.attrs.src && node.attrs.src.startsWith('../')) {
+      if (node.attrs?.src?.startsWith('../')) {
         node.attrs.src = node.attrs.src.replace('../', '/');
       }
       return node;
     });
     
     tree.match({ tag: 'a' }, function(node) {
-      if (node.attrs && node.attrs.href && node.attrs.href.startsWith('../')) {
+      if (node.attrs?.href?.startsWith('../')) {
         node.attrs.href = node.attrs.href.replace('../', '/');
       }
       return node;
@@ -119,4 +119,10 @@ async function buildHTML() {
   console.log('HTML build completed! Output saved to dist/ directory');
 }
 
-buildHTML().catch(console.error);
+(async () => {
+  try {
+    await buildHTML();
+  } catch (error) {
+    console.error(error);
+  }
+})();

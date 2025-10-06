@@ -2,10 +2,9 @@ import { FormValidator } from './form-validator.js';
 export class ProductDetailsManager {
     constructor() {
         
-        this.init();
     }
 
-    init() {
+    async init() {
         const productId = this.getProductIdFromUrl();
         if (!productId) {
             console.error('Product id is missing in URL');
@@ -15,10 +14,10 @@ export class ProductDetailsManager {
         
         this.bindProductTabs();
 
-        this.loadAndRenderProduct(productId);
+        await this.loadAndRenderProduct(productId);
 
         
-        new ReviewFormValidator();
+        window.reviewFormValidator = new ReviewFormValidator();
     }
 
     getProductIdFromUrl() {
@@ -64,10 +63,10 @@ export class ProductDetailsManager {
             imageEl.alt = product.name;
         }
         if (addToCartBtn) {
-            addToCartBtn.setAttribute('data-product-id', product.id);
+            addToCartBtn.dataset.productId = product.id;
             if (qtyInput) {
-                const initialQty = Math.max(1, parseInt(qtyInput.value) || 1);
-                addToCartBtn.setAttribute('data-quantity', String(initialQty));
+                const initialQty = Math.max(1, Number.parseInt(qtyInput.value) || 1);
+                addToCartBtn.dataset.quantity = String(initialQty);
             }
         }
 
@@ -132,7 +131,7 @@ export class ProductDetailsManager {
         related.forEach(p => {
             const card = document.createElement('article');
             card.className = 'product-card';
-            card.setAttribute('data-id', p.id);
+            card.dataset.id = p.id;
             card.innerHTML = `
 <div class="product-card__image-wrapper">
     <img class="product-card__image" alt="${p.name}" height="200" src="${p.imageUrl}">
@@ -159,14 +158,14 @@ export class ProductDetailsManager {
         if (!container || !qtyInput) return;
 
         const sanitize = (val) => {
-            const n = parseInt(val);
-            return isNaN(n) || n < 1 ? 1 : n;
+            const n = Number.parseInt(val);
+            return Number.isNaN(n) || n < 1 ? 1 : n;
         };
 
         const sync = () => {
             const qty = sanitize(qtyInput.value);
             qtyInput.value = String(qty);
-            if (addToCartBtn) addToCartBtn.setAttribute('data-quantity', String(qty));
+            if (addToCartBtn) addToCartBtn.dataset.quantity = String(qty);
         };
 
         container.addEventListener('click', (e) => {

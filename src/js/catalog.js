@@ -10,7 +10,6 @@ class CatalogManager {
         this.productsPerPage = 12;
         this.popup = null;
         this.productCardTemplate = null; 
-        this.init();
     }
 
     async init() {
@@ -117,7 +116,7 @@ class CatalogManager {
             const pageButton = document.createElement('button');
             pageButton.className = 'catalog-pagination__number';
             pageButton.textContent = i;
-            pageButton.setAttribute('data-page', i);
+            pageButton.dataset.page = String(i);
             
             if (i === this.currentPage) {
                 pageButton.classList.add('active');
@@ -253,7 +252,7 @@ class CatalogManager {
     showPopup() {
         if (this.popup) {
             this.popup.style.display = 'flex';
-            this.popup.offsetHeight;
+            void this.popup.offsetHeight;
             this.popup.classList.add('show');
         }
     }
@@ -351,11 +350,10 @@ class CatalogManager {
 export { CatalogManager };
 
 
-export function initializeCatalog() {
+export async function initializeCatalog() {
     const catalogManager = new CatalogManager();
-    
+    await catalogManager.init();
     setupEventListeners(catalogManager);
-    
     return catalogManager;
 }
 
@@ -366,7 +364,7 @@ function setupEventListeners(catalog) {
         customSelects.forEach(custom => {
             const display = custom.querySelector('.catalog-filters__select-display');
             const optionsList = custom.querySelector('.catalog-filters__select-options');
-            const targetName = custom.getAttribute('data-target');
+            const targetName = custom.dataset.target;
             const hiddenSelect = filterForm.querySelector(`select[name="${targetName}"]`);
 
             const closeAll = () => {
@@ -384,7 +382,7 @@ function setupEventListeners(catalog) {
 
             optionsList.querySelectorAll('li').forEach(li => {
                 li.addEventListener('click', () => {
-                    const value = li.getAttribute('data-value') || '';
+                    const value = li.dataset.value || '';
                     const label = li.textContent || 'Choose option';
                     if (hiddenSelect) {
                         hiddenSelect.value = value;

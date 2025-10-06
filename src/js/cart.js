@@ -25,7 +25,7 @@ class CartManager {
         
         let productData = null;
         
-        if (this.catalogManager && this.catalogManager.products) {
+        if (this.catalogManager?.products) {
             productData = this.catalogManager.products.find(p => p.id === productId);
             console.log('Found product in catalog:', productData);
         }
@@ -164,8 +164,8 @@ class CartManager {
     extractPrice(priceText) {
         if (!priceText) return 0;
         const cleanPrice = priceText.replace(/[^0-9.]/g, '');
-        const price = parseFloat(cleanPrice);
-        return isNaN(price) ? 0 : price;
+                const price = Number.parseFloat(cleanPrice);
+                return Number.isNaN(price) ? 0 : price;
     }
 
 
@@ -276,8 +276,8 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-add-to-cart]')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
-                const quantity = parseInt(e.target.getAttribute('data-quantity')) || 1;
+                const productId = e.target.dataset.productId;
+                const quantity = Number.parseInt(e.target.dataset.quantity) || 1;
                 
                 if (productId) {
                     this.addItem(productId, quantity);
@@ -292,7 +292,7 @@ class CartManager {
             const deleteBtn = e.target.closest('[data-remove-from-cart]');
             if (deleteBtn) {
                 e.preventDefault();
-                const productId = deleteBtn.getAttribute('data-product-id');
+                const productId = deleteBtn.dataset.productId;
                 console.log('Delete button clicked for product:', productId);
                 this.removeItem(productId);
             }
@@ -301,7 +301,7 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-item__qty-btn--plus')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
+                const productId = e.target.dataset.productId;
                 const item = this.cart.find(item => item.id === productId);
                 if (item) {
                     this.updateItemQuantity(productId, item.quantity + 1);
@@ -310,7 +310,7 @@ class CartManager {
             
             if (e.target.matches('.cart-item__qty-btn--minus')) {
                 e.preventDefault();
-                const productId = e.target.getAttribute('data-product-id');
+                const productId = e.target.dataset.productId;
                 const item = this.cart.find(item => item.id === productId);
                 if (item) {
                     this.updateItemQuantity(productId, item.quantity - 1);
