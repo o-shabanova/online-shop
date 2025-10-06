@@ -42,8 +42,8 @@ export class ProductDetailsManager {
             }
 
             this.renderProduct(product, products);
-        } catch (err) {
-            console.error('Error loading product:', err);
+        } catch {
+            console.error('Error loading product');
         }
     }
 
@@ -267,14 +267,14 @@ class ReviewFormValidator extends FormValidator {
             await this.submitForm(payload);
             this.showSubmissionMessage('Thank you! Your review has been submitted successfully.', 'success');
             this.resetForm();
-        } catch (err) {
+        } catch {
             this.showSubmissionMessage('Sorry, there was an error submitting your review. Please try again.', 'error');
         } finally {
             this.setSubmitButtonState(false);
         }
     }
 
-    async submitForm(data) {
+    async submitForm() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(true);

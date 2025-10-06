@@ -5,8 +5,7 @@ const path = require('path');
 const posthtml = require('posthtml');
 const posthtmlInclude = require('posthtml-include');
 
-// Custom plugin to convert relative paths to absolute paths
-const convertToAbsolutePaths = (options = {}) => {
+const convertToAbsolutePaths = () => {
   return function(tree) {
     tree.match({ tag: 'link' }, function(node) {
       if (node.attrs && node.attrs.href && node.attrs.href.startsWith('../')) {
@@ -40,7 +39,6 @@ const convertToAbsolutePaths = (options = {}) => {
   };
 };
 
-// Configuration
 const config = {
   plugins: [
     posthtmlInclude({
@@ -50,11 +48,9 @@ const config = {
   ]
 };
 
-// Source and output directories
 const srcDir = 'src';
 const distDir = 'dist';
 
-// HTML files to process (relative to src directory)
 const htmlFiles = [
   'index.html',
   'pages/catalog.html',
@@ -64,14 +60,12 @@ const htmlFiles = [
   'pages/product-details-template.html'
 ];
 
-// Ensure directory exists
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 }
 
-// Copy directory structure (excluding scss and dist)
 function copyDirStructure(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
@@ -86,8 +80,7 @@ function copyDirStructure(src, dest) {
     
     if (stat.isDirectory() && item !== 'scss' && item !== 'dist') {
       copyDirStructure(srcPath, destPath);
-    } else if (stat.isFile() && item !== 'index.html') {
-      // Copy all files except index.html (which will be processed)
+    } else if (stat.isFile() && item !== 'index.html') {  
       fs.copyFileSync(srcPath, destPath);
     }
   }
@@ -96,13 +89,10 @@ function copyDirStructure(src, dest) {
 async function buildHTML() {
   console.log('Building HTML files with PostHTML...');
   
-  // Ensure dist directory exists
   ensureDir(distDir);
   
-  // Copy assets and other files to dist
   copyDirStructure(srcDir, distDir);
   
-  // CSS should already be compiled to dist/css by the build:css script
   
   for (const file of htmlFiles) {
     const srcFile = path.join(srcDir, file);
@@ -110,15 +100,12 @@ async function buildHTML() {
     
     if (fs.existsSync(srcFile)) {
       try {
-        // Ensure output directory exists
         const outputDir = path.dirname(distFile);
         ensureDir(outputDir);
         
-        // Process HTML file
         const html = fs.readFileSync(srcFile, 'utf8');
         const result = await posthtml(config.plugins).process(html);
         
-        // Write to dist directory
         fs.writeFileSync(distFile, result.html);
         console.log(`✓ Processed: ${srcFile} → ${distFile}`);
       } catch (error) {

@@ -1,5 +1,3 @@
-import { CatalogManager } from './catalog.js';
-
 class CartManager {
     constructor() {
         this.cart = this.loadCart();

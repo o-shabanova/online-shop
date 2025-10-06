@@ -1,4 +1,4 @@
-import { CatalogManager, initializeCatalog } from './catalog.js';
+import { initializeCatalog } from './catalog.js';
 import { CartManager } from './cart.js';
 import { ContactFormValidator } from './contact.js';
 import { ProductDetailsManager } from './product-details-template.js';
