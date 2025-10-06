@@ -114,5 +114,110 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup global card navigation for all product cards (including dynamically added ones)
     setupGlobalCardNavigation();
 
+  // Travel carousel
+  (function setupTravelCarousel() {
+    const travelCards = document.querySelector('.travel__grid');
+    if (!travelCards) return;
+
+    const cards = travelCards.querySelectorAll('.travel__card');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    if (!prevBtn || !nextBtn || cards.length === 0) return;
+
+    const desktopTargetVisible = 4; // desktop-first requirement
+    let currentIndex = 0;
+    let autoSlide = null;
+
+    travelCards.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+
+    function getCardWidthWithGap() {
+      const firstCard = cards[0];
+      const computed = getComputedStyle(travelCards);
+      const gap = parseFloat(computed.gap) || 0;
+      return firstCard.offsetWidth + gap;
+    }
+
+    function getVisibleCount() {
+      const cardWidthWithGap = getCardWidthWithGap();
+      const container = travelCards.parentElement; // wrapper inside section container
+      const containerWidth = container ? container.clientWidth : window.innerWidth;
+      const approx = Math.max(1, Math.floor((containerWidth + (parseFloat(getComputedStyle(travelCards).gap) || 0)) / cardWidthWithGap));
+      // Keep desktop intent but never exceed actual cards length
+      return Math.min(Math.max(1, Math.min(desktopTargetVisible, approx)), cards.length);
+    }
+
+    function updateButtons() {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      const nothingToScroll = maxIndex === 0;
+      // Always keep buttons visible; disable when nothing to scroll
+      prevBtn.style.display = '';
+      nextBtn.style.display = '';
+      prevBtn.disabled = nothingToScroll || currentIndex === 0;
+      nextBtn.disabled = nothingToScroll || currentIndex >= maxIndex;
+      prevBtn.setAttribute('aria-disabled', String(prevBtn.disabled));
+      nextBtn.setAttribute('aria-disabled', String(nextBtn.disabled));
+    }
+
+    function updateCarousel() {
+      const cardWidth = getCardWidthWithGap();
+      travelCards.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      updateButtons();
+    }
+
+    function goNext() {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      if (currentIndex < maxIndex) {
+        currentIndex += 1;
+      } else {
+        currentIndex = 0;
+      }
+      updateCarousel();
+    }
+
+    function goPrev() {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      if (currentIndex > 0) {
+        currentIndex -= 1;
+      } else {
+        currentIndex = maxIndex;
+      }
+      updateCarousel();
+    }
+
+    function resetAutoSlide() {
+      if (autoSlide) clearInterval(autoSlide);
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      if (maxIndex === 0) return; // don't auto-slide if there's nothing to scroll
+      autoSlide = setInterval(goNext, 4000);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      goPrev();
+      resetAutoSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      goNext();
+      resetAutoSlide();
+    });
+
+    window.addEventListener('resize', () => {
+      // Snap back if currentIndex exceeds new max after resize
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+      updateCarousel();
+      resetAutoSlide();
+    });
+
+    // Start auto-slide and initial state
+    updateCarousel();
+    resetAutoSlide();
+  })();
+
     console.log('Application initialized with modules');
 });

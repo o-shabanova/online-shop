@@ -393,6 +393,39 @@
   max-width: 181px;
 }
 
+/* Carousel controls for travel section */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(16);
+  margin-top: rem(24);
+
+  .carousel-prev,
+  .carousel-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: rem(48);
+    min-block-size: rem(48);
+    padding: 0;
+    border-radius: $border-radius-md;
+    background-color: $color-primary;
+    color: $color-white;
+    font-size: $font-size-large;
+    transition: opacity .2s ease, transform .2s ease, background-color .2s ease;
+
+    &:hover { transform: translateY(rem(-2)); }
+    &:focus-visible { outline: rem(3) solid rgba($color-primary, .4); outline-offset: rem(2); }
+    &:disabled,
+    &[aria-disabled="true"] {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
 // Selected Products Section
 
    .products-section {
