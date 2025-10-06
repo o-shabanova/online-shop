@@ -1,4 +1,6 @@
 
+import { loadProductCardTemplate, renderProductCard } from './product-card.js';
+
 class CatalogManager {
     constructor() {
         this.products = [];
@@ -45,81 +47,85 @@ class CatalogManager {
     }
 
     async renderProducts() {
-        return new Promise((resolve) => {
-            requestAnimationFrame(() => {
-                const productGrid = document.getElementById('catalog-products');
-                if (!productGrid) {
-                    console.error('Product grid container not found');
-                    resolve();
-                    return;
-                }
-                
-                productGrid.innerHTML = '';
+        const productGrid = document.getElementById('catalog-products');
+        if (!productGrid) {
+            console.error('Product grid container not found');
+            return;
+        }
+        
+        productGrid.innerHTML = '';
 
-                if (this.filteredProducts.length === 0) {
-                    this.showPopup();
-                    this.updatePagination(0);
-                    resolve();
-                    return;
-                }
+        if (this.filteredProducts.length === 0) {
+            this.showPopup();
+            this.updatePagination(0);
+            return;
+        }
 
-                const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
-                const startIndex = (this.currentPage - 1) * this.productsPerPage;
-                const endIndex = startIndex + this.productsPerPage;
-                const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
+        const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+        const startIndex = (this.currentPage - 1) * this.productsPerPage;
+        const endIndex = startIndex + this.productsPerPage;
+        const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
 
-                // Create all product cards at once instead of sequentially
-                const productCards = productsToShow.map(product => this.createProductCardSync(product));
-                
-                // Append all cards at once
-                productCards.forEach(card => productGrid.appendChild(card));
-
-                this.updatePagination(totalPages);
-                resolve();
-            });
-        });
-    }
-
-    createProductCardSync(product) {
-        const card = document.createElement('article');
-        card.className = 'product-card';
-        card.setAttribute('data-id', product.id);
-
-        const formattedPrice = `$${product.price}`;
-        const saleBadge = product.salesStatus ? '<span class="product-card__badge">SALE</span>' : '';
-
-        card.innerHTML = `
-            <div class="product-card__image-wrapper">
-                <img class="product-card__image" alt="${product.name}" height="400" src="${product.imageUrl}">
-                ${saleBadge}
-            </div>
-            <div class="product-card__info">
-                <p class="product-card__name">${product.name}</p>
-                <p class="product-card__price">${formattedPrice}</p>
-                <button class="main-button product-card__button" data-add-to-cart data-product-id="${product.id}" data-quantity="1">Add To Cart</button>
-            </div>
-        `;
-
-        // Add click event listener to navigate to product details page
-        card.addEventListener('click', (event) => {
-            // Don't navigate if clicking on the Add to Cart button
-            if (event.target.matches('[data-add-to-cart]')) {
-                return;
-            }
+        try {
+            // Load the product card template
+            const template = await loadProductCardTemplate('/components/product-card.html');
             
-            // Navigate to product details page with product ID
-            window.location.href = `/pages/product-details-template?id=${product.id}`;
-        });
-
-        return card;
+            // Create all product cards using the template
+            const fragment = document.createDocumentFragment();
+            productsToShow.forEach(product => {
+                const cardNode = renderProductCard(template, product);
+                fragment.appendChild(cardNode);
+            });
+            
+            // Append all cards at once
+            productGrid.appendChild(fragment);
+            
+            this.updatePagination(totalPages);
+        } catch (error) {
+            console.error('Error rendering products:', error);
+        }
     }
 
-    async createProductCard(product) {
-        return new Promise((resolve) => {
-            const card = this.createProductCardSync(product);
-            resolve(card);
-        });
-    }
+    // createProductCardSync(product) {
+    //     const card = document.createElement('article');
+    //     card.className = 'product-card';
+    //     card.setAttribute('data-id', product.id);
+
+    //     const formattedPrice = `$${product.price}`;
+    //     const saleBadge = product.salesStatus ? '<span class="product-card__badge">SALE</span>' : '';
+
+    //     card.innerHTML = `
+    //         <div class="product-card__image-wrapper">
+    //             <img class="product-card__image" alt="${product.name}" height="400" src="${product.imageUrl}">
+    //             ${saleBadge}
+    //         </div>
+    //         <div class="product-card__info">
+    //             <p class="product-card__name">${product.name}</p>
+    //             <p class="product-card__price">${formattedPrice}</p>
+    //             <button class="main-button product-card__button" data-add-to-cart data-product-id="${product.id}" data-quantity="1">Add To Cart</button>
+    //         </div>
+    //     `;
+
+    //     // Add click event listener to navigate to product details page
+    //     card.addEventListener('click', (event) => {
+    //         // Don't navigate if clicking on the Add to Cart button
+    //         if (event.target.matches('[data-add-to-cart]')) {
+    //             return;
+    //         }
+            
+    //         // Navigate to product details page with product ID
+    //         window.location.href = `/pages/product-details-template?id=${product.id}`;
+    //     });
+
+    //     return card;
+    // }
+
+    // async createProductCard(product) {
+    //     return new Promise((resolve) => {
+    //         const card = this.createProductCardSync(product);
+    //         resolve(card);
+    //     });
+    // }
 
     // Update list count of rendered products
     updateProductCount() {

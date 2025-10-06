@@ -53,28 +53,28 @@ async function loadJSON(url) {
 }
 
 //card navigation
-function setupCardNavigation(containerSelector, detailsPath = '/pages/product-details-template.html') {
-    const container = document.querySelector(containerSelector);
-    if (!container) return;
+// function setupCardNavigation(containerSelector, detailsPath = '/pages/product-details-template.html') {
+//     const container = document.querySelector(containerSelector);
+//     if (!container) return;
   
-    container.addEventListener('click', (event) => {
-      // If click happened inside the Add-to-Cart button → do nothing here.
-      if (event.target.closest('[data-add-to-cart]')) {
-        return;
-      }
+//     container.addEventListener('click', (event) => {
+//       // If click happened inside the Add-to-Cart button → do nothing here.
+//       if (event.target.closest('[data-add-to-cart]')) {
+//         return;
+//       }
   
-      // Navigate when clicking anywhere else on the card
-      const card = event.target.closest('.product-card');
-      if (!card || !container.contains(card)) return;
+//       // Navigate when clicking anywhere else on the card
+//       const card = event.target.closest('.product-card');
+//       if (!card || !container.contains(card)) return;
   
-      const id = card.dataset.id;
-      if (!id) return;
+//       const id = card.dataset.id;
+//       if (!id) return;
   
-      const url = new URL(detailsPath, window.location);
-      url.searchParams.set('id', id);
-      window.location.href = url.toString();
-    });
-  }
+//       const url = new URL(detailsPath, window.location);
+//       url.searchParams.set('id', id);
+//       window.location.href = url.toString();
+//     });
+//   }
 
 // Global card navigation for all product cards (including dynamically added ones)
 function setupGlobalCardNavigation() {
