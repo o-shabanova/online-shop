@@ -8,11 +8,7 @@
     margin-top: 60px;
     margin-bottom: 60px;
 
-    &__panel {
-        display: flex;
-        gap: 50px;
-    }
-
+    &__panel { display: flex; gap: 50px; }
     &__results {
         font-family: $font-primary;
         font-size: $font-size-medium;
@@ -20,9 +16,7 @@
         line-height: $line-height-base;
         color: $color-gray;
     }
-}
 
-.catalog-controls {
     &__sort {
         position: relative;
 
@@ -60,9 +54,6 @@
             content: "";
         }
     }
-}
-
-.catalog-controls {
     &__search {
         position: relative;
         display: flex;

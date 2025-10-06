@@ -17,11 +17,11 @@ export class ProductDetailsManager {
         await this.loadAndRenderProduct(productId);
 
         
-        window.reviewFormValidator = new ReviewFormValidator();
+        globalThis.reviewFormValidator = new ReviewFormValidator();
     }
 
     getProductIdFromUrl() {
-        const params = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(globalThis.location.search);
         return params.get('id');
     }
 
@@ -128,7 +128,7 @@ export class ProductDetailsManager {
         const shuffled = [...pool].sort(() => Math.random() - 0.5);
         const related = shuffled.slice(0, 4);
 
-        related.forEach(p => {
+        for (const p of related) {
             const card = document.createElement('article');
             card.className = 'product-card';
             card.dataset.id = p.id;
@@ -144,11 +144,11 @@ export class ProductDetailsManager {
 
             card.addEventListener('click', (event) => {
                 if (event.target.matches('[data-add-to-cart]')) return;
-                window.location.href = `/pages/product-details-template?id=${p.id}`;
+                globalThis.location.href = `/pages/product-details-template?id=${p.id}`;
             });
 
             grid.appendChild(card);
-        });
+        }
     }
 
     bindQuantityControls() {

@@ -163,7 +163,7 @@ class CartManager {
 
     extractPrice(priceText) {
         if (!priceText) return 0;
-        const cleanPrice = priceText.replace(/[^0-9.]/g, '');
+        const cleanPrice = priceText.replaceAll(/[^0-9.]/g, '');
                 const price = Number.parseFloat(cleanPrice);
                 return Number.isNaN(price) ? 0 : price;
     }
@@ -330,7 +330,7 @@ class CartManager {
         document.addEventListener('click', (e) => {
             if (e.target.matches('.cart-actions__btn:first-child')) {
                 e.preventDefault();
-                window.location.href = '/pages/catalog.html';
+                globalThis.location.href = '/pages/catalog.html';
             }
         });
 

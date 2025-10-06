@@ -247,62 +247,7 @@
       color: $color-gray;
     }
   }
-  
-  .travel {
-    &__grid {
-      display: grid; 
-      gap: rem(39);
-      grid-template-columns: repeat(4, minmax(0, 1fr));                                     
-    }
-  
-    &__card {
-      position: relative;      
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      inline-size: 100%;             
-      min-block-size: rem(600);
-  
-      &:hover { transform: translateY(rem(-5)); } 
-    }
-  
-    &__card-image {
-      display: block;
-      block-size: 100%;
-      inline-size: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-  
-    &__card-content {
-      position: absolute;
-      z-index: 2;
-      color: $color-white;
-      inset-block-end: rem(40);   
-      inset-inline-start: rem(40);
-    }
-  
-    &__card-title {
-      margin: 0 0 rem(28);
-      font-family: $font-primary;
-      font-size: $font-size-xl;        
-      font-weight: $font-weight-bold;
-      line-height: $line-height-medium;
-      color: $color-white;
-  
-      span { display: block; }
-    }
-  
-    &__card-text {
-      margin: 0;       
-      font-family: $font-primary;
-      font-size: $font-size-xl;        
-      font-weight: $font-weight-regular;
-      line-height: $line-height-base;  
-      color: $color-white;
-      max-inline-size: rem(181);
-    }
-  }
-  
+    
 
 .travel__grid {
   display: flex;
@@ -913,9 +858,6 @@
     }
   }
 
-  .contact-content {
-    padding: rem(60) 0;
-  }
 
 .contact-content { padding: rem(60) 0; }
 

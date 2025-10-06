@@ -77,10 +77,10 @@ class CatalogManager {
 
 
         const fragment = document.createDocumentFragment();
-        productsToShow.forEach(product => {
+        for (const product of productsToShow) {
             const cardNode = renderProductCard(this.productCardTemplate, product);
             fragment.appendChild(cardNode);
-        });
+        }
         
         productGrid.appendChild(fragment);
         this.updatePagination(totalPages);
@@ -280,10 +280,10 @@ class CatalogManager {
 
         const randomSets = this.getRandomItems(this.topBestSets, 3);
 
-        randomSets.forEach(set => {
+        for (const set of randomSets) {
             const card = this.createTopSetCard(set);
             topSetsContainer.appendChild(card);
-        });
+        }
     }
 
     getRandomItems(array, count) {
@@ -361,16 +361,17 @@ function setupEventListeners(catalog) {
     const filterForm = document.getElementById('catalog-filters-form');
     if (filterForm) {
         const customSelects = filterForm.querySelectorAll('.catalog-filters__select');
-        customSelects.forEach(custom => {
+        for (const custom of customSelects) {
             const display = custom.querySelector('.catalog-filters__select-display');
             const optionsList = custom.querySelector('.catalog-filters__select-options');
             const targetName = custom.dataset.target;
             const hiddenSelect = filterForm.querySelector(`select[name="${targetName}"]`);
 
             const closeAll = () => {
-                filterForm.querySelectorAll('.catalog-filters__select.open').forEach(el => {
-                    el.classList.remove('open');
-                });
+            const opened = filterForm.querySelectorAll('.catalog-filters__select.open');
+            for (const el of opened) {
+                el.classList.remove('open');
+            }
             };
 
             display.addEventListener('click', (e) => {
@@ -380,7 +381,8 @@ function setupEventListeners(catalog) {
                 if (!isOpen) custom.classList.add('open');
             });
 
-            optionsList.querySelectorAll('li').forEach(li => {
+            const listItems = optionsList.querySelectorAll('li');
+            for (const li of listItems) {
                 li.addEventListener('click', () => {
                     const value = li.dataset.value || '';
                     const label = li.textContent || 'Choose option';
@@ -391,11 +393,12 @@ function setupEventListeners(catalog) {
                         applyFiltersFromForm(filterForm, catalog);
                     }
                 });
-            });
-        });
+            }
+        }
 
         document.addEventListener('click', () => {
-            filterForm.querySelectorAll('.catalog-filters__select.open').forEach(el => el.classList.remove('open'));
+            const opened = filterForm.querySelectorAll('.catalog-filters__select.open');
+            for (const el of opened) el.classList.remove('open');
         });
 
         const sizeSelect = filterForm.querySelector('select[name="size"]');
@@ -403,9 +406,9 @@ function setupEventListeners(catalog) {
         const categorySelect = filterForm.querySelector('select[name="category"]');
         const salesCheckbox = filterForm.querySelector('input[name="sales"]');
 
-        [sizeSelect, colorSelect, categorySelect].forEach(sel => {
+        for (const sel of [sizeSelect, colorSelect, categorySelect]) {
             if (sel) sel.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
-        });
+        }
         if (salesCheckbox) {
             salesCheckbox.addEventListener('change', () => applyFiltersFromForm(filterForm, catalog));
         }
@@ -414,9 +417,10 @@ function setupEventListeners(catalog) {
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 filterForm.reset();
-                filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display').forEach(d => {
+                const displays = filterForm.querySelectorAll('.catalog-filters__select .catalog-filters__select-display');
+                for (const d of displays) {
                     d.textContent = 'Choose option';
-                });
+                }
                 catalog.filteredProducts = [...catalog.products];
                 catalog.currentPage = 1;
                 catalog.renderProducts();

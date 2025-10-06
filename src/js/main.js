@@ -23,7 +23,9 @@ async function loadJSON(url) {
     const tpl = await loadProductCardTemplate('/components/product-card.html');
   
     const frag = document.createDocumentFragment();
-    products.forEach(p => frag.appendChild(renderProductCard(tpl, p)));
+    for (const p of products) {
+      frag.appendChild(renderProductCard(tpl, p));
+    }
     grid.innerHTML = '';
     grid.appendChild(frag);
   }
@@ -42,7 +44,9 @@ async function loadJSON(url) {
   const tpl = await loadProductCardTemplate('/components/product-card.html');
 
   const frag = document.createDocumentFragment();
-  products.forEach(p => frag.appendChild(renderProductCard(tpl, p)));
+  for (const p of products) {
+    frag.appendChild(renderProductCard(tpl, p));
+  }
   grid.innerHTML = '';
   grid.appendChild(frag);
 }
@@ -85,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (document.querySelector('.contact-form__form')) {
-        window.contactFormValidator = new ContactFormValidator();
+        globalThis.contactFormValidator = new ContactFormValidator();
     }
 
     if (document.querySelector('.product-details')) {
@@ -124,7 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function getVisibleCount() {
       const cardWidthWithGap = getCardWidthWithGap();
       const container = travelCards.parentElement; 
-      const containerWidth = container ? container.clientWidth : window.innerWidth;
+      const containerWidth = container ? container.clientWidth : globalThis.innerWidth;
       const approx = Math.max(1, Math.floor((containerWidth + (Number.parseFloat(getComputedStyle(travelCards).gap) || 0)) / cardWidthWithGap));
 
       return Math.min(Math.max(1, Math.min(desktopTargetVisible, approx)), cards.length);
@@ -189,7 +193,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       resetAutoSlide();
     });
 
-    window.addEventListener('resize', () => {
+    globalThis.addEventListener('resize', () => {
       
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);

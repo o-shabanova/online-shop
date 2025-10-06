@@ -76,9 +76,9 @@ export class FormValidator {
         const defaults = this.getDefaultValidationRules();
         const merged = { ...defaults };
         
-        Object.keys(customRules).forEach(fieldName => {
+        for (const fieldName of Object.keys(customRules)) {
             merged[fieldName] = { ...merged[fieldName], ...customRules[fieldName] };
-        });
+        }
         
         return merged;
     }
@@ -87,9 +87,9 @@ export class FormValidator {
         const defaults = this.getDefaultErrorMessages();
         const merged = { ...defaults };
         
-        Object.keys(customMessages).forEach(fieldName => {
+        for (const fieldName of Object.keys(customMessages)) {
             merged[fieldName] = { ...merged[fieldName], ...customMessages[fieldName] };
-        });
+        }
         
         return merged;
     }
@@ -100,7 +100,7 @@ export class FormValidator {
     }
     
     setupEventListeners() {
-        Object.keys(this.fields).forEach(fieldName => {
+        for (const fieldName of Object.keys(this.fields)) {
             const field = this.fields[fieldName];
             if (field) {
                 field.addEventListener('blur', () => this.validateField(fieldName));
@@ -109,7 +109,7 @@ export class FormValidator {
                     this.validateField(fieldName);
                 });
             }
-        });
+        }
         
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
@@ -220,9 +220,9 @@ export class FormValidator {
     
     getFormData() {
         const data = {};
-        Object.keys(this.fields).forEach(fieldName => {
+        for (const fieldName of Object.keys(this.fields)) {
             data[fieldName] = (this.fields[fieldName]?.value || '').trim();
-        });
+        }
         data.timestamp = new Date().toISOString();
         return data;
     }
