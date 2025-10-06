@@ -3,51 +3,51 @@
 
 .cart-hero {
     position: relative;
-    height: rem(229);
     display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
-    margin-left: calc(50% - 50vw);
+    height: rem(229);
     margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
 
     &__bg {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 1;
         width: 100%;
         height: 100%;
-        z-index: 1;
     }
 
     &__image {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
     }
 
     &__overlay {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 2;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 2;
+        background-color: rgb(0 0 0 / 50%);
     }
 
     &__title {
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: $font-size-hero;
-        line-height: $line-height-medium;
-        color: $color-white;
-        text-align: center;
-        margin: 0;
         position: relative;
         z-index: 3;
+        margin: 0;
+        font-family: $font-primary;
+        font-size: $font-size-hero;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-medium;
+        text-align: center;
+        color: $color-white;
     }
 }
 
@@ -62,7 +62,7 @@
     gap: rem(80);
     margin-top: rem(70);
 
-    @media (max-width: 1024px) {
+    @media (width <= 1024px) {
         gap: rem(40);
     }
 }
@@ -73,24 +73,25 @@
 
 .cart-table__header {
     display: grid;
-    grid-template-columns: rem(80) 1fr rem(120) rem(140) rem(120) rem(100);
     gap: rem(24);
+    grid-template-columns: rem(80) 1fr rem(120) rem(140) rem(120) rem(100);
     padding: rem(18) rem(24);
     background-color: $color-gray;
-    @media (max-width: 768px) {
-        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
+
+    @media (width <= 768px) {
         gap: rem(16);
+        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
         padding: rem(12) rem(16);
     }
 }
 
 .cart-table__header-item {
     font-family: $font-tertiary;
-    font-weight: $font-weight-bold;
     font-size: rem(18);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
-    color: $color-white;
     text-align: center;
+    color: $color-white;
 
     &:first-child {
         text-align: left;
@@ -100,30 +101,30 @@
         text-align: right;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(14);
     }
 }
 
 .cart-item {
     display: grid;
-    grid-template-columns: rem(80) 1fr rem(120) rem(140) rem(120) rem(100);
-    gap: rem(24);
-    padding: rem(20) rem(24);
     align-items: center;
+    gap: rem(24);
+    grid-template-columns: rem(80) 1fr rem(120) rem(140) rem(120) rem(100);
+    padding: rem(20) rem(24);
     border-bottom: rem(2) solid $color-primary;
 
-    @media (max-width: 768px) {
-        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
+    @media (width <= 768px) {
         gap: rem(16);
+        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
         padding: rem(16) rem(12);
     }
 }
 
 .cart-item__image {
+    overflow: hidden;
     width: rem(80);
     height: rem(80);
-    overflow: hidden;
 
     img {
         width: 100%;
@@ -131,7 +132,7 @@
         object-fit: contain;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         width: rem(60);
         height: rem(60);
     }
@@ -139,52 +140,52 @@
 
 .cart-item__name {
     font-family: $font-tertiary;
-    font-weight: $font-weight-bold;
     font-size: rem(18);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     text-align: center;
     color: $color-black;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(16);
     }
 }
 
 .cart-item__price {
     font-family: $font-primary;
-    font-weight: $font-weight-bold;
     font-size: rem(17);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
-    color: $color-black;
     text-align: center;
+    color: $color-black;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(15);
     }
 }
 
 .cart-item__quantity {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: rem(8);
 }
 
 .cart-item__qty-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: rem(32);
     height: rem(32);
-    background-color: transparent;
-    color: $color-black;
-    font-family: $font-tertiary;
-    font-weight: $font-weight-bold;
-    font-size: rem(20);
-    line-height: 1;
     border-radius: rem(4);
+    background-color: transparent;
+    font-family: $font-tertiary;
+    font-size: rem(20);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: $color-black;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &:hover {
         background-color: $color-primary;
@@ -201,7 +202,7 @@
         }
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         width: rem(28);
         height: rem(28);
         font-size: rem(18);
@@ -209,29 +210,29 @@
 }
 
 .cart-item__qty-value {
-    font-family: $font-tertiary;
-    font-weight: $font-weight-bold;
-    font-size: rem(25);
-    line-height: $line-height-medium;
-    color: $color-black;
     min-width: rem(30);
+    font-family: $font-tertiary;
+    font-size: rem(25);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
     text-align: center;
+    color: $color-black;
 
-    @media (max-width: 768px) {
-        font-size: rem(20);
+    @media (width <= 768px) {
         min-width: rem(25);
+        font-size: rem(20);
     }
 }
 
 .cart-item__total {
     font-family: $font-primary;
-    font-weight: $font-weight-bold;
     font-size: rem(17);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
-    color: $color-black;
     text-align: center;
+    color: $color-black;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(15);
     }
 }
@@ -242,25 +243,27 @@
 }
 
 .cart-item__delete-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: rem(32);
     height: rem(32);
     border: none;
+    border-radius: rem(4);
     background-color: transparent;
     color: $color-primary;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: rem(4);
 
     &:hover {
         background-color: $color-primary;
+
         svg {
             path {
                 stroke: $color-white;
             }
         }
+
         transition: stroke 0.3s ease;
     }
 
@@ -269,7 +272,7 @@
         height: rem(20);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         width: rem(28);
         height: rem(28);
 
@@ -286,7 +289,7 @@
     margin-top: rem(60);
     padding-top: rem(40);
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         flex-direction: column;
         gap: rem(16);
         margin-top: rem(40);
@@ -298,24 +301,24 @@
     flex: 1;
     max-width: rem(224);
     height: rem(60);
-    font-family: $font-primary;
-    font-weight: $font-weight-bold;
-    font-size: rem(15);
-    line-height: $line-height-medium;
+    padding: rem(10) 0;
     background-color: $color-primary;
+    font-family: $font-primary;
+    font-size: rem(15);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
     color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
-    padding: rem(10) 0;
 ;
 
     &:hover {
+        border: rem(2) solid $color-primary;
         background-color: transparent;
         color: $color-primary;
-        border: rem(2) solid $color-primary;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         max-width: none;
         height: rem(50);
         font-size: rem(14);
@@ -323,21 +326,21 @@
 }
 
 .cart-checkout {
-    background-color: $color-gray;
-    margin-top: rem(-100);
-    padding: rem(42);
+    align-self: flex-end;
     width: rem(571);
     height: fit-content;
-    align-self: flex-end;
+    margin-top: rem(-100);
+    padding: rem(42);
+    background-color: $color-gray;
 
-    @media (max-width: 1024px) {
+    @media (width <= 1024px) {
+        align-self: center;
         width: 100%;
         max-width: rem(571);
         margin: 0 auto;
-        align-self: center;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         padding: rem(24);
     }
 }
@@ -360,8 +363,8 @@
 
 .cart-checkout__label {
     font-family: $font-primary;
-    font-weight: $font-weight-bold;
     font-size: rem(17);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     color: $color-white;
 
@@ -370,7 +373,7 @@
     }
   
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(15);
     }
 }
@@ -378,8 +381,8 @@
 
 .cart-checkout__value {
     font-family: $font-primary;
-    font-weight: $font-weight-bold;
     font-size: rem(17);
+    font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     color: $color-white;
 
@@ -387,7 +390,7 @@
         font-size: rem(20);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         font-size: rem(15);
 
         &--total {
@@ -398,19 +401,19 @@
 
 .cart-checkout__divider {
     height: rem(2);
+    margin: rem(16) 0;
     background-color: $color-primary;
     opacity: 0.6;
-    margin: rem(16) 0;
 }
 
 .cart-checkout__btn {
     width: 50%;
     height: rem(42);
-    font-family: $font-primary;
-    font-weight: $font-weight-bold;
-    font-size: rem(18);
-    line-height: $line-height-medium;
     background-color: $color-primary;
+    font-family: $font-primary;
+    font-size: rem(18);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
     color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -420,45 +423,45 @@
         transform: translateY(rem(-2));
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         height: rem(50);
         font-size: rem(16);
     }
 }
 
 .cart-empty {
-    text-align: center;
     padding: rem(80) 0;
+    text-align: center;
 
     &__title {
+        margin-bottom: rem(16);
         font-family: $font-primary;
-        font-weight: $font-weight-bold;
         font-size: rem(32);
+        font-weight: $font-weight-bold;
         line-height: $line-height-medium;
         color: $color-black;
-        margin-bottom: rem(16);
     }
 
     &__text {
+        margin-bottom: rem(32);
         font-family: $font-secondary;
-        font-weight: $font-weight-regular;
         font-size: rem(16);
+        font-weight: $font-weight-regular;
         line-height: $line-height-base;
         color: $color-gray-dark;
-        margin-bottom: rem(32);
     }
 
     &__btn {
         display: inline-block;
         padding: rem(16) rem(32);
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: rem(16);
-        line-height: $line-height-medium;
-        background-color: $color-primary;
-        color: $color-white;
-        text-decoration: none;
         border-radius: rem(8);
+        background-color: $color-primary;
+        font-family: $font-primary;
+        font-size: rem(16);
+        font-weight: $font-weight-bold;
+        line-height: $line-height-medium;
+        text-decoration: none;
+        color: $color-white;
         transition: all 0.3s ease;
 
         &:hover {
@@ -468,7 +471,7 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
     .cart-content {
         gap: rem(60);
     }
@@ -478,7 +481,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .cart-hero {
         height: rem(180);
 
@@ -495,8 +498,8 @@
 
     .cart-table__header,
     .cart-item {
-        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
         gap: rem(12);
+        grid-template-columns: rem(60) 1fr rem(80) rem(100) rem(80) rem(60);
     }
 
     .cart-table__header {
@@ -513,7 +516,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .cart-hero {
         height: rem(150);
 
@@ -530,8 +533,8 @@
 
     .cart-table__header,
     .cart-item {
-        grid-template-columns: rem(50) 1fr rem(70) rem(80) rem(70) rem(50);
         gap: rem(8);
+        grid-template-columns: rem(50) 1fr rem(70) rem(80) rem(70) rem(50);
         font-size: rem(14);
     }
 

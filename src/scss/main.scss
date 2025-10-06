@@ -1,16 +1,12 @@
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
-
 @use 'base/reset';
 @use 'base/fonts';
-
 @use 'components/buttons';
 @use 'components/forms';
 @use 'components/product-card';
-
 @use 'layouts/header';
 @use 'layouts/footer';
-
 @use 'pages/about';
 @use 'pages/cart';
 @use 'pages/catalog';
@@ -21,14 +17,14 @@
 .hidden {
   position: absolute;
   z-index: -100;
-  opacity: 0;
   width: 0;
   height: 0;
+  opacity: 0;
 }
 
 .container {
-    max-width: 1300px;
     width: 100%;
+    max-width: 1300px;
     margin-inline: auto;
   }
 
@@ -38,7 +34,7 @@
 .products-section,
 .testimonials-section,
 .contact-content {
-  @include fill-viewport();
+  @include fill-viewport;
 }
 
 .hero,
@@ -54,39 +50,40 @@
    .hero {
     position: relative;
     z-index: $z-index-hero;
-    padding-block: $spacing-xxxl;
     background-color: $color-gray-light;
+    padding-block: $spacing-xxxl;
   
     &__content {
       @extend .container;                
-      display: grid;
-      grid-template-columns: 1fr 1fr;    
+
+      display: grid;    
       align-items: center;
-      gap: $spacing-xl;                  
+      gap: $spacing-xl;
+      grid-template-columns: 1fr 1fr;                  
     }
   
-    &__title {
+    &__title {  
+      margin: 0 0 $spacing-md;
       font-family: $font-primary;        
       font-size: $font-size-hero;        
-      line-height: $line-height-medium;  
-      margin: 0 0 $spacing-md;           
+      line-height: $line-height-medium;           
       letter-spacing: 0;
     }
   
     &__description {
       max-width: 60ch;                   
-      margin: 0 0 $spacing-lg;           
-      color: $color-gray;
+      margin: 0 0 $spacing-lg;
       font-size: $font-size-base;        
-      line-height: $line-height-base;    
+      line-height: $line-height-base;           
+      color: $color-gray;    
     }
   
     &__suitcase {
+      display: block;
       width: 100%;
       height: auto;
-      object-fit: cover;
-      display: block;
       border-radius: $border-radius-md;
+      object-fit: cover;
     }
   }
 
@@ -94,21 +91,21 @@
 
    .feature-section {
     @extend .container;
+
     position: relative;
-    z-index: $z-index-feature;
-   
-    grid-template-columns: 1fr 1fr;          
+    z-index: $z-index-feature;          
     align-items: stretch;
-    margin-block-start: -$section-overlap;
+    grid-template-columns: 1fr 1fr;
     box-shadow: $shadow-card;
+    margin-block-start: -$section-overlap;
   
     
     &__left {
-      block-size: 100%;
-      background: $color-white;
-      padding: rem(91) rem(70) 0 rem(70);
       display: grid;
       gap: rem(31);
+      padding: rem(91) rem(70) 0;
+      background: $color-white;
+      block-size: 100%;
     }
   
     &__profile {
@@ -119,12 +116,12 @@
     }
   
     &__profile-image {
-      inline-size: rem(56);
-      block-size: rem(56);
-      border-radius: 50%;
-      object-fit: cover;
       display: block;
       flex: 0 0 auto;
+      border-radius: 50%;
+      block-size: rem(56);
+      inline-size: rem(56);
+      object-fit: cover;
     }
   
     &__profile-info { padding-block-start: $spacing-xs; }
@@ -132,8 +129,8 @@
     &__profile-name {
       margin: 0 0 $spacing-xs;
       font-family: $font-primary;
-      font-weight: $font-weight-bold;
-      font-size: $font-size-xxl;            
+      font-size: $font-size-xxl;
+      font-weight: $font-weight-bold;            
       line-height: $line-height-medium;     
       color: $color-black;
     }
@@ -141,27 +138,28 @@
     &__profile-title {
       margin: 0;
       font-family: $font-primary;
-      font-weight: $font-weight-regular;
-      font-size: $font-size-medium;         
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;         
       line-height: $line-height-medium;
       color: $color-gray;
     }
   
-    &__text-block { display: grid; gap: $spacing-md; max-inline-size: 60ch; }
+    &__text-block { display: grid;
+ gap: $spacing-md; max-inline-size: 60ch; }
   
     &__text {
       margin: 0 0 $spacing-md;
-      color: $color-gray;
       font-family: $font-primary;
       font-size: $font-size-medium;
       line-height: $line-height-medium;
+      color: $color-gray;
   
       &--large {
-        margin-block-end: $spacing-md;
-        color: $color-black;
-        font-weight: $font-weight-black;
-        font-size: $font-size-title;        
+        font-size: $font-size-title;
+        font-weight: $font-weight-black;        
         line-height: $line-height-medium;
+        color: $color-black;
+        margin-block-end: $spacing-md;
       }
     }
   
@@ -169,34 +167,34 @@
   
     &__card {
       position: relative;
-      block-size: 100%;
       overflow: hidden;
+      block-size: 100%;
     }
   
     &__card-image {
       display: block;
-      inline-size: 100%;
       block-size: 100%;
+      inline-size: 100%;
       object-fit: cover;
       object-position: center;
     }
   
     &__card-content {
       position: absolute;
-      inset-inline-start: rem(70);
-      inset-block-end: rem(159);
       z-index: 1;
       display: grid;
       gap: $spacing-sm;
-      max-inline-size: rem(393);
       color: $color-white;
+      inset-block-end: rem(159);
+      inset-inline-start: rem(70);
+      max-inline-size: rem(393);
     }
   
     &__card-title {
       margin: 0 0 $spacing-md;
       font-family: $font-primary;
-      font-weight: $font-weight-black;
-      font-size: $font-size-title;          
+      font-size: $font-size-title;
+      font-weight: $font-weight-black;          
       line-height: $line-height-medium;
       color: $color-white;
     }
@@ -204,19 +202,19 @@
     &__card-text {
       margin: 0 0 $spacing-md;
       font-family: $font-primary;
-      font-weight: $font-weight-regular;
-      font-size: $font-size-medium;         
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;         
       line-height: $line-height-medium;
       color: rgba(#fff, .92);
     }
   
     &__card-btn {
-      inline-size: max-content;
       padding: rem(18) rem(36);
-      min-block-size: rem(60);
+      border-radius: $border-radius-md;
       font-size: $font-size-large;          
       font-weight: $font-weight-bold;
-      border-radius: $border-radius-md;
+      inline-size: max-content;
+      min-block-size: rem(60);
     }
   }
   
@@ -224,63 +222,64 @@
 
   
    .travel-section {
-    @extend .container;                  
+    @extend .container; 
+
+    overflow: hidden;                  
     padding-block: rem(140);             
-    padding-inline: $section-pad-inline; 
-    overflow: hidden;
+    padding-inline: $section-pad-inline;
   
     .section__title {
+      margin: 0 0 rem(12);
       font-family: $font-primary;
       font-size: $font-size-title;       
       font-weight: $font-weight-black;
-      line-height: $line-height-medium;  
+      line-height: $line-height-medium;
+      text-align: center;  
       color: $color-black;
-      text-align: center;
-      margin: 0 0 rem(12);
     }
   
     .section__subtitle {
+      margin: 0 0 rem(59);
       font-family: $font-primary;
       font-size: $font-size-medium;      
       font-weight: $font-weight-regular;
-      line-height: $line-height-medium;  
+      line-height: $line-height-medium;
+      text-align: center;  
       color: $color-gray;
-      text-align: center;
-      margin: 0 0 rem(59);
     }
   }
   
   .travel {
     &__grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr)); 
-      gap: rem(39);                                     
+      display: grid; 
+      gap: rem(39);
+      grid-template-columns: repeat(4, minmax(0, 1fr));                                     
     }
   
     &__card {
-      position: relative;
-      inline-size: 100%;             
-      min-block-size: rem(600);      
+      position: relative;      
       overflow: hidden;
       transition: transform 0.3s ease;
+      inline-size: 100%;             
+      min-block-size: rem(600);
   
       &:hover { transform: translateY(rem(-5)); } 
     }
   
     &__card-image {
       display: block;
-      inline-size: 100%;
       block-size: 100%;
+      inline-size: 100%;
       object-fit: cover;
       object-position: center;
     }
   
     &__card-content {
       position: absolute;
-      inset-block-end: rem(40);   
-      inset-inline-start: rem(40);
       z-index: 2;
       color: $color-white;
+      inset-block-end: rem(40);   
+      inset-inline-start: rem(40);
     }
   
     &__card-title {
@@ -295,13 +294,13 @@
     }
   
     &__card-text {
-      margin: 0;
-      max-inline-size: rem(181);       
+      margin: 0;       
       font-family: $font-primary;
       font-size: $font-size-xl;        
       font-weight: $font-weight-regular;
       line-height: $line-height-base;  
       color: $color-white;
+      max-inline-size: rem(181);
     }
   }
   
@@ -314,10 +313,10 @@
 
 .travel__card {
   position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
   width: 296px;
   height: 600px;
-  flex: 0 0 auto;
-  overflow: hidden;
   transition: transform 0.3s ease;
 
   &:hover {
@@ -335,10 +334,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 2;
+  background-color: rgb(0 0 0 / 40%);
 }
 
 .travel__card-content {
@@ -350,12 +349,12 @@
 }
 
 .travel__card-title {
+  margin-bottom: 28px;
   font-family: $font-primary;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   line-height: $line-height-medium;
   color: $color-white;
-  margin-bottom: 28px;
 
   span {
     display: block;
@@ -363,37 +362,38 @@
 }
 
 .travel__card-text {
+  max-width: 181px;
   font-family: $font-primary;
   font-size: $font-size-xl;
   font-weight: $font-weight-regular;
   line-height: $line-height-base;
   color: $color-white;
-  max-width: 181px;
 }
 
 .carousel-controls {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: rem(16);
   margin-top: rem(24);
 
   .carousel-prev,
   .carousel-next {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    min-inline-size: rem(48);
-    min-block-size: rem(48);
+    align-items: center;
     padding: 0;
     border-radius: $border-radius-md;
     background-color: $color-primary;
-    color: $color-white;
     font-size: $font-size-large;
+    color: $color-white;
     transition: opacity .2s ease, transform .2s ease, background-color .2s ease;
+    min-block-size: rem(48);
+    min-inline-size: rem(48);
 
     &:hover { transform: translateY(rem(-2)); }
     &:focus-visible { outline: rem(3) solid rgba($color-primary, .4); outline-offset: rem(2); }
+
     &:disabled,
     &[aria-disabled="true"] {
       opacity: .5;
@@ -405,6 +405,7 @@
 
    .products-section {
     @extend .container;                   
+
     padding-block: rem(80);               
     padding-inline: $section-pad-inline;  
   
@@ -413,59 +414,60 @@
     }
   
     .section__title {
+      margin: 0 0 rem(12);
       font-family: $font-primary;
       font-size: $font-size-title;        
       font-weight: $font-weight-black;
-      line-height: $line-height-medium;   
+      line-height: $line-height-medium;
+      text-align: center;   
       color: $color-black;
-      text-align: center;
-      margin: 0 0 rem(12);
     }
   
     .section__subtitle {
+      margin: 0 0 rem(59);
       font-family: $font-primary;
       font-size: $font-size-medium;       
       font-weight: $font-weight-regular;
-      line-height: $line-height-medium;   
+      line-height: $line-height-medium;
+      text-align: center;   
       color: $color-gray;
-      text-align: center;
-      margin: 0 0 rem(59);
     }
   }
   
   .products {
     &__grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr)); 
-      gap: rem(39);                                     
+      display: grid; 
+      gap: rem(39);
+      grid-template-columns: repeat(4, minmax(0, 1fr));                                     
     }
   }
   
 
 .banner-section {
     @extend .container;
+
     position: relative;
     padding-block: rem(119);
     padding-inline: $section-pad-inline;
   
     &::before {
-      content: "";
       position: absolute;
-      inset: 0;                 
+      inset: 0;
+      z-index: 0;                 
       background:
-        linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+        linear-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 40%)),
         url("/assets/banner-photo.png") center/cover no-repeat;
       pointer-events: none;
-      z-index: 0;
+      content: "";
     }
   
 
     .banner__content {
       position: relative;                   
       z-index: 1;
-      display: flex;
-      align-items: center;                  
-      justify-content: center;              
+      display: flex;                  
+      justify-content: center;
+      align-items: center;              
       gap: $spacing-xl;                     
       color: $color-white;
     }
@@ -517,13 +519,13 @@
   
     .banner__text {
       margin: 0 0 rem(40);
-      max-inline-size: rem(393);
       font-family: $font-primary;
       font-size: $font-size-medium;         
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: $color-white;
       opacity: .92;
+      max-inline-size: rem(393);
     }
   
     .banner__btn {
@@ -535,43 +537,44 @@
   
 .testimonials-section {
   padding: 119px 0;
+
   @extend .container;
 
   .section__title {
+    margin-bottom: 12px;
     font-family: $font-primary;
     font-size: $font-size-title;
     font-weight: $font-weight-black;
     line-height: $line-height-medium;
-    color: $color-black;
     text-align: center;
-    margin-bottom: 12px;
+    color: $color-black;
   }
 
   .section__subtitle {
+    margin-bottom: 80px;
     font-family: $font-primary;
     font-size: $font-size-medium;
     font-weight: $font-weight-regular;
     line-height: $line-height-medium;
-    color: $color-gray;
     text-align: center;
-    margin-bottom: 80px;
+    color: $color-gray;
   }
 }
 
 .testimonials__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .testimonial-card {
   width: 420px;
   height: 336px;
-  background-color: $color-white;
-  box-shadow: $shadow-card;
   padding: 44px 39px;
+  background-color: $color-white;
   text-align: center;
   transition: transform 0.3s ease;
+  box-shadow: $shadow-card;
 
   &:hover {
     transform: translateY(-5px);
@@ -588,14 +591,14 @@
 .testimonial-card__image {
   width: 98px;
   height: 98px;
+  margin-bottom: 44px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 44px;
 }
 
 .testimonial-card__text {
-  margin-bottom: 25px;
   flex: 1;
+  margin-bottom: 25px;
 
   p {
     font-family: $font-primary;
@@ -616,19 +619,19 @@
 
 .contact-hero {
   position: relative;
-  height: 554px;
-  overflow: hidden;
   display: flex;
-  align-items: center;
+  overflow: hidden;
   justify-content: center;
+  align-items: center;
+  height: 554px;
 
   &__bg {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 
   &__image {
@@ -642,29 +645,29 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 2;
+    background-color: rgb(0 0 0 / 40%);
   }
 
   &__content {
     position: relative;
     z-index: 3;
-    text-align: center;
-    color: $color-white;
-    max-width: 1300px;
     width: 100%;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 $section-pad-inline;
+    text-align: center;
+    color: $color-white;
   }
 
   &__title {
+    margin: 0 0 rem(40);
     font-family: $font-primary;
     font-size: $font-size-hero;
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
-    margin: 0 0 rem(40);
     color: $color-white;
   }
 
@@ -673,12 +676,12 @@
     margin: 0 auto;
 
     p {
+      margin: 0 0 rem(7);
       font-family: $font-primary;
       font-size: $font-size-medium;
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: #E9E9ED;
-      margin: 0 0 rem(7);
 
       &:last-child {
         margin-bottom: 0;
@@ -688,83 +691,83 @@
 }
 
 .contact-content {
-  padding: rem(80) 0;
-  background-color: $color-white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
   gap: clamp(rem(24), 6vw, rem(100));
+  padding: rem(80) 0;
+  background-color: $color-white;
 
 }
 
 .contact-form {
     position: relative;
-    background-color: $color-white;
-    overflow: hidden;
-  
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "image content";
+    overflow: hidden;
     align-items: start;
-  
-    max-width: 1300px;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
+    max-width: 1300px;
     min-height: rem(400);
+    background-color: $color-white;
+    grid-template-areas: "image content";
   
     &__image {
-      grid-area: image;
       position: relative;
+      display: block;
       overflow: hidden;
       min-width: 0;
-      aspect-ratio: 1 / 1;
       min-height: rem(400);
-      display: block;
+      aspect-ratio: 1 / 1;
+      grid-area: image;
     }
   
     &__bg {
       position: absolute;
       inset: 0;
+      display: block;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
       object-position: center;
     }
   
     &__content {
-      grid-area: content;
-      background-color: $color-white;
-      padding: 0 rem(50);
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-height: rem(400);
+      padding: 0 rem(50);
+      background-color: $color-white;
+      grid-area: content;
     }
   
     &__title {
+      margin: 0 0 rem(20);
       font-family: $font-primary;
       font-size: rem(25);
       font-weight: $font-weight-bold;
       line-height: $line-height-medium;
       color: $color-black;
-      margin: 0 0 rem(20);
     }
   
     &__subtitle {
+      margin: 0 0 rem(40);
       font-family: $font-primary;
       font-size: $font-size-medium;
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: $color-black;
-      margin: 0 0 rem(40);
     }
   
-    &__form { display: flex; flex-direction: column; gap: rem(15); }
+    &__form { display: flex;
+ flex-direction: column; gap: rem(15); }
   
     &__field {
-      display: flex; flex-direction: column; gap: rem(6);
+      display: flex;
+ flex-direction: column; gap: rem(6);
   
       &--textarea {
         .contact-form__textarea { min-height: rem(119); resize: vertical; }
@@ -783,49 +786,50 @@
   
     &__input,
     &__textarea {
+      height: rem(44);
       padding: rem(12) rem(15);
       border: 2px solid rgba($color-primary, 0.5);
+      background-color: $color-white;
       font-family: $font-primary;
       font-size: $font-size-base;
       line-height: $line-height-base;
       color: $color-black;
-      background-color: $color-white;
       transition: border-color 0.3s ease;
-      height: rem(44);
   
-      &:focus { outline: none; border-color: $color-primary; }
+      &:focus { border-color: $color-primary; outline: none; }
       &::placeholder { color: rgba($color-black, 0.5); }
     }
   
-    &__textarea { font-family: inherit; resize: vertical; height: rem(119); }
+    &__textarea { height: rem(119);
+ font-family: inherit; resize: vertical; }
   
     &__submit {
       align-self: flex-start;
+      min-height: rem(40);
       padding: rem(13) rem(30);
       font-size: $font-size-small;
       font-weight: $font-weight-bold;
-      min-height: rem(40);
     }
   }
 
 .contact-info {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: rem(30);
-  align-content: start;
-  max-width: 1300px;
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
+  max-width: 1300px;
+  align-content: start;
 
   &__card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     padding: rem(30) rem(20);
+    text-align: center;
 
     &:hover {
       transform: translateY(rem(-5));
-      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 30px rgb(0 0 0 / 15%);
     }
   }
 
@@ -834,12 +838,12 @@
   }
 
   &__icon-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: rem(62);
     height: rem(62);
     background-color: $color-primary;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: $color-white;
   }
 
@@ -850,12 +854,12 @@
   }
 
   &__title {
+    margin: 0 0 rem(15);
     font-family: $font-primary;
     font-size: $font-size-xxl;
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     color: $color-black;
-    margin: 0 0 rem(15);
   }
 
   &__details {
@@ -864,26 +868,25 @@
     gap: rem(7);
 
     p {
+      margin: 0;
       font-family: $font-primary;
       font-size: $font-size-medium;
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
       color: $color-black;
-      margin: 0;
     }
   }
 }
   
-@media (max-width: 1200px) {
+@media (width <= 1200px) {
 .contact-form {
+    row-gap: rem(24);
     grid-template-columns: 1fr;
+    min-height: auto;
+    max-height: none;
     grid-template-areas:
       "content"
       "image";
-    row-gap: rem(24);
-
-    min-height: auto;
-    max-height: none;
 
     &__content { padding: rem(24) rem(20); }
 
@@ -891,12 +894,12 @@
   }
 
   .contact-info {
-    grid-template-columns: repeat(2, 1fr);
     gap: rem(25);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .contact-hero {
     height: 400px;
 
@@ -922,8 +925,8 @@
   }
 
   .contact-info {
-    grid-template-columns: 1fr;
     gap: rem(20);
+    grid-template-columns: 1fr;
 
     &__card {
       padding: rem(20) rem(15);
@@ -941,13 +944,13 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .contact-hero {
     height: 300px;
 
     &__title {
-      font-size: rem(30);
       margin-bottom: rem(20);
+      font-size: rem(30);
     }
 
     &__text {

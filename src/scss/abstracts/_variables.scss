@@ -3,19 +3,19 @@
 
 // Colors 
 $color-primary: #B92770; 
-$color-white: #FFFFFF;
-$color-black: #000000;
+$color-white: #FFF;
+$color-black: #000;
 $color-gray: #504E4A;
 $color-gray-light: #E7E8E9;
-$color-gray-dark: rgba(0, 0, 0, 0.35);
+$color-gray-dark: rgb(0 0 0 / 35%);
 $color-red: red;
 $color-green: green;
 
 // Typography
-$font-primary: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-secondary: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-tertiary: -apple-system, system-ui, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-helvetica: "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Liberation Sans", sans-serif;
+$font-primary: "Montserrat", system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+$font-secondary: "Inter", system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+$font-tertiary: -apple-system, system-ui, "SF Pro Text", "SF Pro Display", "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+$font-helvetica: "Helvetica Neue", helvetica, arial, "Nimbus Sans", "Liberation Sans", sans-serif;
 
 
 // Font weights
@@ -26,35 +26,37 @@ $font-weight-bold: 700;
 $font-weight-black: 900;
 
 /* Font sizes (rem) — base size 16px */
-$font-size-small:  rem(12);
-$font-size-base:   rem(15); 
+$font-size-small: rem(12);
+$font-size-base: rem(15); 
 $font-size-medium: rem(17);
-$font-size-large:  rem(18);
-$font-size-xl:     rem(19);
-$font-size-xxl:    rem(20);
-$font-size-title:  rem(40);
-$font-size-hero:   rem(50);
+$font-size-large: rem(18);
+$font-size-xl: rem(19);
+$font-size-xxl: rem(20);
+$font-size-title: rem(40);
+$font-size-hero: rem(50);
 $font-size-banner: rem(223);
 
 /* Line heights — unitless is better for scaling */
-$line-height-small:  1.2;
-$line-height-base:   1.47;
+$line-height-small: 1.2;
+$line-height-base: 1.47;
 $line-height-medium: 1.22;
 
 /* Container */
 $container-max-width: rem(1300);
+
 // $container-padding-inline: rem(24);
 $section-pad-inline: rem(24);
+
 // $container-padding: $container-padding-inline;
 $section-overlap: rem(90);
 
 /* Spacing scale (rem) */
-$spacing-xs:   rem(4);
-$spacing-sm:   rem(8);
-$spacing-md:   rem(16);
-$spacing-lg:   rem(24);
-$spacing-xl:   rem(32);
-$spacing-xxl:  rem(48);
+$spacing-xs: rem(4);
+$spacing-sm: rem(8);
+$spacing-md: rem(16);
+$spacing-lg: rem(24);
+$spacing-xl: rem(32);
+$spacing-xxl: rem(48);
 $spacing-xxxl: rem(64);
 
 /* Border radius (rem) */
@@ -63,7 +65,7 @@ $border-radius-md: rem(8);
 $border-radius-lg: rem(12);
 
 // Box shadows
-$shadow-card: 0px 20px 80px 0px rgba(193, 199, 212, 0.7);
+$shadow-card: 0px 20px 80px 0px rgb(193 199 212 / 70%);
 
 // Z-index
 $z-index-hero: 0;          

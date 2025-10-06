@@ -7,19 +7,19 @@
   &__top {
     position: relative;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     gap: $spacing-xl;
     background-color: $color-gray;
-    overflow: hidden;
 
     &__vectors {
       position: absolute;
+      top: 0;
       left: 0;
-      top: 0;        
+      z-index: 1;        
       width: 100%;
       height: 100%;  
       pointer-events: none;
-      z-index: 1;
     }
     
     &__vector {
@@ -47,12 +47,12 @@
     }
 
     h2 {
-      color: $color-white;
       font-family: $font-secondary;
       font-size: $font-size-xl;
       font-weight: $font-weight-bold;
       line-height: $line-height-medium;
       text-align: start;
+      color: $color-white;
     }
   }
 
@@ -63,24 +63,24 @@
 
     &__item {
       display: flex;
+      flex: 1;
       align-items: flex-start;
       gap: $spacing-md;
-      flex: 1;
       max-width: rem(247);
 
       img {
+        flex-shrink: 0;
         width: rem(60);
         height: rem(60);
-        flex-shrink: 0;
       }
 
       p {
-        color: $color-white;
+        margin: rem(8) 0 0;
         font-family: $font-helvetica;
         font-size: $font-size-base;
         font-weight: $font-weight-medium;
         line-height: $line-height-medium;
-        margin: rem(8) 0 0 0;
+        color: $color-white;
       }
     }
   }
@@ -115,12 +115,12 @@
         margin-bottom: $spacing-md;
 
         a {
-          color: $color-black;
           font-family: $font-helvetica;
           font-size: $font-size-base;
           font-weight: $font-weight-bold;
           line-height: $line-height-medium;
           text-decoration: none;
+          color: $color-black;
 
           &:hover {
             color: $color-primary;
@@ -129,20 +129,20 @@
       }
 
       ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
         display: flex;
         flex-direction: column;
         gap: $spacing-md;
+        margin: 0;
+        padding: 0;
+        list-style: none;
 
         li a {
-          color: $color-black;
           font-family: $font-helvetica;
           font-size: $font-size-base;
           font-weight: $font-weight-regular;
           line-height: $line-height-base;
           text-decoration: none;
+          color: $color-black;
 
           &:hover {
             color: $color-primary;
@@ -154,34 +154,34 @@
 
   &__bottom__left__shipping-information {
     h3 {
-      color: $color-black;
+      margin-bottom: $spacing-md;
       font-family: $font-helvetica;
       font-size: $font-size-base;
       font-weight: $font-weight-bold;
       line-height: $line-height-medium;
-      margin-bottom: $spacing-md;
+      color: $color-black;
     }
 
     p {
-      color: $color-black;
+      max-width: rem(639);
       font-family: $font-helvetica;
       font-size: $font-size-base;
       font-weight: $font-weight-regular;
       line-height: $line-height-base;
-      max-width: rem(639);
+      color: $color-black;
     }
   }
 
   &__bottom__right__contact-us {
     h3 a {
-      color: $color-black;
+      display: inline-block;
+      margin-bottom: $spacing-md;
       font-family: $font-helvetica;
       font-size: $font-size-base;
       font-weight: $font-weight-bold;
       line-height: $line-height-medium;
       text-decoration: none;
-      margin-bottom: $spacing-md;
-      display: inline-block;
+      color: $color-black;
 
       &:hover {
         color: $color-primary;
@@ -189,46 +189,46 @@
     }
 
     p {
-      color: $color-black;
+      max-width: rem(367);
       font-family: $font-helvetica;
       font-size: $font-size-base;
       font-weight: $font-weight-regular;
       line-height: $line-height-base;
-      max-width: rem(367);
+      color: $color-black;
     }
   }
 
   &__bottom__right__contacts {
-    font-style: normal;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: rem(30) rem(18);
+    grid-template-columns: 1fr 1fr;
     max-width: rem(373);
+    font-style: normal;
 
     &__item {
       display: flex;
-      gap: rem(12);
       align-items: flex-start;
+      gap: rem(12);
 
       svg {
+        flex-shrink: 0;
         width: rem(24);
         height: rem(24);
-        flex-shrink: 0;
-        fill: $color-primary;
         margin-top: rem(2);
+        fill: $color-primary;
       }
 
       p {
-        color: $color-black;
+        margin: 0;
         font-family: $font-helvetica;
         font-size: $font-size-base;
         font-weight: $font-weight-regular;
         line-height: $line-height-base;
-        margin: 0;
+        color: $color-black;
 
         a {
-          color: $color-black;
           text-decoration: none;
+          color: $color-black;
 
           &:hover {
             color: $color-primary;
@@ -249,20 +249,20 @@
   }
 
  &__copyright {
-    text-align: center;
     margin-bottom: rem(46);
+    text-align: center;
 
     small {
-      color: $color-gray-dark;
       font-family: $font-secondary;
       font-size: rem(14);
       font-weight: $font-weight-regular;
       line-height: $line-height-medium;
+      color: $color-gray-dark;
     }
   }
 }
 
-@media (max-width: rem(767)) {
+@media (width <= rem(767)) {
   .footer {
     .footer-benefits {
       flex-direction: column;

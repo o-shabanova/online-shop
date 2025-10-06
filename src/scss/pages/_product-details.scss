@@ -2,24 +2,25 @@
 @use "../abstracts/mixins" as *;
 
 .main-button, .product-details__btn {
-    color: $color-white;
+    background: $color-primary;
     font-family: $font-primary;
     font-weight: $font-weight-bold;
-    background: $color-primary;
+    color: $color-white;
     cursor: pointer;
 
     &:hover {
         background-color: darken($color-primary, 10%);
     }
 }
+
 .product-details {
     display: flex;
     gap: rem(40);
     margin-bottom: rem(80);
 
     &__gallery {
-        flex: 1 1 45%;
         display: flex;
+        flex: 1 1 45%;
         flex-direction: column;
         gap: rem(10);
 
@@ -42,18 +43,18 @@
 }
 
 .product-details__info {
-    flex: 1 1 45%;
     display: flex;
+    flex: 1 1 45%;
     flex-direction: column;
     justify-content: space-between;
     
     .product-details__title {
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: rem(30);
-        color: $color-black;
-        line-height: 1.5;
         margin-bottom: rem(16);
+        font-family: $font-primary;
+        font-size: rem(30);
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        color: $color-black;
     }
 
     .product-details__rating {
@@ -62,27 +63,27 @@
 
     .product-details__review-count {
         font-family: $font-primary;
-        font-weight: $font-weight-regular;
         font-size: rem(13);
-        color: $color-gray;
+        font-weight: $font-weight-regular;
         line-height: 1.5;
+        color: $color-gray;
     }
 
     .product-details__price {
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: rem(20);
-        color: $color-black;
-        line-height: 1.5;
         margin-bottom: rem(40);
+        font-family: $font-primary;
+        font-size: rem(20);
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        color: $color-black;
     }
 
     .product-details__description {
         font-family: $font-primary;
-        font-weight: $font-weight-regular;
         font-size: rem(17);
-        color: $color-gray;
+        font-weight: $font-weight-regular;
         line-height: 1.5;
+        color: $color-gray;
     }
 
     .product-details__description + .product-details__description {
@@ -98,28 +99,28 @@
           
                   label {
                     font-family: $font-primary;
-                    font-weight: $font-weight-bold;
                     font-size: rem(17);
-                    color: $color-gray;
+                    font-weight: $font-weight-bold;
                     line-height: 1.5;
+                    color: $color-gray;
                   }
           
                   select {
-                    font-family: $font-primary;
-                    font-weight: $font-weight-regular;
-                    font-size: rem(16);
-                    color: $color-gray;
-                    line-height: 1.5;
-
-                    border: 2px solid $color-gray-light;
                     padding: rem(10) rem(15);
+                    border: 2px solid $color-gray-light;
+                    font-family: $font-primary;
+                    font-size: rem(16);
+                    font-weight: $font-weight-regular;
+                    line-height: 1.5;
+                    color: $color-gray;
           
                     &:focus {
-                      outline: none;
                       border-color: $color-primary;
+                      outline: none;
                     }
                   } 
                  }
+
     .product-details__quantity {
         display: flex;
         gap: rem(13);
@@ -133,13 +134,13 @@
             border: 2px solid $color-primary;
             
             .product-details__qty-btn {
-                font-family: $font-primary;
-                font-weight: $font-weight-bold;
-                font-size: rem(25);
-                color: $color-gray;
-                line-height: 1.5;
-                border: none;
                 padding: rem(12) rem(20);
+                border: none;
+                font-family: $font-primary;
+                font-size: rem(25);
+                font-weight: $font-weight-bold;
+                line-height: 1.5;
+                color: $color-gray;
                 cursor: pointer;
 
                 &:hover {
@@ -149,20 +150,20 @@
 
             input[type="number"] {
                 width: rem(50);
-                text-align: center;
                 border: none;
                 font-family: $font-primary;
-                font-weight: 700;
                 font-size: rem(25);
-                color: $color-gray;
+                font-weight: 700;
                 line-height: 1.5;
+                text-align: center;
+                color: $color-gray;
 
             
 
                &::-webkit-outer-spin-button,
                &::-webkit-inner-spin-button {
-               -webkit-appearance: none;
                 margin: 0;
+               appearance: none;
                }
             }
         }
@@ -171,15 +172,16 @@
             flex: 1; 
         }
     }
+
     .product-details__payments {
         display: flex;
         align-items: center;
         gap: rem(20);
 
         .product-details__payment-label {
-            line-height: 1.5;
-            font-weight: $font-weight-bold;
             font-size: rem(23);
+            font-weight: $font-weight-bold;
+            line-height: 1.5;
             color: $color-gray;
             
         }
@@ -188,6 +190,7 @@
 
 .product-tabs {
     margin-bottom: rem(100);
+
     &__list {
         display: flex;
         justify-content: center;
@@ -198,10 +201,10 @@
 
     &__tab {
         font-family: $font-primary;
-        font-weight: $font-weight-bold;
         font-size: rem(17);
-        color: $color-black;
+        font-weight: $font-weight-bold;
         line-height: 1.5;
+        color: $color-black;
         cursor: pointer;
 
         &--active {
@@ -215,10 +218,10 @@
 
             .product-tabs__text {
                 font-family: $font-primary;
-                font-weight: $font-weight-regular;
                 font-size: rem(17);
-                color: $color-gray;
+                font-weight: $font-weight-regular;
                 line-height: 1.5;
+                color: $color-gray;
 
                 & + .product-tabs__text {
                     margin-top: rem(30);
@@ -234,14 +237,15 @@
 
 .related-products {
     margin-bottom: rem(100);
+
     &__title {
-        font-family: $font-primary;
-        font-weight: 700;
-        font-size: rem(30);
-        color: $color-black;
-        line-height: 1.5;
-        border-bottom: 2px solid $color-primary;
         margin-bottom: rem(60);
+        font-family: $font-primary;
+        font-size: rem(30);
+        font-weight: 700;
+        line-height: 1.5;
+        color: $color-black;
+        border-bottom: 2px solid $color-primary;
     }
 }
 }
@@ -249,21 +253,22 @@
 .related-products {
     margin-bottom: 100px;
     text-align: center;
+
     &__title {
-        font-family: $font-primary;
-        font-weight: 700;
-        font-size: rem(30);
-        color: $color-black;
-        line-height: 1.5;
         display: inline-block;
-        border-bottom: 2px solid $color-primary;
         margin-bottom: rem(60);
+        font-family: $font-primary;
+        font-size: rem(30);
+        font-weight: 700;
+        line-height: 1.5;
+        color: $color-black;
+        border-bottom: 2px solid $color-primary;
     }
 
     &__grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: rem(30);
+      grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -271,17 +276,17 @@
   
   .reviews__container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: rem(145);
+    grid-template-columns: 1fr 1fr;
   }
 
   .reviews__title {
-    font-family: $font-primary;
-    font-weight: $font-weight-bold;
-    font-size: rem(18);
-    color: $color-black;
-    line-height: 1.5;
     margin-bottom: rem(90);
+    font-family: $font-primary;
+    font-size: rem(18);
+    font-weight: $font-weight-bold;
+    line-height: 1.5;
+    color: $color-black;
   }
   
   .review {
@@ -289,8 +294,8 @@
     gap: rem(25); 
     
     &__author-photo {
-        object-fit: contain;
         align-self: flex-start;
+        object-fit: contain;
     }
     
   
@@ -298,7 +303,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      
       margin-bottom: rem(29);
 
       .review__author-info {
@@ -309,18 +313,18 @@
 
         .review__author {
           font-family: $font-primary;
-          font-weight: $font-weight-bold;
           font-size: rem(17);
-          color: $color-gray;
+          font-weight: $font-weight-bold;
           line-height: 1.5;
+          color: $color-gray;
         }
     
         time {
           font-family: $font-primary;
-          font-weight: $font-weight-regular;
           font-size: rem(13);
-          color: $color-gray;
+          font-weight: $font-weight-regular;
           line-height: 1.5;
+          color: $color-gray;
         }
       }
   
@@ -337,10 +341,10 @@
   
     &__text {
       font-family: $font-primary;
-      font-weight: $font-weight-regular;
       font-size: rem(17);
-      color: $color-black;
+      font-weight: $font-weight-regular;
       line-height: 1.5;
+      color: $color-black;
     }
   }
   

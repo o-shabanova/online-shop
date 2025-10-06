@@ -20,16 +20,22 @@
     "build": "npm run clean && npm run build:css && npm run build:html",
     "clean": "rm -rf dist",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "stylelint": "stylelint \"src/scss/**/*.scss\"",
+    "stylelint:fix": "stylelint \"src/scss/**/*.scss\" --fix"
   },
-  
   "devDependencies": {
+    "eslint": "^9.11.0",
+    "eslint-plugin-import": "^2.31.0",
     "posthtml": "^0.16.6",
     "posthtml-cli": "^0.10.0",
     "posthtml-include": "^2.0.1",
     "sass": "^1.93.2",
     "serve": "^14.2.5",
-    "eslint": "^9.11.0",
-    "eslint-plugin-import": "^2.31.0"
+    "stylelint": "^16.25.0",
+    "stylelint-config-recommended-scss": "^16.0.2",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.12.1"
   }
 }

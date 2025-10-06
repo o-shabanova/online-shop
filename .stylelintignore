@@ -1,0 +1,15 @@
+# Build output
+/dist/
+
+# Dependencies
+/node_modules/
+
+# Generated assets
+**/*.min.css
+**/*.min.scss
+
+# HTML and JS files should be ignored
+**/*.html
+**/*.js
+
+

@@ -2,19 +2,19 @@
 
 .btn {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-height: 40px;
   padding: 9px 24px;
+  border: none;
+  border-radius: 0;
   font-family: $font-tertiary;
   font-size: $font-size-medium;
   font-weight: $font-weight-bold;
   line-height: $line-height-small;
-  border: none;
-  border-radius: 0;
+  text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: center;
-  min-height: 40px;
 
   &--primary {
     background-color: $color-primary;
@@ -31,9 +31,9 @@
   }
 
   &--secondary {
+    border: 2px solid $color-primary;
     background-color: transparent;
     color: $color-primary;
-    border: 2px solid $color-primary;
 
     &:hover {
       background-color: $color-primary;
@@ -42,14 +42,14 @@
   }
 
   &--large {
-    padding: 18px 48px;
     min-height: 60px;
+    padding: 18px 48px;
     font-size: $font-size-large;
   }
 
   &--medium {
-    padding: 12px 32px;
     min-height: 48px;
+    padding: 12px 32px;
   }
 }
   

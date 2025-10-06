@@ -1,10 +1,13 @@
 @use 'sass:math';
+
 /* fills viewport height safely */
-@mixin fill-viewport($subtract: 0px) {
+@mixin fill-viewport($subtract: 0) {
     min-block-size: calc(100vh - #{$subtract});   
+
     @supports (height: 100svh) {
       min-block-size: calc(100svh - #{$subtract});
     }
+
     @supports (height: 100dvh) {
       min-block-size: calc(100dvh - #{$subtract});
     }

@@ -1,31 +1,31 @@
 @use "../abstracts/variables" as *;
 
 .product-card {
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    transition: all 0.3s ease;
+    text-align: center;
     cursor: pointer;
+    transition: all 0.3s ease;
 
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 10px 25px rgb(0 0 0 / 15%);
     }
 
     &__image-wrapper {
         position: relative;
-        aspect-ratio: 296 / 400;
         overflow: hidden;
         margin-bottom: 24px;
+        aspect-ratio: 296 / 400;
     }
 
     &__image {
         width: 100%;
         height: 100%;
-        object-fit: cover;
         transition: transform 0.3s ease;
+        object-fit: cover;
     }
 
     &:hover &__image {
@@ -34,65 +34,65 @@
 
     &__info {
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         gap: 15px;
-        flex-grow: 1;
     }
 
-    &__name {
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: $font-size-xl;
-        color: $color-black;        
-        line-height: $line-height-base;        
+    &__name {        
         padding: 0 50px;
+        font-family: $font-primary;
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;        
+        line-height: $line-height-base;
+        color: $color-black;
     }
 
     &__price {
         font-family: $font-primary;
-        font-weight: $font-weight-bold;
         font-size: $font-size-xl;
-        color: $color-gray;        
+        font-weight: $font-weight-bold;        
         line-height: $line-height-base;
+        color: $color-gray;
     }
 
     &__button {
-        font-size: $font-size-medium;
-        padding: 10px 25px;
         width: 55%;
+        padding: 10px 25px;
+        font-size: $font-size-medium;
     }
 
     &__badge {
-        font-size: 12px;
-        padding: 6px 12px;
         position: absolute;
         top: 15px;
         left: 15px;
-        background-color: $color-primary;
-        color: $color-white;
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
         z-index: 1;
+        padding: 6px 12px;
+        background-color: $color-primary;
+        font-family: $font-primary;
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        color: $color-white;
     }
 }
 
 .main-button {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    min-height: 40px;
     padding: 10px 25px;
+    background-color: $color-primary;
     font-family: $font-primary;
     font-size: $font-size-medium;
     font-weight: $font-weight-bold;
     line-height: $line-height-base;
-    background-color: $color-primary;
+    text-align: center;
     color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: center;
-    min-height: 40px;
 
     &:hover {
         background-color: darken($color-primary, 10%);
@@ -105,7 +105,7 @@
 }
 
 .product-button {
-    font-size: $font-size-medium;
-    padding: 10px 25px;
     width: 55%;
+    padding: 10px 25px;
+    font-size: $font-size-medium;
 }

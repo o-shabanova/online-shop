@@ -11,27 +11,28 @@
             min-height: rem(140, 16); 
         }
     }
+
     &__input {
         &--error {
             border-color: #e74c3c !important;
-            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+            box-shadow: 0 0 0 2px rgb(231 76 60 / 10%);
         }
     }
     
     &__error {
-        color: #e74c3c;
-        font-size: rem(14, 16);
-        font-family: $font-primary;
-        font-weight: $font-weight-regular;
-        margin-top: rem(4, 16);
         display: none;
+        margin-top: rem(4, 16);
+        font-family: $font-primary;
+        font-size: rem(14, 16);
+        font-weight: $font-weight-regular;
         line-height: 1.4;
+        color: #e74c3c;
     }
     
     &__message {
+        margin-bottom: rem(20, 16);
         padding: rem(12, 16) rem(16, 16);
         border-radius: rem(4, 16);
-        margin-bottom: rem(20, 16);
         font-family: $font-primary;
         font-size: rem(14, 16);
         font-weight: $font-weight-medium;
@@ -39,36 +40,36 @@
         transition: opacity 0.3s ease;
         
         &--success {
+            border: 1px solid #c3e6cb;
             background-color: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
         }
         
         &--error {
+            border: 1px solid #f5c6cb;
             background-color: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
         }
     }
     
     &__submit {
         &--loading {
+            position: relative;
             opacity: 0.7;
             cursor: not-allowed;
-            position: relative;
             
             &::after {
-                content: '';
                 position: absolute;
-                right: rem(10, 16);
                 top: 50%;
-                transform: translateY(-50%);
+                right: rem(10, 16);
                 width: rem(16, 16);
                 height: rem(16, 16);
                 border: 2px solid transparent;
-                border-top: 2px solid currentColor;
                 border-radius: 50%;
+                transform: translateY(-50%);
                 animation: spin 1s linear infinite;
+                border-top: 2px solid currentcolor;
+                content: '';
             }
         }
     }
@@ -79,21 +80,21 @@
     flex-direction: column;
     
     &__title {
-        font-family: $font-primary;
-        font-weight: $font-weight-bold;
-        font-size: rem(18);
-        color: $color-black;
-        line-height: 1.5;
         margin-bottom: rem(20);
+        font-family: $font-primary;
+        font-size: rem(18);
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        color: $color-black;
     }
 
     &__note {
-        font-family: $font-primary;
-        font-weight: $font-weight-regular;
-        font-size: rem(13);
-        color: $color-black;
-        line-height: 1.5;
         margin-bottom: rem(30);
+        font-family: $font-primary;
+        font-size: rem(13);
+        font-weight: $font-weight-regular;
+        line-height: 1.5;
+        color: $color-black;
 
         span {
             color: $color-primary;
@@ -108,10 +109,10 @@
 
         .review-form__rate-label {
             font-family: $font-primary;
-            font-weight: $font-weight-bold;
             font-size: rem(13);
-            color: $color-black;
+            font-weight: $font-weight-bold;
             line-height: 1.5;
+            color: $color-black;
         } 
     }
     
@@ -127,27 +128,28 @@
 
     &__textarea, &__name, &__email {
         width: 100%;
+        border: 2px solid rgba($color-primary, 0.5);
         font-size: rem(16);
         resize: vertical;
-        border: 2px solid rgba($color-primary, 0.5);
 
         &::placeholder {
             font-family: $font-primary;
-            font-weight: $font-weight-regular;
             font-size: rem(13);
-            color: $color-gray;
+            font-weight: $font-weight-regular;
             line-height: 1.5;
+            color: $color-gray;
         }
+
         &:focus {
-            outline: none;
             border: 2px solid $color-primary;
+            outline: none;
         }
     }
 
     &__textarea {
-        padding: rem(15);
         min-height: rem(170);
         margin-bottom: rem(25);
+        padding: rem(15);
     }
 
     &__user-info {
@@ -163,25 +165,25 @@
     }
   
     &__remember {
-        font-family: $font-primary;
-        font-weight: $font-weight-regular;
-        font-size: rem(13);
-        color: $color-gray;
-        line-height: 1.5;
         display: flex;
         align-items: center;
         gap: 15px;
         margin-bottom: rem(30);
+        font-family: $font-primary;
+        font-size: rem(13);
+        font-weight: $font-weight-regular;
+        line-height: 1.5;
+        color: $color-gray;
     }
   
     &__submit {
+        align-self: flex-start;
         padding: 12px 22px;
         font-family: $font-primary;
-        font-weight: $font-weight-bold;
         font-size: rem(12);
-        color: $color-white;
+        font-weight: $font-weight-bold;
         line-height: 1.5;
-        align-self: flex-start;
+        color: $color-white;
         
         &:hover {
             background-color: darken($color-primary, 10%);
