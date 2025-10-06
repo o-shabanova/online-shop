@@ -1,4 +1,3 @@
-/* About Page Styles */
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
@@ -243,114 +242,6 @@
   }
 }
 
-.about-banner {
-  position: relative;
-  height: rem(407);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin: rem(80) 0;
-
-  &__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../assets/about-banner-bg.png') center/cover no-repeat;
-    z-index: 1;
-  }
-
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: rem(80);
-    color: $color-white;
-    max-width: rem(1300);
-    width: 100%;
-  }
-
-  &__left {
-    flex: 1;
-    text-align: left;
-  }
-
-  &__right {
-    flex: 1;
-    text-align: left;
-  }
-
-  &__discount {
-    display: block;
-    font-family: $font-primary;
-    font-size: $font-size-banner;
-    font-weight: $font-weight-black;
-    line-height: $line-height-medium;
-    color: $color-white;
-    margin: 0 0 rem(-50);
-  }
-
-  &__kicker {
-    font-family: $font-primary;
-    font-size: $font-size-medium;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-base;
-    color: $color-white;
-    opacity: 0.95;
-    margin: 0;
-  }
-
-  &__title {
-    font-family: $font-primary;
-    font-size: $font-size-title;
-    font-weight: $font-weight-black;
-    line-height: $line-height-medium;
-    color: $color-white;
-    margin: 0 0 rem(28);
-  }
-
-  &__subtitle {
-    font-family: $font-primary;
-    font-size: $font-size-xxl;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-white;
-    opacity: 0.92;
-    margin: 0 0 rem(28);
-  }
-
-  &__text {
-    font-family: $font-primary;
-    font-size: $font-size-medium;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
-    color: $color-white;
-    opacity: 0.92;
-    margin: 0 0 rem(40);
-    max-width: rem(393);
-  }
-
-  &__btn {
-    padding: rem(18) rem(48);
-    min-height: rem(60);
-    font-size: $font-size-large;
-    font-weight: $font-weight-bold;
-  }
-}
 
 @media (max-width: 1200px) {
   .about-benefits__grid {
@@ -395,22 +286,6 @@
     grid-template-columns: 1fr;
     gap: rem(30);
   }
-
-  .about-banner {
-    height: auto;
-    padding: rem(60) 0;
-    
-    &__content {
-      flex-direction: column;
-      gap: rem(40);
-      text-align: center;
-    }
-
-    &__left,
-    &__right {
-      text-align: center;
-    }
-  }
 }
 
 @media (max-width: 480px) {
@@ -428,7 +303,4 @@
     padding: rem(40) 0;
   }
 
-  .about-banner {
-    margin: rem(40) 0;
-  }
 }
