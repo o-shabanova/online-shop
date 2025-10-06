@@ -388,7 +388,6 @@ class CartManager {
         messageBox.style.cssText = `
             background: white;
             padding: 3rem;
-            border-radius: 0.5rem;
             text-align: center;
             max-width: 30rem;
             box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
@@ -401,7 +400,6 @@ class CartManager {
             color: white;
             border: none;
             padding: 1rem 2rem;
-            border-radius: 0.25rem;
             font-size: 1rem;
             cursor: pointer;
             margin-top: 1.5rem;

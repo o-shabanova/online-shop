@@ -216,6 +216,10 @@
         .product-tabs__panel {
             display:none;
 
+            &--active {
+                display: block;
+            }
+
             .product-tabs__text {
                 font-family: $font-primary;
                 font-size: rem(17);
@@ -226,10 +230,6 @@
                 & + .product-tabs__text {
                     margin-top: rem(30);
                 }
-            }
-
-            &--active {
-                display: block;
             }
         }
     }

@@ -56,35 +56,6 @@
     }
   }
 
-  .footer-benefits {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &__item {
-      display: flex;
-      flex: 1;
-      align-items: flex-start;
-      gap: $spacing-md;
-      max-width: rem(247);
-
-      img {
-        flex-shrink: 0;
-        width: rem(60);
-        height: rem(60);
-      }
-
-      p {
-        margin: rem(8) 0 0;
-        font-family: $font-helvetica;
-        font-size: $font-size-base;
-        font-weight: $font-weight-medium;
-        line-height: $line-height-medium;
-        color: $color-white;
-      }
-    }
-  }
-
   &__bottom {
     display: flex;
     flex-direction: row;
@@ -103,52 +74,6 @@
       flex-direction: column;
       gap: rem(73);
       
-    }
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-
-    .footer-col {
-      h3 {
-        margin-bottom: $spacing-md;
-
-        a {
-          font-family: $font-helvetica;
-          font-size: $font-size-base;
-          font-weight: $font-weight-bold;
-          line-height: $line-height-medium;
-          text-decoration: none;
-          color: $color-black;
-
-          &:hover {
-            color: $color-primary;
-          }
-        }
-      }
-
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: $spacing-md;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
-        li a {
-          font-family: $font-helvetica;
-          font-size: $font-size-base;
-          font-weight: $font-weight-regular;
-          line-height: $line-height-base;
-          text-decoration: none;
-          color: $color-black;
-
-          &:hover {
-            color: $color-primary;
-          }
-        }
-      }
     }
   }
 
@@ -210,6 +135,16 @@
       align-items: flex-start;
       gap: rem(12);
 
+      &__working-hours {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+
+        p {
+          margin: 0;
+        }
+      }
+
       svg {
         flex-shrink: 0;
         width: rem(24);
@@ -235,16 +170,6 @@
           }
         }
       }
-
-      &__working-hours {
-        display: flex;
-        flex-direction: column;
-        gap: rem(4);
-
-        p {
-          margin: 0;
-        }
-      }
     }
   }
 
@@ -260,10 +185,94 @@
       color: $color-gray-dark;
     }
   }
+
+  .footer-benefits {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__item {
+      display: flex;
+      flex: 1;
+      align-items: flex-start;
+      gap: $spacing-md;
+      max-width: rem(247);
+
+      img {
+        flex-shrink: 0;
+        width: rem(60);
+        height: rem(60);
+      }
+
+      p {
+        margin: rem(8) 0 0;
+        font-family: $font-helvetica;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        line-height: $line-height-medium;
+        color: $color-white;
+      }
+    }
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-col {
+      h3 {
+        margin-bottom: $spacing-md;
+
+        a {
+          font-family: $font-helvetica;
+          font-size: $font-size-base;
+          font-weight: $font-weight-bold;
+          line-height: $line-height-medium;
+          text-decoration: none;
+          color: $color-black;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li a {
+          font-family: $font-helvetica;
+          font-size: $font-size-base;
+          font-weight: $font-weight-regular;
+          line-height: $line-height-base;
+          text-decoration: none;
+          color: $color-black;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (width <= rem(767)) {
   .footer {
+    &__bottom__right__contacts {
+      &__item {
+        svg {
+          width: rem(20);
+          height: rem(20);
+        }
+      }
+    }
+
     .footer-benefits {
       flex-direction: column;
       gap: $spacing-lg;
@@ -276,15 +285,6 @@
     .footer-links {
       flex-direction: column;
       gap: $spacing-lg;
-    }
-
-    &__bottom__right__contacts {
-      &__item {
-        svg {
-          width: rem(20);
-          height: rem(20);
-        }
-      }
     }
   }
 }

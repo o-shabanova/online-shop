@@ -93,16 +93,16 @@
     text-align: center;
     color: $color-white;
 
+    @media (width <= 768px) {
+        font-size: rem(14);
+    }
+
     &:first-child {
         text-align: left;
     }
 
     &:last-child {
         text-align: right;
-    }
-
-    @media (width <= 768px) {
-        font-size: rem(14);
     }
 }
 
@@ -126,15 +126,15 @@
     width: rem(80);
     height: rem(80);
 
+    @media (width <= 768px) {
+        width: rem(60);
+        height: rem(60);
+    }
+
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-    }
-
-    @media (width <= 768px) {
-        width: rem(60);
-        height: rem(60);
     }
 }
 
@@ -187,6 +187,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
 
+    @media (width <= 768px) {
+        width: rem(28);
+        height: rem(28);
+        font-size: rem(18);
+    }
+
     &:hover {
         background-color: $color-primary;
         color: $color-white;
@@ -200,12 +206,6 @@
             background-color: transparent;
             color: $color-primary;
         }
-    }
-
-    @media (width <= 768px) {
-        width: rem(28);
-        height: rem(28);
-        font-size: rem(18);
     }
 }
 
@@ -255,23 +255,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
 
-    &:hover {
-        background-color: $color-primary;
-
-        svg {
-            path {
-                stroke: $color-white;
-            }
-        }
-
-        transition: stroke 0.3s ease;
-    }
-
-    svg {
-        width: rem(18);
-        height: rem(20);
-    }
-
     @media (width <= 768px) {
         width: rem(28);
         height: rem(28);
@@ -280,6 +263,22 @@
             width: rem(16);
             height: rem(18);
         }
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        transition: stroke 0.3s ease;
+
+        svg {
+            path {
+                stroke: $color-white;
+            }
+        }
+    }
+
+    svg {
+        width: rem(18);
+        height: rem(20);
     }
 }
 
@@ -310,18 +309,18 @@
     color: $color-white;
     cursor: pointer;
     transition: all 0.3s ease;
+
+    @media (width <= 768px) {
+        max-width: none;
+        height: rem(50);
+        font-size: rem(14);
+    }
 ;
 
     &:hover {
         border: rem(2) solid $color-primary;
         background-color: transparent;
         color: $color-primary;
-    }
-
-    @media (width <= 768px) {
-        max-width: none;
-        height: rem(50);
-        font-size: rem(14);
     }
 }
 
@@ -367,14 +366,14 @@
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     color: $color-white;
-
-    &.total {
-        font-size: rem(20);
-    }
   
 
     @media (width <= 768px) {
         font-size: rem(15);
+    }
+
+    &.total {
+        font-size: rem(20);
     }
 }
 
@@ -386,16 +385,16 @@
     line-height: $line-height-medium;
     color: $color-white;
 
-    &--total {
-        font-size: rem(20);
-    }
-
     @media (width <= 768px) {
         font-size: rem(15);
 
         &--total {
             font-size: rem(18);
         }
+    }
+
+    &--total {
+        font-size: rem(20);
     }
 }
 
@@ -418,14 +417,14 @@
     cursor: pointer;
     transition: all 0.3s ease;
 
-    &:hover {
-        background-color: darken($color-primary, 10%);
-        transform: translateY(rem(-2));
-    }
-
     @media (width <= 768px) {
         height: rem(50);
         font-size: rem(16);
+    }
+
+    &:hover {
+        background-color: darken($color-primary, 10%);
+        transform: translateY(rem(-2));
     }
 }
 

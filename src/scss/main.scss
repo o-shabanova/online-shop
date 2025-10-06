@@ -210,7 +210,6 @@
   
     &__card-btn {
       padding: rem(18) rem(36);
-      border-radius: $border-radius-md;
       font-size: $font-size-large;          
       font-weight: $font-weight-bold;
       inline-size: max-content;
@@ -536,12 +535,12 @@
   
   
 .testimonials-section {
-  padding: 119px 0;
-
   @extend .container;
 
+  padding: rem(119) 0;
+
   .section__title {
-    margin-bottom: 12px;
+    margin-bottom: rem(12);
     font-family: $font-primary;
     font-size: $font-size-title;
     font-weight: $font-weight-black;
@@ -551,7 +550,7 @@
   }
 
   .section__subtitle {
-    margin-bottom: 80px;
+    margin-bottom: rem(80);
     font-family: $font-primary;
     font-size: $font-size-medium;
     font-weight: $font-weight-regular;
@@ -563,14 +562,14 @@
 
 .testimonials__grid {
   display: grid;
-  gap: 40px;
+  gap: rem(40);
   grid-template-columns: repeat(3, 1fr);
 }
 
 .testimonial-card {
-  width: 420px;
-  height: 336px;
-  padding: 44px 39px;
+  width: rem(420);
+  height: rem(336);
+  padding: rem(44) rem(39);
   background-color: $color-white;
   text-align: center;
   transition: transform 0.3s ease;
@@ -591,14 +590,14 @@
 .testimonial-card__image {
   width: 98px;
   height: 98px;
-  margin-bottom: 44px;
+  margin-bottom: rem(44);
   border-radius: 50%;
   object-fit: cover;
 }
 
 .testimonial-card__text {
   flex: 1;
-  margin-bottom: 25px;
+  margin-bottom: rem(25);
 
   p {
     font-family: $font-primary;
@@ -623,7 +622,7 @@
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  height: 554px;
+  height: rem(554);
 
   &__bg {
     position: absolute;

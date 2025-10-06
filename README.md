@@ -21,4 +21,4 @@ http://localhost:5173
 
 ## Things to improve
 - Fix some styles based on figma design (including form styles)
-- Extract some commin finctionality to one place (like start rating)
+- Extract some common finctionality to one place (like start rating)
