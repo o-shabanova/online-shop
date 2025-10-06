@@ -9,12 +9,14 @@ class CatalogManager {
         this.currentPage = 1;
         this.productsPerPage = 12;
         this.popup = null;
+        this.productCardTemplate = null; // Cache the template
         this.init();
     }
 
     async init() {
         try {
             await this.loadProducts();
+            await this.loadProductCardTemplate();
             this.initPopup();
             await this.renderProducts();
             await this.renderTopBestSets();
@@ -46,6 +48,15 @@ class CatalogManager {
         }
     }
 
+    async loadProductCardTemplate() {
+        try {
+            this.productCardTemplate = await loadProductCardTemplate('/components/product-card.html');
+        } catch (error) {
+            console.error('Error loading product card template:', error);
+            throw error;
+        }
+    }
+
     async renderProducts() {
         const productGrid = document.getElementById('catalog-products');
         if (!productGrid) {
@@ -66,66 +77,16 @@ class CatalogManager {
         const endIndex = startIndex + this.productsPerPage;
         const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
 
-        try {
-            // Load the product card template
-            const template = await loadProductCardTemplate('/components/product-card.html');
-            
-            // Create all product cards using the template
-            const fragment = document.createDocumentFragment();
-            productsToShow.forEach(product => {
-                const cardNode = renderProductCard(template, product);
-                fragment.appendChild(cardNode);
-            });
-            
-            // Append all cards at once
-            productGrid.appendChild(fragment);
-            
-            this.updatePagination(totalPages);
-        } catch (error) {
-            console.error('Error rendering products:', error);
-        }
+        // Use cached template
+        const fragment = document.createDocumentFragment();
+        productsToShow.forEach(product => {
+            const cardNode = renderProductCard(this.productCardTemplate, product);
+            fragment.appendChild(cardNode);
+        });
+        
+        productGrid.appendChild(fragment);
+        this.updatePagination(totalPages);
     }
-
-    // createProductCardSync(product) {
-    //     const card = document.createElement('article');
-    //     card.className = 'product-card';
-    //     card.setAttribute('data-id', product.id);
-
-    //     const formattedPrice = `$${product.price}`;
-    //     const saleBadge = product.salesStatus ? '<span class="product-card__badge">SALE</span>' : '';
-
-    //     card.innerHTML = `
-    //         <div class="product-card__image-wrapper">
-    //             <img class="product-card__image" alt="${product.name}" height="400" src="${product.imageUrl}">
-    //             ${saleBadge}
-    //         </div>
-    //         <div class="product-card__info">
-    //             <p class="product-card__name">${product.name}</p>
-    //             <p class="product-card__price">${formattedPrice}</p>
-    //             <button class="main-button product-card__button" data-add-to-cart data-product-id="${product.id}" data-quantity="1">Add To Cart</button>
-    //         </div>
-    //     `;
-
-    //     // Add click event listener to navigate to product details page
-    //     card.addEventListener('click', (event) => {
-    //         // Don't navigate if clicking on the Add to Cart button
-    //         if (event.target.matches('[data-add-to-cart]')) {
-    //             return;
-    //         }
-            
-    //         // Navigate to product details page with product ID
-    //         window.location.href = `/pages/product-details-template?id=${product.id}`;
-    //     });
-
-    //     return card;
-    // }
-
-    // async createProductCard(product) {
-    //     return new Promise((resolve) => {
-    //         const card = this.createProductCardSync(product);
-    //         resolve(card);
-    //     });
-    // }
 
     // Update list count of rendered products
     updateProductCount() {
@@ -203,36 +164,17 @@ class CatalogManager {
             this.currentPage++;
             await this.renderProducts();
         }
-        // If on last page, do nothing (button remains visible but inactive)
     }
 
     // Filter products based on criteria
     async filterProducts(filters) {
         this.filteredProducts = this.products.filter(product => {
-            // Size filter
-            if (filters.size && !this.matchesSize(filters.size, product.size)) {
-                return false;
-            }
-            
-            // Color filter
-            if (filters.color && product.color !== filters.color) {
-                return false;
-            }
-            
-            // Category filter
-            if (filters.category && product.category !== filters.category) {
-                return false;
-            }
-            
-            // Sales filter (true => only items on sale; false => no restriction)
-            if (filters.sales && !product.salesStatus) {
-                return false;
-            }
-            
-            return true;
+            return (!filters.size || this.matchesSize(filters.size, product.size)) &&
+                   (!filters.color || product.color === filters.color) &&
+                   (!filters.category || product.category === filters.category) &&
+                   (!filters.sales || product.salesStatus);
         });
 
-        // Reset to first page when filtering
         this.currentPage = 1;
         await this.renderProducts();
     }
@@ -274,40 +216,29 @@ class CatalogManager {
 
     // Sort products
     async sortProducts(sortType) {
-        switch (sortType) {
-            case 'price-asc':
-                this.filteredProducts.sort((a, b) => a.price - b.price);
-                break;
-            case 'price-desc':
-                this.filteredProducts.sort((a, b) => b.price - a.price);
-                break;
-            case 'popularity':
-                this.filteredProducts.sort((a, b) => b.popularity - a.popularity);
-                break;
-            case 'rating':
-                this.filteredProducts.sort((a, b) => b.rating - a.rating);
-                break;
-            default:
-                // Keep original order
-                break;
+        const sortMethods = {
+            'price-asc': (a, b) => a.price - b.price,
+            'price-desc': (a, b) => b.price - a.price,
+            'popularity': (a, b) => b.popularity - a.popularity,
+            'rating': (a, b) => b.rating - a.rating
+        };
+
+        if (sortMethods[sortType]) {
+            this.filteredProducts.sort(sortMethods[sortType]);
         }
 
-        // Reset to first page when sorting
         this.currentPage = 1;
         await this.renderProducts();
     }
 
     // Search products
     async searchProducts(searchTerm) {
-        if (!searchTerm.trim()) {
-            this.filteredProducts = [...this.products];
-        } else {
-            this.filteredProducts = this.products.filter(product =>
+        this.filteredProducts = searchTerm.trim() 
+            ? this.products.filter(product => 
                 product.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        }
+              )
+            : [...this.products];
 
-        // Reset to first page when searching
         this.currentPage = 1;
         await this.renderProducts();
     }
