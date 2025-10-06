@@ -239,6 +239,7 @@
     @extend .container;                  
     padding-block: rem(140);             
     padding-inline: $section-pad-inline; 
+    overflow: hidden;
   
     /* scope title/subtitle to this section */
     .section__title {
@@ -330,15 +331,16 @@
   
 
 .travel__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 39px;
+  will-change: transform;
 }
 
 .travel__card {
   position: relative;
   width: 296px;
   height: 600px;
+  flex: 0 0 auto;
   overflow: hidden;
   transition: transform 0.3s ease;
 
